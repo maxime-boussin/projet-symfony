@@ -8,6 +8,7 @@ use App\Form\RegistrationFormType;
 use App\Security\LoginAuthenticator;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 
-class RegistrationController extends AbstractController
+class UserController extends AbstractController
 {
     /**
      * @Route("/register", name="app_register")
@@ -48,6 +49,36 @@ class RegistrationController extends AbstractController
                 $authenticator,
                 'main' // firewall name in security.yaml
             );
+        }
+
+        return $this->render('registration/register.html.twig', [
+            'registrationForm' => $form->createView(),
+        ]);
+    }
+    /**
+     * @Route("/profile", name="app_profile")
+     * @IsGranted("ROLE_USER")
+     */
+    public function udpateProfile(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginAuthenticator $authenticator, EntityManagerInterface $em): Response
+    {
+        $user = $this->get('security.context')->getToken()->getUser();
+        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            if($form->get('oldPassword') !== null || $form->get('newPassword') !== null){
+                if ($passwordEncoder->isPasswordValid($user, $form->get('oldPassword'))) {
+                    //Si le password est assez long etc...
+                    $user->setPassword(
+                        $passwordEncoder->encodePassword(
+                            $user,
+                            $form->get('newPassword')->getData()
+                        )
+                    );
+                }
+            }
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->flush();
         }
 
         return $this->render('registration/register.html.twig', [

@@ -138,9 +138,12 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Projet jeu/MudSaint/docker-api" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Form" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Maxime\dev\projet-symfony\src\Form" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Maxime\dev\projet-symfony\bin" />
     </key>
@@ -175,10 +178,18 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="197" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1581979229695">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="197" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581979229695" />
     <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1581971799434">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581971799434" />
+    <state x="734" y="334" key="NewPhpClassDialog" timestamp="1581979662213">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="734" y="334" key="NewPhpClassDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581979662213" />
     <state x="657" y="257" width="606" height="526" key="find.popup" timestamp="1581965447878">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
