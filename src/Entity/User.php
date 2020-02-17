@@ -37,11 +37,6 @@ class User implements UserInterface
     private $phone;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $rememberMe;
-
-    /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
@@ -124,22 +119,6 @@ class User implements UserInterface
     public function setPhone($phone): void
     {
         $this->phone = $phone;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getRememberMe()
-    {
-        return $this->rememberMe;
-    }
-
-    /**
-     * @param mixed $rememberMe
-     */
-    public function setRememberMe($rememberMe): void
-    {
-        $this->rememberMe = $rememberMe;
     }
 
     public function getEmail(): ?string
