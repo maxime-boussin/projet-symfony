@@ -80,7 +80,7 @@ class UserController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
         }
-
+        // Faire la vue etc...
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
