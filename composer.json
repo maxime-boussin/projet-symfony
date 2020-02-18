@@ -28,8 +28,8 @@
         "symfony/validator": "5.0.*",
         "symfony/web-link": "5.0.*",
         "symfony/yaml": "5.0.*",
-        "twig/intl-extra": "^3.0",
-        "twig/cssinliner-extra": "^3.0"
+        "twig/cssinliner-extra": "^3.0",
+        "twig/intl-extra": "^3.0"
     },
     "require-dev": {
         "symfony/debug-pack": "*",
