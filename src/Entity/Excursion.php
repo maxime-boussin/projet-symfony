@@ -63,6 +63,12 @@ class Excursion
      */
     private $place;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="ownedExcursions")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $organizer;
+
     public function __construct()
     {
         $this->participants = new ArrayCollection();
@@ -191,6 +197,18 @@ class Excursion
     public function setPlace(?Place $place): self
     {
         $this->place = $place;
+
+        return $this;
+    }
+
+    public function getOrganizer(): ?User
+    {
+        return $this->organizer;
+    }
+
+    public function setOrganizer(?User $organizer): self
+    {
+        $this->organizer = $organizer;
 
         return $this;
     }

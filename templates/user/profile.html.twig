@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Update{% endblock %}
+
+{% block body %}
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+    <h1>Profile</h1>
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.firstName) }}
+        {{ form_row(registrationForm.lastName) }}
+        {{ form_row(registrationForm.nickname) }}
+        {{ app.user.email }}
+        {{ form_row(registrationForm.phone) }}
+        {{ form_row(registrationForm.oldPassword) }}
+        {{ form_row(registrationForm.newPassword) }}
+
+        <button class="btn">Update</button>
+    {{ form_end(registrationForm) }}
+{% endblock %}

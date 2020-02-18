@@ -12,6 +12,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Security\Core\Validator\Constraints as SecurityAssert;
 
 class ProfileFormType extends AbstractType
 {
@@ -20,16 +21,22 @@ class ProfileFormType extends AbstractType
         $builder
             ->add('firstName')
             ->add('lastName')
+            ->add('nickname')
             ->add('phone')
-            ->add('oldPassword', PasswordType::class)
+            ->add('oldPassword', PasswordType::class, array(
+                "mapped" => false,
+                "label" => "Password",
+                "constraints" => [new SecurityAssert\UserPassword([
+                   'message' => "Wrong password"
+                ])]
+            ))
             ->add('newPassword', RepeatedType::class, [
+                'type' => PasswordType::class,
                 'first_options'  => ['label' => 'New password'],
                 'second_options' => ['label' => 'Repeat new password'],
                 'mapped' => false,
+                'required'   => false,
                 'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please enter a password',
-                    ]),
                     new Length([
                         'min' => 6,
                         'minMessage' => 'Your password should be at least {{ limit }} characters',

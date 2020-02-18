@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Site;
 use App\Entity\User;
+use App\Form\ProfileFormType;
 use App\Form\RegistrationFormType;
 use App\Security\LoginAuthenticator;
 use Doctrine\ORM\EntityManager;
@@ -61,27 +62,23 @@ class UserController extends AbstractController
      */
     public function udpateProfile(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginAuthenticator $authenticator, EntityManagerInterface $em): Response
     {
-        $user = $this->get('security.context')->getToken()->getUser();
-        $form = $this->createForm(RegistrationFormType::class, $user);
+        $user = $this->getUser();
+        $form = $this->createForm(ProfileFormType::class, $user);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
-            if($form->get('oldPassword') !== null || $form->get('newPassword') !== null){
-                if ($passwordEncoder->isPasswordValid($user, $form->get('oldPassword'))) {
-                    //Si le password est assez long etc...
-                    $user->setPassword(
-                        $passwordEncoder->encodePassword(
-                            $user,
-                            $form->get('newPassword')->getData()
-                        )
-                    );
-                }
+            if($form->get('newPassword')->getData() !== null){
+                $user->setPassword(
+                    $passwordEncoder->encodePassword(
+                        $user,
+                        $form->get('newPassword')->getData()
+                    )
+                );
             }
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
         }
         // Faire la vue etc...
-        return $this->render('registration/register.html.twig', [
+        return $this->render('user/profile.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }
