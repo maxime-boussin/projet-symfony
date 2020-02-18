@@ -11,6 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @UniqueEntity(fields={"nickname"}, message="There is already an account with this nickname")
  */
 class User implements UserInterface
 {
@@ -63,9 +64,20 @@ class User implements UserInterface
      */
     private $site;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $nickname;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Excursion", mappedBy="organizer")
+     */
+    private $ownedExcursions;
+
     public function __construct()
     {
         $this->excursions = new ArrayCollection();
+        $this->ownedExcursions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -230,6 +242,49 @@ class User implements UserInterface
     public function setSite(?Site $site): self
     {
         $this->site = $site;
+
+        return $this;
+    }
+
+    public function getNickname(): ?string
+    {
+        return $this->nickname;
+    }
+
+    public function setNickname(string $nickname): self
+    {
+        $this->nickname = $nickname;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Excursion[]
+     */
+    public function getOwnedExcursions(): Collection
+    {
+        return $this->ownedExcursions;
+    }
+
+    public function addOwnedExcursion(Excursion $ownedExcursion): self
+    {
+        if (!$this->ownedExcursions->contains($ownedExcursion)) {
+            $this->ownedExcursions[] = $ownedExcursion;
+            $ownedExcursion->setOrganizer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOwnedExcursion(Excursion $ownedExcursion): self
+    {
+        if ($this->ownedExcursions->contains($ownedExcursion)) {
+            $this->ownedExcursions->removeElement($ownedExcursion);
+            // set the owning side to null (unless already changed)
+            if ($ownedExcursion->getOrganizer() === $this) {
+                $ownedExcursion->setOrganizer(null);
+            }
+        }
 
         return $this;
     }

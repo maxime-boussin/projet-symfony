@@ -1,13 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e52a300b-a96f-4a14-8762-874d6867e984" name="Default Changelist" comment="" />
+    <list default="true" id="e52a300b-a96f-4a14-8762-874d6867e984" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Controller/CommonController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/ExcursionListFormType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/ChangePassword.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/excursions/list.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/user/profile.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/projet-symfony.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/projet-symfony.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Excursion.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Excursion.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/ProfileFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ProfileFormType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/RegistrationFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/RegistrationFormType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/registration/register.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/register.html.twig" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution>
       <executable />
@@ -127,6 +145,7 @@
       <path value="$PROJECT_DIR$/vendor/psr/container" />
       <path value="$PROJECT_DIR$/vendor/psr/cache" />
       <path value="$PROJECT_DIR$/vendor/egulias/email-validator" />
+      <path value="$PROJECT_DIR$/vendor/twig/intl-extra" />
     </include_path>
   </component>
   <component name="ProjectId" id="1Xwk9R2VbVN7NiLwmGemZ2XbJgM" />
@@ -141,11 +160,15 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Form" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Maxime\dev\projet-symfony\src\Form" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Maxime\dev\projet-symfony\bin" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\mboussin\workspace\eni\projet-symfony\src\Form" />
+      <recent name="C:\Users\mboussin\workspace\eni\projet-symfony\templates\excursions" />
+      <recent name="C:\Users\mboussin\workspace\eni\projet-symfony\src\Controller" />
+      <recent name="C:\Users\mboussin\workspace\eni\projet-symfony\templates\user" />
+      <recent name="C:\Users\mboussin\workspace\eni\projet-symfony" />
     </key>
   </component>
   <component name="ServiceViewManager">
@@ -171,6 +194,7 @@
       <option name="presentableId" value="Default" />
       <updated>1581964392231</updated>
       <workItem from="1581964393388" duration="5308000" />
+      <workItem from="1582012826012" duration="14396000" />
     </task>
     <servers />
   </component>
@@ -178,17 +202,23 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="197" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1581979229695">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="501" y="216" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1582022495970">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state x="501" y="216" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1582022495969" />
+    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1582028558176">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1582028558176" />
     <state x="197" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581979229695" />
     <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1581971799434">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581971799434" />
-    <state x="734" y="334" key="NewPhpClassDialog" timestamp="1581979662213">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="587" y="265" key="NewPhpClassDialog" timestamp="1582017827141">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state x="587" y="265" key="NewPhpClassDialog/0.0.1536.824@0.0.1536.824" timestamp="1582017827141" />
     <state x="734" y="334" key="NewPhpClassDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581979662213" />
     <state x="657" y="257" width="606" height="526" key="find.popup" timestamp="1581965447878">
       <screen x="0" y="0" width="1920" height="1040" />

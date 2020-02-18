@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des sorties{% endblock %}
+{% block body %}
+        <div><b>Filtrer les sorties</b></div>
+        {{ form_start(excursionListForm) }}
+                {{ form_row(excursionListForm.site) }}
+                {{ form_row(excursionListForm.excursion_content) }}
+                {{ form_row(excursionListForm.from_date) }}
+                {{ form_row(excursionListForm.to_date) }}
+                {{ form_row(excursionListForm.owned_excursions) }}
+                {{ form_row(excursionListForm.subscribed_excursions) }}
+                {{ form_row(excursionListForm.not_subscribed_excursions) }}
+                {{ form_row(excursionListForm.passed_excursions) }}
+        {{ form_end(excursionListForm) }}
+        <table>
+                <tr>
+                        <th>Nom de la sortie</th>
+                        <th>Date de la sortie</th>
+                        <th>Clôture</th>
+                        <th>Inscrits/Places</th>
+                        <th>Etat</th>
+                        <th>Inscrit</th>
+                        <th>Organisateur</th>
+                        <th>Actions</th>
+                </tr>
+                {% for excursion in excursions %}
+                <tr>
+                        <td>{{ excursion.name }}</td>
+                        <td>{{ excursion.date|format_datetime() }}</td>
+                        <td>{{ excursion.limitDate|format_datetime() }}</td>
+                        <td>{{ excursion.participants|length }}/{{ excursion.participantLimit }}</td>
+                        <td>Ouvert</td>
+                        <td>X</td>
+                        <td>{{ excursion.organizer.firstName }} {{ excursion.organizer.lastName }}</td>
+                        <td>Afficher</td>
+                </tr>
+                {% endfor %}
+        </table>
+{% endblock %}
