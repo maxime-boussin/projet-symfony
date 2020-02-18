@@ -1,13 +1,13 @@
-##Lancement
-###Docker
-* ``docker-compose up -d``
-* ssh serveur: ``docker exec -it sf5_php bash``
-* logs: ``docker-compose logs --tail=25 -f``
+# Sortir.com
 
-###Composer
-dans sf5:
-- ``composer install``
+## Getting started
 
-> Appli : ``http://localhost:80/``
+```bash
+## Install
+git clone https://github.com/maxime-boussin/projet-symfony.git
+cd projet-symfony
+composer install
 
-> PhpMyAdmin : ``http://localhost:8080/``
+## Runs the embeded server
+php -S localhost:8000 -t public
+````
