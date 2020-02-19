@@ -6,6 +6,8 @@ use App\Entity\Excursion;
 use App\Form\ExcursionPostType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
+
 
 class ExcursionController extends AbstractController
 {
@@ -15,7 +17,7 @@ class ExcursionController extends AbstractController
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function newExcursion(Request $request){
+    public function createExcursion(Request $request){
         $excursion = new Excursion();
         $excursion->setParticipantLimit(10);
 
