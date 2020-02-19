@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create a new excursion{% endblock %}
+
+{% block body %}
+    <h1>Create a new excursion</h1>
+
+    {{ form_start(createExcursionForm) }}
+        {{ form_row(createExcursionForm.name) }}
+        {{ form_row(createExcursionForm.site) }}
+        {{ form_row(createExcursionForm.place) }}
+        {{ form_row(createExcursionForm.description) }}
+        {{ form_row(createExcursionForm.date) }}
+        {{ form_row(createExcursionForm.limitDate) }}
+        {{ form_row(createExcursionForm.duration) }}
+        {{ form_row(createExcursionForm.visibility) }}
+
+        {{ form_row(createExcursionForm.participantLimit) }}
+
+        <button class="btn">Submit</button>
+    {{ form_end(createExcursionForm) }}
+{% endblock %}
