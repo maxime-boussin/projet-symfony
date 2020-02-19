@@ -38,7 +38,7 @@
                                 {% if excursion.subscribed == 0 %}
                                         <a href="{{ path('app_subscribe', { id: excursion.id }) }}">S'inscrire</a>
                                 {% endif %}
-                                Afficher
+                                <a href="{{ path('excursions_details', { id:excursion.id }) }}">Afficher</a>
                         </td>
                 </tr>
                 {% endfor %}

@@ -22,7 +22,7 @@ use Symfony\Component\Validator\Constraints\Date;
 class CommonController extends AbstractController
 {
     /**
-     * @Route("/excursions", name="app_excursions")
+     * @Route("/excursions/list", name="app_excursions")
      * @IsGranted("ROLE_USER")
      */
     public function listExcursions(Request $request, EntityManagerInterface $em): Response
