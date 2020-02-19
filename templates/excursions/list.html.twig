@@ -34,7 +34,12 @@
                         <td>{{ excursion.state == 1 ?"Ouvert":"Fermé" }}</td>
                         <td>{% if excursion.subscribed == 1 %}X{% endif %}</td>
                         <td>{{ excursion.organizer_first_name }} {{ excursion.organizer_last_name }}</td>
-                        <td>Afficher</td>
+                        <td>
+                                {% if excursion.subscribed == 0 %}
+                                        <a href="{{ path('app_subscribe', { id: excursion.id }) }}">S'inscrire</a>
+                                {% endif %}
+                                Afficher
+                        </td>
                 </tr>
                 {% endfor %}
         </table>

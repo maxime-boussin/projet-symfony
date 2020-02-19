@@ -61,4 +61,25 @@ class CommonController extends AbstractController
             'excursions' => $excursions,
         ]);
     }
+
+
+    /**
+     * @Route("/subscribe/{id}", name="app_subscribe")
+     * @IsGranted("ROLE_USER")
+     */
+    public function subscribeExcursions(Request $request, EntityManagerInterface $em, $id): Response
+    {
+        $excursion = $em->getRepository(Excursion::class)->find($id);
+        if($excursion != null){
+            if($excursion->getState() != 0 && count($excursion->getParticipants()) < $excursion->getParticipantLimit() &&
+                !$excursion->getParticipants()->contains($this->getUser())){
+                $excursion->addParticipant($this->getUser());
+                $em->flush();
+            }
+            else{
+                //TODO: Afficher message d'erreur
+            }
+        }
+        return $this->redirectToRoute('app_excursions');
+    }
 }
