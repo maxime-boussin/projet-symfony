@@ -2,21 +2,18 @@
 
 namespace App\Controller;
 
-use App\Entity\City;
 use App\Entity\Excursion;
-use App\Entity\Place;
-use App\Entity\User;
-use App\Form\CityFormType;
 use App\Form\ExcursionPostType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
 
 class ExcursionController extends AbstractController
 {
     /**
-     * @Route("/create/excursion", name="excursion")
+     * @Route("/excursion/create", name="excursion")
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newExcursion(Request $request){
         $excursion = new Excursion();
@@ -25,6 +22,7 @@ class ExcursionController extends AbstractController
         $user = $this->getUser();
 
 
+        /** @noinspection PhpParamsInspection */
         $excursion->setOrganizer($user);
 
 
