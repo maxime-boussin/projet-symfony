@@ -71,8 +71,11 @@ class CommonController extends AbstractController
     {
         $excursion = $em->getRepository(Excursion::class)->find($id);
         if($excursion != null){
-            if($excursion->getState() != 0 && count($excursion->getParticipants()) < $excursion->getParticipantLimit() &&
-                !$excursion->getParticipants()->contains($this->getUser())){
+            if($excursion->getState() != 0 &&
+                count($excursion->getParticipants()) < $excursion->getParticipantLimit() &&
+                !$excursion->getParticipants()->contains($this->getUser()) &&
+                $excursion->getLimitDate() > new \DateTime()
+            ){
                 $excursion->addParticipant($this->getUser());
                 $em->flush();
             }

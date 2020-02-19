@@ -4,7 +4,6 @@
     <list default="true" id="e52a300b-a96f-4a14-8762-874d6867e984" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/CommonController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CommonController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/excursions/list.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/excursions/list.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/~$DescriptionProduit.ods" beforeDir="false" afterPath="$PROJECT_DIR$/~$DescriptionProduit.ods" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -181,7 +180,7 @@
       <updated>1581964392231</updated>
       <workItem from="1581964393388" duration="5308000" />
       <workItem from="1582015362395" duration="10891000" />
-      <workItem from="1582099203711" duration="10839000" />
+      <workItem from="1582099203711" duration="11078000" />
     </task>
     <servers />
   </component>
