@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ExcursionController extends AbstractController
 {
     /**
-     * @Route("/create-excursion", name="excursion")
+     * @Route("/create/excursion", name="excursion")
      */
     public function newExcursion(Request $request){
         $excursion = new Excursion();
