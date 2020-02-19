@@ -35,10 +35,17 @@
                         <td>{% if excursion.subscribed == 1 %}X{% endif %}</td>
                         <td>{{ excursion.organizer_first_name }} {{ excursion.organizer_last_name }}</td>
                         <td>
-                                {% if excursion.subscribed == 0 %}
-                                        <a href="{{ path('app_subscribe', { id: excursion.id }) }}">S'inscrire</a>
+                                {% if excursion.state > 0 %}
+                                        {% if excursion.subscribed == 0 and excursion.nb_participants < excursion.participant_limit %}
+                                                <a href="{{ path('app_subscribe', { id: excursion.id }) }}">S'inscrire</a>
+                                        {% endif %}
+                                        {% if excursion.subscribed == 1 %}
+                                                <a href="{{ path('app_unsubscribe', { id: excursion.id }) }}">Se désister</a>
+                                        {% endif %}
+                                        {% if excursion.organizer_id == app.user.id %}
+                                                <a href="{{ path('app_cancel_excursion', { id: excursion.id }) }}">Annuler</a>
+                                        {% endif %}
                                 {% endif %}
-                                Afficher
                         </td>
                 </tr>
                 {% endfor %}

@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Annuler une sortie{% endblock %}
+{% block body %}
+        {{ form_start(cancellationForm) }}
+        <table>
+                <tr>
+                        <td>Nom de la sortie:</td>
+                        <td>{{ excursion.name }}</td>
+                </tr>
+                <tr>
+                        <td>Date de la sortie:</td>
+                        <td>{{ excursion.date|format_datetime() }}</td>
+                </tr>
+                <tr>
+                        <td>Ville organisatrice:</td>
+                        <td>{{ excursion.site.name }}</td>
+                </tr>
+                <tr>
+                        <td>Lieu:</td>
+                        <td>{{ excursion.place.city.name }}, {{ excursion.place.address }}</td>
+                </tr>
+                <tr>
+                        <td>Motif:</td>
+                        <td>{{ form_row(cancellationForm.description) }}</td>
+                </tr>
+        </table>
+        <button class="btn btn-lg btn-primary">Enregistrer</button>
+        {{ form_end(cancellationForm) }}
+{% endblock %}
