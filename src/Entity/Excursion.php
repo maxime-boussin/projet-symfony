@@ -79,6 +79,11 @@ class Excursion
      */
     private $state;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Cancellation", mappedBy="excursion", cascade={"persist", "remove"})
+     */
+    private $cancellation;
+
     public function __construct()
     {
         $this->participants = new ArrayCollection();
@@ -250,6 +255,23 @@ class Excursion
     public function setState(int $state): self
     {
         $this->state = $state;
+
+        return $this;
+    }
+
+    public function getCancellation(): ?Cancellation
+    {
+        return $this->cancellation;
+    }
+
+    public function setCancellation(Cancellation $cancellation): self
+    {
+        $this->cancellation = $cancellation;
+
+        // set the owning side of the relation if necessary
+        if ($cancellation->getExcursion() !== $this) {
+            $cancellation->setExcursion($this);
+        }
 
         return $this;
     }

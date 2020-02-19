@@ -2,28 +2,26 @@
 
 namespace App\Controller;
 
+use App\Entity\Cancellation;
 use App\Entity\Excursion;
-use App\Entity\Site;
-use App\Entity\User;
-use App\Form\ProfileFormType;
+use App\Form\CancellationFormType;
 use App\Form\ExcursionListFormType;
-use App\Security\LoginAuthenticator;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
-use Symfony\Component\Validator\Constraints\Date;
 
 class CommonController extends AbstractController
 {
     /**
      * @Route("/excursions/list", name="app_excursions")
      * @IsGranted("ROLE_USER")
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @return Response
+     * @throws \Exception
      */
     public function listExcursions(Request $request, EntityManagerInterface $em): Response
     {
@@ -62,12 +60,15 @@ class CommonController extends AbstractController
         ]);
     }
 
-
     /**
      * @Route("/subscribe/{id}", name="app_subscribe")
      * @IsGranted("ROLE_USER")
+     * @param EntityManagerInterface $em
+     * @param $id
+     * @return Response
+     * @throws \Exception
      */
-    public function subscribeExcursions(Request $request, EntityManagerInterface $em, $id): Response
+    public function subscribeExcursions(EntityManagerInterface $em, $id): Response
     {
         $excursion = $em->getRepository(Excursion::class)->find($id);
         if($excursion != null){
@@ -81,6 +82,67 @@ class CommonController extends AbstractController
             }
             else{
                 //TODO: Afficher message d'erreur
+            }
+        }
+        return $this->redirectToRoute('app_excursions');
+    }
+
+    /**
+     * @Route("/unsubscribe/{id}", name="app_unsubscribe")
+     * @IsGranted("ROLE_USER")
+     * @param EntityManagerInterface $em
+     * @param $id
+     * @return Response
+     * @throws \Exception
+     */
+    public function unsubscribeExcursions(EntityManagerInterface $em, $id): Response
+    {
+        $excursion = $em->getRepository(Excursion::class)->find($id);
+        if($excursion != null){
+            if($excursion->getState() != 0 &&
+                $excursion->getParticipants()->contains($this->getUser()) &&
+                $excursion->getLimitDate() > new \DateTime()
+            ){
+                $excursion->removeParticipant($this->getUser());
+                $em->flush();
+            }
+            else{
+                //TODO: Afficher message d'erreur
+            }
+        }
+        return $this->redirectToRoute('app_excursions');
+    }
+
+    /**
+     * @Route("/cancel/{id}", name="app_cancel_excursion")
+     * @IsGranted("ROLE_USER")
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @param $id
+     * @return Response
+     */
+    public function cancelExcursions(Request $request, EntityManagerInterface $em, $id): Response
+    {
+        $excursion = $em->getRepository(Excursion::class)->find($id);
+        if($excursion != null){
+            if($excursion->getState() != 0 && $excursion->getOrganizer() == $this->getUser()){
+                $cancellation = new Cancellation();
+                $form = $this->createForm(CancellationFormType::class, $cancellation);
+                $form->handleRequest($request);
+                if ($form->isSubmitted() && $form->isValid()) {
+                    $entityManager = $this->getDoctrine()->getManager();
+                    $excursion->setState(-1);
+                    $cancellation->setExcursion($excursion);
+                    $entityManager->persist($cancellation);
+                    $entityManager->flush();
+                    //TODO: Afficher un message success
+                }
+                else{
+                    return $this->render('excursions/cancel.html.twig', [
+                        'cancellationForm' => $form->createView(),
+                        'excursion' => $excursion,
+                    ]);
+                }
             }
         }
         return $this->redirectToRoute('app_excursions');

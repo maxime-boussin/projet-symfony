@@ -79,12 +79,12 @@ class ExcursionRepository extends ServiceEntityRepository
      */
     public function nativeFindByFilters($user, $site, ?string $content, \DateTime $from, \DateTime $to, bool $owned, bool $subscribed, bool $notSubscribed, bool $past){
         $conn = $this->getEntityManager()->getConnection();
-        $sql = 'SELECT excursion.id, site.name as site_name, date, limit_date as limitDate, duration, excursion.name as name, description, visibility, participant_limit, state, 
+        $sql = 'SELECT excursion.id, site.name as site_name, date, limit_date as limitDate, duration, excursion.name as name, description, visibility, participant_limit, state, organizer_id,
             user.first_name as organizer_first_name, user.last_name as organizer_last_name, 
             (select COUNT(*) from excursion_user eu where eu.excursion_id=excursion.id) nb_participants,
             :user IN(select user_id from excursion_user eu where eu.excursion_id=excursion.id) as subscribed
             FROM excursion 
-            JOIN excursion_user ON excursion.id = excursion_user.excursion_id
+            LEFT JOIN excursion_user ON excursion.id = excursion_user.excursion_id
             JOIN site ON site.id = excursion.site_id
             JOIN user ON user.id = excursion.organizer_id
             WHERE excursion.site_id = :site
@@ -98,13 +98,13 @@ class ExcursionRepository extends ServiceEntityRepository
             $sql.=' OR user_id = :user';
         }
         if($notSubscribed){
-            $sql.=' OR user_id != :user';
+            $sql.=' OR user_id != :user OR user_id IS NULL';
         }
         if($past){
             $sql.=' OR excursion.date < NOW()';
         }
         $sql.=' AND excursion.name LIKE :content';
-        $sql.=' GROUP BY excursion.id, site.name, date, limit_date, duration, excursion.name, description, visibility, participant_limit, organizer_id';
+        $sql.=' GROUP BY excursion.id';
         $from = $from->format('Y-m-d');
         $to = $to->format('Y-m-d');
         $content = '%'.$content.'%';
