@@ -28,8 +28,14 @@ class Site
      */
     private $users;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Excursion", mappedBy="site")
+     */
+    private $excursions;
+
     public function __construct()
     {
+        $this->excursions = new ArrayCollection();
         $this->users = new ArrayCollection();
     }
 
@@ -84,5 +90,23 @@ class Site
     public function __toString()
     {
         return $this->name;
+    }
+
+    /**
+     * @return Collection|Excursion[]
+     */
+    public function getExcursions(): Collection
+    {
+        return $this->excursions;
+    }
+
+    public function addExcursion(Excursion $excursion): self
+    {
+        if (!$this->excursions->contains($excursion)) {
+            $this->excursions[] = $excursion;
+            $excursion->setPlace($this);
+        }
+
+        return $this;
     }
 }
