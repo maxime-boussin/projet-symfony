@@ -30,6 +30,7 @@ class ExcursionListFormType extends AbstractType
             )
             ->add('excursion_content', TextType::class, [
                 'label'    => 'Le nom de la sortie contient',
+                'required' => false,
             ])
             ->add('from_date', DateType::class, [
                 'label'    => 'Entre',
@@ -39,23 +40,20 @@ class ExcursionListFormType extends AbstractType
             ])
             ->add('owned_excursions', CheckboxType::class, [
                 'label'    => 'Sorties dont je suis l\'organisateur/trice',
+                'required' => false,
             ])
             ->add('subscribed_excursions', CheckboxType::class, [
                 'label'    => 'Sorties auxquelles je suis inscrit/e',
+                'required' => false,
             ])
             ->add('not_subscribed_excursions', CheckboxType::class, [
                 'label'    => 'Sorties auxquelles je ne suis pas inscrit/e',
+                'required' => false,
             ])
-            ->add('passed_excursions', CheckboxType::class, [
+            ->add('past_excursions', CheckboxType::class, [
                 'label'    => 'Sorties passées',
+                'required' => false,
             ])
         ;
-    }
-
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults([
-            'data_class' => User::class,
-        ]);
     }
 }

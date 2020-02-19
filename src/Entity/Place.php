@@ -29,11 +29,6 @@ class Place
     private $city;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Excursion", mappedBy="place")
-     */
-    private $excursions;
-
-    /**
      * @ORM\Column(type="float")
      */
     private $latitude;
@@ -42,6 +37,11 @@ class Place
      * @ORM\Column(type="float")
      */
     private $longitude;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Excursion", mappedBy="place")
+     */
+    private $excursions;
 
     public function __construct()
     {
@@ -73,24 +73,6 @@ class Place
     public function setCity(?City $city): self
     {
         $this->city = $city;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Excursion[]
-     */
-    public function getExcursions(): Collection
-    {
-        return $this->excursions;
-    }
-
-    public function addExcursion(Excursion $excursion): self
-    {
-        if (!$this->excursions->contains($excursion)) {
-            $this->excursions[] = $excursion;
-            $excursion->setPlace($this);
-        }
 
         return $this;
     }
@@ -128,6 +110,24 @@ class Place
     public function setLongitude(float $longitude): self
     {
         $this->longitude = $longitude;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Excursion[]
+     */
+    public function getExcursions(): Collection
+    {
+        return $this->excursions;
+    }
+
+    public function addExcursion(Excursion $excursion): self
+    {
+        if (!$this->excursions->contains($excursion)) {
+            $this->excursions[] = $excursion;
+            $excursion->setPlace($this);
+        }
 
         return $this;
     }

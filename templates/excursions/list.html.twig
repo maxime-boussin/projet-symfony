@@ -11,7 +11,8 @@
                 {{ form_row(excursionListForm.owned_excursions) }}
                 {{ form_row(excursionListForm.subscribed_excursions) }}
                 {{ form_row(excursionListForm.not_subscribed_excursions) }}
-                {{ form_row(excursionListForm.passed_excursions) }}
+                {{ form_row(excursionListForm.past_excursions) }}
+                <button class="btn btn-lg btn-primary">Rechercher</button>
         {{ form_end(excursionListForm) }}
         <table>
                 <tr>
@@ -29,10 +30,10 @@
                         <td>{{ excursion.name }}</td>
                         <td>{{ excursion.date|format_datetime() }}</td>
                         <td>{{ excursion.limitDate|format_datetime() }}</td>
-                        <td>{{ excursion.participants|length }}/{{ excursion.participantLimit }}</td>
-                        <td>Ouvert</td>
-                        <td>X</td>
-                        <td>{{ excursion.organizer.firstName }} {{ excursion.organizer.lastName }}</td>
+                        <td>{{ excursion.nb_participants }}/{{ excursion.participant_limit }}</td>
+                        <td>{{ excursion.state == 1 ?"Ouvert":"Fermé" }}</td>
+                        <td>{% if excursion.subscribed == 1 %}X{% endif %}</td>
+                        <td>{{ excursion.organizer_first_name }} {{ excursion.organizer_last_name }}</td>
                         <td>Afficher</td>
                 </tr>
                 {% endfor %}

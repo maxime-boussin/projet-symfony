@@ -59,15 +59,25 @@ class Excursion
     private $participants;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Place", inversedBy="excursions")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Site", inversedBy="excursions")
      */
-    private $place;
+    private $site;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="ownedExcursions")
      * @ORM\JoinColumn(nullable=false)
      */
     private $organizer;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Place", inversedBy="excursions")
+     */
+    private $place;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $state;
 
     public function __construct()
     {
@@ -77,6 +87,13 @@ class Excursion
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getDate(): ?\DateTimeInterface
@@ -189,14 +206,14 @@ class Excursion
         return $this;
     }
 
-    public function getPlace(): ?Place
+    public function getSite(): ?Site
     {
-        return $this->place;
+        return $this->site;
     }
 
-    public function setPlace(?Place $place): self
+    public function setSite(?Site $site): self
     {
-        $this->place = $place;
+        $this->site = $site;
 
         return $this;
     }
@@ -209,6 +226,30 @@ class Excursion
     public function setOrganizer(?User $organizer): self
     {
         $this->organizer = $organizer;
+
+        return $this;
+    }
+
+    public function getPlace(): ?Place
+    {
+        return $this->place;
+    }
+
+    public function setPlace(?Place $place): self
+    {
+        $this->place = $place;
+
+        return $this;
+    }
+
+    public function getState(): ?int
+    {
+        return $this->state;
+    }
+
+    public function setState(int $state): self
+    {
+        $this->state = $state;
 
         return $this;
     }
