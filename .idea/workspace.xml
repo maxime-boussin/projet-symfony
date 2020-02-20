@@ -2,19 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="410840bb-4e54-472b-ad11-2d235e1a9399" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/images/logo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/CommonController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CommonController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/PlaceFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/PlaceFormType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/RegistrationFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/RegistrationFormType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/excursions/cancel.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/excursions/cancel.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/excursions/create.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/excursions/create.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/excursions/details.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/excursions/details.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/excursions/list.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/excursions/list.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registration/register.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/register.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/profile.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/profile.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/ExcursionRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ExcursionRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/~$DescriptionProduit.ods" beforeDir="false" afterPath="$PROJECT_DIR$/~$DescriptionProduit.ods" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
