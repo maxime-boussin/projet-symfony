@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e52a300b-a96f-4a14-8762-874d6867e984" name="Default Changelist" comment="">
+    <list default="true" id="e52a300b-a96f-4a14-8762-874d6867e984" name="Default Changelist" comment="commit pour pull">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -152,9 +152,10 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/excursions" />
-    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php.debug" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -179,11 +180,12 @@
     </option>
   </component>
   <component name="SvnConfiguration">
-    <configuration />
+    <configuration>C:\Users\vzercher2018\AppData\Roaming\Subversion</configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="e52a300b-a96f-4a14-8762-874d6867e984" name="Default Changelist" comment="" />
+      <changelist id="" name="Unversioned Files" comment="" />
       <created>1581964392231</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -191,7 +193,7 @@
       <workItem from="1581964393388" duration="5308000" />
       <workItem from="1582015362395" duration="19484000" />
       <workItem from="1582099363974" duration="23942000" />
-      <workItem from="1582185650518" duration="14492000" />
+      <workItem from="1582185650518" duration="14869000" />
     </task>
     <task id="LOCAL-00001" summary="commit pour pull">
       <created>1582030413445</created>
@@ -277,20 +279,27 @@
       <option name="project" value="LOCAL" />
       <updated>1582203003960</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="commit pour pull">
+      <created>1582204989809</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1582204989809</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="commit pour pull" />
     <MESSAGE value="Création d'une sortie" />
     <MESSAGE value="Détails d'une sortie" />
     <MESSAGE value="Publier une sortie depuis sa page détails" />
     <MESSAGE value="Commit pour pull" />
     <MESSAGE value="Publication d'un sortie : down" />
-    <option name="LAST_COMMIT_MESSAGE" value="Publication d'un sortie : down" />
+    <MESSAGE value="commit pour pull" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit pour pull" />
   </component>
   <component name="WindowStateProjectService">
     <state x="195" y="135" key="#CLI_Interpreters" timestamp="1582195804538">
@@ -321,10 +330,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="210" y="278" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582189755376" />
-    <state x="585" y="114" key="CommitChangelistDialog2" timestamp="1582203003366">
+    <state x="585" y="114" key="CommitChangelistDialog2" timestamp="1582205093558">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="585" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1582203003366" />
+    <state x="585" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1582205093558" />
     <state x="184" y="86" key="DiffContextDialog" timestamp="1582190032288">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -362,14 +371,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="734" y="334" key="NewPhpClassDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581979662213" />
-    <state x="396" y="138" key="SettingsEditor" timestamp="1582196374627">
+    <state x="396" y="138" key="SettingsEditor" timestamp="1582205279951">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="396" y="138" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1582196374627" />
+    <state x="396" y="138" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1582205279951" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1582025397936">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1920.1040@0.0.1920.1040" timestamp="1582025397936" />
+    <state x="807" y="435" key="VCS.ChangelistChooser" timestamp="1582205288934">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="807" y="435" key="VCS.ChangelistChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1582205288934" />
+    <state x="849" y="437" key="VCS.EditChangelistDialog" timestamp="1582205165054">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="849" y="437" key="VCS.EditChangelistDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582205165054" />
     <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1582203451349">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -391,9 +408,9 @@
     </state>
     <state x="657" y="257" width="606" height="526" key="find.popup/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581965447878" />
     <state x="657" y="257" width="606" height="536" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1582197361699" />
-    <state x="651" y="311" key="git4idea.merge.GitPullDialog" timestamp="1582203066703">
+    <state x="651" y="311" key="git4idea.merge.GitPullDialog" timestamp="1582205073853">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="651" y="311" key="git4idea.merge.GitPullDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582203066703" />
+    <state x="651" y="311" key="git4idea.merge.GitPullDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582205073853" />
   </component>
 </project>
