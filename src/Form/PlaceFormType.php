@@ -17,7 +17,7 @@ class PlaceFormType extends AbstractType
             ->add('city', CityFormType::class, [
                 'label' => false
             ])
-            ->add('adress', TextType::class, [
+            ->add('address', TextType::class, [
                 'label' => 'Adresse de l\'évènement : '
             ])
             ->add('longitude', NumberType::class, [
