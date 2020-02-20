@@ -28,7 +28,9 @@ class ExcursionPostType extends AbstractType
                     'choice_label' => 'name'
                 ]
             )
-            ->add('place', PlaceFormType::class)
+            ->add('place', PlaceFormType::class, [
+                'label' => false
+            ])
             ->add('description', TextType::class, [
                 'label' => 'Description de la sortie : ',
                 'help' => 'Karting, piscine, cinéma, marche au bord du lac etc.'

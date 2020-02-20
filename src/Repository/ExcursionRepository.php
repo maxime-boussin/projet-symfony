@@ -80,7 +80,7 @@ class ExcursionRepository extends ServiceEntityRepository
     public function nativeFindByFilters($user, $site, ?string $content, \DateTime $from, \DateTime $to, bool $owned, bool $subscribed, bool $notSubscribed, bool $past){
         $conn = $this->getEntityManager()->getConnection();
         $sql = 'SELECT excursion.id, site.name as site_name, date, limit_date as limitDate, duration, excursion.name as name, description, visibility, participant_limit, state, organizer_id,
-            user.first_name as organizer_first_name, user.last_name as organizer_last_name, 
+            user.first_name as organizer_first_name, user.last_name as organizer_last_name, user.nickname as organizer_nickname, 
             (select COUNT(*) from excursion_user eu where eu.excursion_id=excursion.id) nb_participants,
             :user IN(select user_id from excursion_user eu where eu.excursion_id=excursion.id) as subscribed
             FROM excursion 
@@ -104,7 +104,7 @@ class ExcursionRepository extends ServiceEntityRepository
             $sql.=' OR excursion.date < NOW()';
         }
         $sql.=' AND excursion.name LIKE :content';
-        $sql.=' GROUP BY excursion.id';
+        $sql.=' GROUP BY excursion.id LIMIT 50';
         $from = $from->format('Y-m-d');
         $to = $to->format('Y-m-d');
         $content = '%'.$content.'%';
@@ -116,7 +116,72 @@ class ExcursionRepository extends ServiceEntityRepository
         $stmt->bindParam(':user', $user);
         $stmt->execute();
         $res = $stmt->fetchAll();
+        foreach($res as $excursion){
+            $state = $this-> updateState($excursion['id']);
+            $excursion['state'] = $state;
+        }
         return $res;
+    }
+
+    /**
+     * @param $id
+     * @return int|null
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function updateState($id){
+        $excursion = $this->find($id);
+        if($excursion != null){
+            //0 créé
+            //1 ouvert
+            //2 clôturée
+            //3 en cours
+            //4 passée
+            //5 annulée
+            if($excursion->getState() != 0 && $excursion->getState() != 5){
+                if( $excursion->getLimitDate() > new \DateTime())
+                    $excursion->setState(1);
+                if( $excursion->getLimitDate() < new \DateTime())
+                    $excursion->setState(2);
+                if( $excursion->getDate() < new \DateTime())
+                    $excursion->setState(3);
+                if( $excursion->getDate()->add($excursion->getDuration()) < new \DateTime())
+                    $excursion->setState(4);
+            }
+            $this->getEntityManager()->flush($excursion);
+            return $excursion->getState();
+        }
+    }
+
+    /**
+     * @param $id
+     * @return Excursion|null
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function updateAndFind($id){
+        $this->updateState($id);
+        return $this->find($id);
+    }
+
+    /**
+     * @param \DateTime $date
+     * @return int
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function purge(\DateTime $date){
+        $qb = $this->createQueryBuilder('e')
+            ->where('e.date < :date')
+            ->setParameter('date', $date->format('Y-m-d'));
+        $excursions = $qb->getQuery()->getResult();
+        $nb = 0;
+        foreach($excursions as $excursion){
+            $this->getEntityManager()->remove($excursion);
+            $nb++;
+        }
+        $this->getEntityManager()->flush();
+        return $nb;
     }
     // /**
     //  * @return Excursion[] Returns an array of Excursion objects

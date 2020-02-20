@@ -14,7 +14,9 @@ class PlaceFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('city', CityFormType::class)
+            ->add('city', CityFormType::class, [
+                'label' => false
+            ])
             ->add('adress', TextType::class, [
                 'label' => 'Adresse de l\'évènement : '
             ])

@@ -56,6 +56,7 @@ class UserController extends AbstractController
             'registrationForm' => $form->createView(),
         ]);
     }
+
     /**
      * @Route("/profile", name="app_profile")
      * @IsGranted("ROLE_USER")
@@ -81,5 +82,27 @@ class UserController extends AbstractController
         return $this->render('user/profile.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/profile/{username}", name="app_foreign_profile")
+     * @IsGranted("ROLE_USER")
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @param string $username
+     * @return Response
+     */
+    public function displayProfile(Request $request, EntityManagerInterface $em, string $username): Response
+    {
+        $profile = $em->getRepository(User::class)->findOneBy(['nickname' =>$username]);
+        if($profile != null){
+            return $this->render('user/foreign-profile.html.twig', [
+                'profile' => $profile,
+            ]);
+        }
+        else{
+            //TODO: Afficher "Not found profile" info
+            return $this->redirectToRoute('app_excursions');
+        }
     }
 }
