@@ -188,4 +188,37 @@ class CommonController extends AbstractController
             'createExcursionForm' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/excursions/details/{id}", name="app_details_excursions")
+     */
+    public function detailsExcursion(EntityManagerInterface $em, $id): Response
+    {
+        $excursion = $em->getRepository(Excursion::class)->find($id);
+        if ($excursion != null) {
+            $site = $excursion->getSite();
+            $place = $excursion->getPlace();
+            $city = $place->getCity();
+            return $this->render('excursions/details.html.twig', [
+                'excursion' => $excursion,
+                'site' => $site,
+                'place' => $place,
+                'city' => $city
+            ]);
+        }
+
+        return $this->redirectToRoute('app_excursions');
+    }
+
+    /**
+     * @Route(name="app_publish_excursions")
+     */
+    public function publishExcursion ($id):Response
+    {
+        $em = $this->getDoctrine()->getManager();
+        $excursion = $em->getRepository(Excursion::class)->find($id);
+        if (($excursion != null) && ($excursion->getOrganizer()->getId() == $this->getUser()->getId())){
+            $excursion->setState(0);
+        }
+    }
 }

@@ -2,44 +2,24 @@
 
 {% block title %}Liste des sorties{% endblock %}
 {% block body %}
-    <h1>
+    <div>
         Détails de la sortie
-    </h1>
-    <div>
         Intitulé de la sortie : {{ excursion.name }}
-    </div>
-    <div>
         Description : {{ excursion.description }}
-    </div>
-    <div>
         Site organisateur : {{ site.name }}
-    </div>
-    <div>
         Ville où se déroule l'évènement : {{ city.name }}
-    </div>
-    <div>
         Rue : {{ place.adress }}
-    </div>
-    <div>
         Code Postale : {{ city.postCode }}
-    </div>
-    <div>
         Date et heure de la sortie : {{ excursion.date|format_datetime() }}
-    </div>
-    <div>
         Date limite d'inscription : {{ excursion.limitDate|format_datetime() }}
-    </div>
-    <div>
-{#        Durée : {{ excursion.duration }}#}
-    </div>
-    <div>
-{#        Participants : {{ excursion.nb_participants }}#}
-    </div>
-    <div>
+        {#        Durée : {{ excursion.duration }}#}
+        {#        Participants : {{ excursion.nb_participants }}#}
         Nombre de places maximum : {{ excursion.participantLimit }}
-    </div>
-    <div>
         Etat de la publication : {{ excursion.state == 1 ?"Ouvert":"Fermé" }}
     </div>
+    <div>
+        <a href="{{ path ('app_publish_excursions', { id: excursion.id })}}">Publier cette annonce</a>
+    </div>
+
 
 {% endblock %}
