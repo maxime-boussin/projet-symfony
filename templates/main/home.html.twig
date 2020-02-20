@@ -1,0 +1,92 @@
+{% extends "layout.html.twig" %}
+
+{% block main %}
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Accueil</h1>
+    </div>
+    <div class="row">
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Idées (mois)</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ nbMonth }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-calendar-day fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Idées (Année)</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ nbYear }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Top utilisateur</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ topUser }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-crown fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Messages</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">183</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Graphique des idées</h6>
+        </div>
+        <div class="card-body">
+            <div class="chart-area">
+                <canvas id="myAreaChart"></canvas>
+            </div>
+            <hr>
+            Ce graphique représente le nombre d'idées par mois durant l'année précédente.
+        </div>
+    </div>
+<script type="text/javascript">
+var datasChart = {{ chart |raw }};
+var valuesMonth = Object.values(datasChart);
+var keysMonth = Object.keys(datasChart);
+console.log(keysMonth)
+</script>
+  <script src="{{ asset("vendor/chart.js/Chart.min.js") }}"></script>
+  <script src="{{ asset("js/demo/chart-area-demo.js") }}"></script>
+{% endblock %}
+{% block title %}
+    Accueil -{{ parent() }}
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends "layout.html.twig" %}
+
+{% block main %}
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Liste d'idées</h1>
+    </div>
+    <div class="row">
+        {% for idea in ideas %}
+            <div class="col-lg-6">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">{{ idea.title }}</h6>
+                        <div class="dropdown no-arrow">
+                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                <div class="dropdown-header">Options:</div>
+                                <a class="dropdown-item" href="{{ path("idea_detail", {id:idea.id}) }}">Détails</a>
+                                {% if app.session.get("userNickname") == idea.author.nickname %}
+                                    <a class="dropdown-item" href="{{ path("idea_edit", {id:idea.id}) }}">Modifier</a>
+                                    <form id="delForm{{ idea.id }}" method="post" action="{{ path("idea_delete", {id:idea.id}) }}">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ idea.id) }}">
+                                        <a class="dropdown-item" href="#" onclick="document.getElementById('delForm{{ idea.id }}').submit()">Supprimer</a>
+                                    </form>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        {{ idea.description }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+
+
+    {# <div class="progress">
+                        <div id="bar" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                            <span class="sr-only">45% Complete</span>
+                        </div>
+                    </div>
+                    <img src="{{ asset("images/coin.jpg") }}" class="coin-icon">
+                    <span id="money">0</span>
+                    <div class="row">
+                        <button id="plusBar" class="btn btn-primary">Click</button>
+                    </div> #}
+{% endblock %}
+
+{% block title %}
+    Liste d'idées -
+    {{ parent() }}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function () {
+            var coin = 0;
+            var i = 0;
+            $("#plusBar").click(function () {
+                i++;
+                console.log(i);
+            });
+
+            setInterval(function () {
+                i++;
+                if (i >= 101) {
+                    coin++;
+                    i = 0;
+                }
+                $("#bar").css("width", i + "%");
+                $("#money").html(coin);
+            }, 250);
+        });
+    </script>
+{% endblock %}

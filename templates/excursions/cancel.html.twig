@@ -1,7 +1,7 @@
-{% extends 'base.html.twig' %}
+{% extends "layout.html.twig" %}
 
-{% block title %}Annuler une sortie{% endblock %}
-{% block body %}
+{% block title %}Annulation sortie - {{ parent() }}{% endblock %}
+{% block main %}
         {{ form_start(cancellationForm) }}
         <table>
                 <tr>

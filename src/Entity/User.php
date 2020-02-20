@@ -74,6 +74,11 @@ class User implements UserInterface
      */
     private $ownedExcursions;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $avatarPath;
+
     public function __construct()
     {
         $this->excursions = new ArrayCollection();
@@ -285,6 +290,18 @@ class User implements UserInterface
                 $ownedExcursion->setOrganizer(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAvatarPath(): ?string
+    {
+        return $this->avatarPath;
+    }
+
+    public function setAvatarPath(?string $avatarPath): self
+    {
+        $this->avatarPath = $avatarPath;
 
         return $this;
     }

@@ -1,0 +1,59 @@
+{% extends "layout.html.twig" %}
+
+{% block main %}
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Détails de l'utilisateur</h1>
+    </div>
+    <div class="col-lg-12 mb-4">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Profile de
+                    {{ user.nickname }}</h6>
+            </div>
+            <div class="card-body row">
+                <div class="col-md-3">
+                    <img class="img-fluid rounded-circle" style="width: 25rem;" src="/bucket-list/public/images/avatars/{{ user.image }}" alt="">
+                </div>
+                <div class="col-md-4">
+                    <p>
+                        <b>Pseudo:
+                        </b>
+                        {{ user.nickname }}</p>
+                    <p>
+                        <b>Nom:
+                        </b>
+                        {{ user.name }}
+                    </p>
+                    <p>
+                        <b>Email:
+                        </b>
+                        {{ user.email }}
+                    </p>
+                    </div>
+                    <div class="col-md-4">
+                    <p>
+                        <b>Téléphone:
+                        </b>
+                        {{ user.phone }}
+                    </p>
+                    <p>
+                        <b>Ville:
+                        </b>
+                        {{ user.city }}
+                    </p>
+                    <p>
+                        <b>Addresse:
+                        </b>
+                        {{ user.address }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block title %}
+    {{ user.nickname }}
+    -
+    {{ parent() }}
+{% endblock %}

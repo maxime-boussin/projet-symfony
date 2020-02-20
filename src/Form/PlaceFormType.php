@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\City;
 use App\Entity\Place;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -14,8 +16,10 @@ class PlaceFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('city', CityFormType::class, [
-                'label' => false
+            ->add('city', EntityType::class, [
+                'class' => City::class,
+                'label'    => false,
+                'choice_label' => 'name',
             ])
             ->add('address', TextType::class, [
                 'label' => 'Adresse de l\'évènement : '

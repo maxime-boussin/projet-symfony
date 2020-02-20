@@ -1,0 +1,26 @@
+.custom-alert{
+    z-index: 500;
+    position: absolute !important;
+    width: 100%;
+}
+body {
+    background-color: #FFF;
+    font-family: 'Manjari', sans-serif;
+}
+.nav-logo {
+    width: 20px;
+    display: inline-block !important;
+}
+.footer{
+    position: fixed;
+    bottom: 0px;
+    background-color: #333;
+    height: 30px;
+    width: 100%;
+    color: #CCC;
+}
+
+.coin-icon {
+    width: 20px;
+    display: inline-block;
+}

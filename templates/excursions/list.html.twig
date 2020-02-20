@@ -1,60 +1,60 @@
-{% extends 'base.html.twig' %}
+{% extends "layout.html.twig" %}
 
-{% block title %}Liste des sorties{% endblock %}
-{% block body %}
-        <div><b>Filtrer les sorties</b></div>
-        {{ form_start(excursionListForm) }}
-                {{ form_row(excursionListForm.site) }}
-                {{ form_row(excursionListForm.excursion_content) }}
-                {{ form_row(excursionListForm.from_date) }}
-                {{ form_row(excursionListForm.to_date) }}
-                {{ form_row(excursionListForm.owned_excursions) }}
-                {{ form_row(excursionListForm.subscribed_excursions) }}
-                {{ form_row(excursionListForm.not_subscribed_excursions) }}
-                {{ form_row(excursionListForm.past_excursions) }}
-                <button class="btn btn-lg btn-primary">Rechercher</button>
-        {{ form_end(excursionListForm) }}
-        <table>
-                <tr>
-                        <th>Nom de la sortie</th>
-                        <th>Date de la sortie</th>
-                        <th>Clôture</th>
-                        <th>Inscrits/Places</th>
-                        <th>Etat</th>
-                        <th>Inscrit</th>
-                        <th>Organisateur</th>
-                        <th>Actions</th>
-                </tr>
-                {% for excursion in excursions %}
-                <tr>
-                        <td>{{ excursion.name }}</td>
-                        <td>{{ excursion.date|format_datetime() }}</td>
-                        <td>{{ excursion.limitDate|format_datetime() }}</td>
-                        <td>{{ excursion.nb_participants }}/{{ excursion.participant_limit }}</td>
-                        <td>{{ excursion.state }}</td>
-                        <td>{% if excursion.subscribed == 1 %}X{% endif %}</td>
-                        <td>
-                                <a href="{{ path('app_foreign_profile', { username: excursion.organizer_nickname }) }}">
-                                        {{ excursion.organizer_first_name }} {{ excursion.organizer_last_name }}
-                                </a>
-                        </td>
-                        <td>
-                                {% if excursion.state < 2 %}
-                                        {% if excursion.state != 0 %}
-                                                {% if excursion.subscribed == 0 and excursion.nb_participants < excursion.participant_limit %}
-                                                        <a href="{{ path('app_subscribe', { id: excursion.id }) }}">S'inscrire</a>
-                                                {% endif %}
-                                                {% if excursion.subscribed == 1 %}
-                                                        <a href="{{ path('app_unsubscribe', { id: excursion.id }) }}">Se désister</a>
-                                                {% endif %}
-                                        {% endif %}
-                                        {% if excursion.organizer_id == app.user.id %}
-                                                <a href="{{ path('app_cancel_excursion', { id: excursion.id }) }}">Annuler</a>
-                                        {% endif %}
-                                {% endif %}
-                                <a href="{{ path('app_details_excursions', { id:excursion.id }) }}">Afficher</a>
-                        </td>
-                </tr>
-                {% endfor %}
-        </table>
+{% block title %}Sorties - {{ parent() }}{% endblock %}
+{% block main %}
+    <div><b>Filtrer les sorties</b></div>
+    {{ form_start(excursionListForm) }}
+    {{ form_row(excursionListForm.site) }}
+    {{ form_row(excursionListForm.excursion_content) }}
+    {{ form_row(excursionListForm.from_date) }}
+    {{ form_row(excursionListForm.to_date) }}
+    {{ form_row(excursionListForm.owned_excursions) }}
+    {{ form_row(excursionListForm.subscribed_excursions) }}
+    {{ form_row(excursionListForm.not_subscribed_excursions) }}
+    {{ form_row(excursionListForm.past_excursions) }}
+    <button class="btn btn-lg btn-primary">Rechercher</button>
+    {{ form_end(excursionListForm) }}
+    <table>
+        <tr>
+            <th>Nom de la sortie</th>
+            <th>Date de la sortie</th>
+            <th>Clôture</th>
+            <th>Inscrits/Places</th>
+            <th>Etat</th>
+            <th>Inscrit</th>
+            <th>Organisateur</th>
+            <th>Actions</th>
+        </tr>
+        {% for excursion in excursions %}
+            <tr>
+                <td>{{ excursion.name }}</td>
+                <td>{{ excursion.date|format_datetime() }}</td>
+                <td>{{ excursion.limitDate|format_datetime() }}</td>
+                <td>{{ excursion.nb_participants }}/{{ excursion.participant_limit }}</td>
+                <td>{{ excursion.state }}</td>
+                <td>{% if excursion.subscribed == 1 %}X{% endif %}</td>
+                <td>
+                    <a href="{{ path('app_foreign_profile', { username: excursion.organizer_nickname }) }}">
+                        {{ excursion.organizer_first_name }} {{ excursion.organizer_last_name }}
+                    </a>
+                </td>
+                <td>
+                    {% if excursion.state < 2 %}
+                        {% if excursion.state != 0 %}
+                            {% if excursion.subscribed == 0 and excursion.nb_participants < excursion.participant_limit %}
+                                <a href="{{ path('app_subscribe', { id: excursion.id }) }}">S'inscrire</a>
+                            {% endif %}
+                            {% if excursion.subscribed == 1 %}
+                                <a href="{{ path('app_unsubscribe', { id: excursion.id }) }}">Se désister</a>
+                            {% endif %}
+                        {% endif %}
+                        {% if excursion.organizer_id == app.user.id %}
+                            <a href="{{ path('app_cancel_excursion', { id: excursion.id }) }}">Annuler</a>
+                        {% endif %}
+                    {% endif %}
+                    <a href="{{ path('app_details_excursions', { id:excursion.id }) }}">Afficher</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
 {% endblock %}
