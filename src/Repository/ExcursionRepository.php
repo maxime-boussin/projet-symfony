@@ -90,7 +90,8 @@ class ExcursionRepository extends ServiceEntityRepository
             WHERE excursion.site_id = :site
             AND (date BETWEEN :from AND :to)
             AND visibility = 1
-            AND 1=0';
+            AND excursion.name LIKE :content
+            AND (1=0';
         if($owned){
             $sql.=' OR excursion.organizer_id = :user';
         }
@@ -103,8 +104,7 @@ class ExcursionRepository extends ServiceEntityRepository
         if($past){
             $sql.=' OR excursion.date < NOW()';
         }
-        $sql.=' AND excursion.name LIKE :content';
-        $sql.=' GROUP BY excursion.id LIMIT 50';
+        $sql.=') GROUP BY excursion.id LIMIT 50';
         $from = $from->format('Y-m-d');
         $to = $to->format('Y-m-d');
         $content = '%'.$content.'%';
