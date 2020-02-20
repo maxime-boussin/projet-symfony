@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e52a300b-a96f-4a14-8762-874d6867e984" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Form/CancellationFormType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/excursions/cancel.html.twig" afterDir="false" />
+    <list default="true" id="e52a300b-a96f-4a14-8762-874d6867e984" name="Default Changelist" comment="Création d'une sortie">
+      <change afterPath="$PROJECT_DIR$/templates/excursions/details.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/CommonController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CommonController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Excursion.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Excursion.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Place.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Place.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ExcursionRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ExcursionRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ExcursionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ExcursionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/excursions/create_excursion.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/excursions/create.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/excursions/list.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/excursions/list.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/~$DescriptionProduit.ods" beforeDir="false" afterPath="$PROJECT_DIR$/~$DescriptionProduit.ods" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,18 +156,13 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/excursions" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Maxime\dev\projet-symfony\bin" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
-<<<<<<< HEAD
-      <recent name="C:\Users\mboussin\workspace\eni\projet-symfony\templates\excursions" />
-      <recent name="C:\Users\mboussin\workspace\eni\projet-symfony\src\Form" />
-=======
       <recent name="C:\Users\vzercher2018\projet-symfony\templates\excursions" />
->>>>>>> 511dddf2fc7a1652d4c7ad7dcaa5bd9ead2886cc
       <recent name="C:\Users\vzercher2018\projet-symfony" />
       <recent name="C:\Users\Maxime\dev\projet-symfony\src\Form" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Maxime\dev\projet-symfony\bin" />
     </key>
   </component>
   <component name="ServiceViewManager">
@@ -196,12 +188,8 @@
       <option name="presentableId" value="Default" />
       <updated>1581964392231</updated>
       <workItem from="1581964393388" duration="5308000" />
-<<<<<<< HEAD
-      <workItem from="1582015362395" duration="10891000" />
-      <workItem from="1582099203711" duration="18172000" />
-=======
       <workItem from="1582015362395" duration="19484000" />
-      <workItem from="1582099363974" duration="12469000" />
+      <workItem from="1582099363974" duration="23788000" />
     </task>
     <task id="LOCAL-00001" summary="commit pour pull">
       <created>1582030413445</created>
@@ -209,9 +197,43 @@
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
       <updated>1582030413445</updated>
->>>>>>> 511dddf2fc7a1652d4c7ad7dcaa5bd9ead2886cc
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="commit pour pull">
+      <created>1582115560898</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1582115560898</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Création d'une sortie">
+      <created>1582118072268</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1582118072268</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Création d'une sortie">
+      <created>1582118126415</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1582118126415</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Création d'une sortie">
+      <created>1582118251398</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1582118251398</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Création d'une sortie">
+      <created>1582118691046</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1582118691046</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -219,28 +241,22 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="commit pour pull" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit pour pull" />
+    <MESSAGE value="Création d'une sortie" />
+    <option name="LAST_COMMIT_MESSAGE" value="Création d'une sortie" />
   </component>
   <component name="WindowStateProjectService">
     <state x="197" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1581979229695">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="197" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581979229695" />
-<<<<<<< HEAD
-    <state x="499" y="168" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1582114982384">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="499" y="168" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1582114982384" />
-=======
-    <state x="210" y="278" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1582101825900">
+    <state x="210" y="278" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1582119638267">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="210" y="278" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582101825900" />
-    <state x="585" y="114" key="CommitChangelistDialog2" timestamp="1582030410897">
+    <state x="210" y="278" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582119638267" />
+    <state x="585" y="114" key="CommitChangelistDialog2" timestamp="1582118690524">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="585" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1582030410897" />
->>>>>>> 511dddf2fc7a1652d4c7ad7dcaa5bd9ead2886cc
+    <state x="585" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1582118690524" />
     <state x="184" y="86" key="DiffContextDialog" timestamp="1582030374097">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -254,10 +270,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="184" y="86" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582030496506" />
-    <state x="672" y="236" key="MultipleFileMergeDialog" timestamp="1582030499302">
+    <state x="672" y="236" key="MultipleFileMergeDialog" timestamp="1582115585196">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="672" y="236" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582030499302" />
+    <state x="672" y="236" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582115585196" />
     <state x="734" y="334" key="NewPhpClassDialog" timestamp="1581979662213">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -266,33 +282,26 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1920.1040@0.0.1920.1040" timestamp="1582025397936" />
-<<<<<<< HEAD
-    <state x="526" y="204" width="738" height="606" key="find.popup" timestamp="1582120187744">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="526" y="204" width="738" height="606" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1582120187744" />
-=======
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1582030507839">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1582118698831">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1582030507839" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1582118698831" />
     <state x="655" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1582099376493">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="655" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582099376493" />
-    <state x="953" y="0" width="974" height="1047" key="dock-window-1" timestamp="1582110767570">
+    <state x="953" y="0" width="974" height="1047" key="dock-window-1" timestamp="1582126506791">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="953" y="0" width="974" height="1047" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1582110767570" />
-    <state x="657" y="257" width="606" height="536" key="find.popup" timestamp="1582036563623">
+    <state x="953" y="0" width="974" height="1047" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1582126506791" />
+    <state x="657" y="257" width="606" height="536" key="find.popup" timestamp="1582119557422">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
->>>>>>> 511dddf2fc7a1652d4c7ad7dcaa5bd9ead2886cc
     <state x="657" y="257" width="606" height="526" key="find.popup/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581965447878" />
-    <state x="657" y="257" width="606" height="536" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1582036563623" />
-    <state x="651" y="311" key="git4idea.merge.GitPullDialog" timestamp="1582031622060">
+    <state x="657" y="257" width="606" height="536" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1582119557422" />
+    <state x="651" y="311" key="git4idea.merge.GitPullDialog" timestamp="1582115575879">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="651" y="311" key="git4idea.merge.GitPullDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582031622060" />
+    <state x="651" y="311" key="git4idea.merge.GitPullDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582115575879" />
   </component>
 </project>
