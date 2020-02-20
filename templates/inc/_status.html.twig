@@ -1,0 +1,15 @@
+{% if status == 0 %}
+    Créée
+{% elseif status == 1 %}
+    Ouverte
+{% elseif status == 2 %}
+    Côturée
+{% elseif status == 3 %}
+    En cours
+{% elseif status == 4 %}
+    Passée
+{% elseif status == 5 %}
+    Annulée
+{% else %}
+    Inconnue
+{% endif %}
