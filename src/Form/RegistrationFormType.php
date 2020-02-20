@@ -5,7 +5,10 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
@@ -17,13 +20,39 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email')
-            ->add('nickname')
-            ->add('firstName')
-            ->add('lastName')
+            ->add('email', EmailType::class, [
+                'attr' => [
+                    'placeholder' => 'Pseudonyme',
+                    'class' => 'form-control'
+                ]
+            ])
+            ->add('nickname', TextType::class, [
+                    'attr' => [
+                        'placeholder' => 'Pseudonyme',
+                        'class' => 'form-control'
+                    ]
+            ])
+            ->add('firstName', TextType::class, [
+                'attr' => [
+                    'placeholder' => 'Prénom',
+                    'class' => 'form-control'
+                ]
+            ])
+            ->add('lastName', TextType::class, [
+                'attr' => [
+                    'placeholder' => 'Nom',
+                    'class' => 'form-control'
+                ]
+            ])
             ->add('site')
-            ->add('phone')
-            ->add('plainPassword', PasswordType::class, [
+            ->add('phone', TextType::class, [
+                'attr' => [
+                    'placeholder' => 'Téléphone',
+                    'class' => 'form-control'
+                ]
+            ])
+            ->add('plainPassword', RepeatedType::class, [
+                'type' => PasswordType::class,
                 'mapped' => false,
                 'constraints' => [
                     new NotBlank([
@@ -35,6 +64,18 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
+                'first_options'  => [
+                    'attr' => [
+                        'placeholder' => 'Mot de passe',
+                        'class' => 'form-control'
+                    ]
+                ],
+                'second_options'  => [
+                    'attr' => [
+                        'placeholder' => 'Confirmation',
+                        'class' => 'form-control'
+                    ]
+                ]
             ])
         ;
     }

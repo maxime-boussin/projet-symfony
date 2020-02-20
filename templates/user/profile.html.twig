@@ -1,8 +1,7 @@
-{% extends 'base.html.twig' %}
+{% extends "layout.html.twig" %}
 
-{% block title %}Update{% endblock %}
-
-{% block body %}
+{% block title %}Profile - {{ parent() }}{% endblock %}
+{% block main %}
     {% if app.user %}
         <div class="mb-3">
             You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
@@ -21,6 +20,6 @@
         {{ form_row(registrationForm.oldPassword) }}
         {{ form_row(registrationForm.newPassword) }}
 
-        <button class="btn">Update</button>
+        <button class="btn btn-lg btn-primary">Update</button>
     {{ form_end(registrationForm) }}
 {% endblock %}

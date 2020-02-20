@@ -2,13 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="410840bb-4e54-472b-ad11-2d235e1a9399" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/uploads/default.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/logo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/CommonController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CommonController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Form/PlaceFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/PlaceFormType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/RegistrationFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/RegistrationFormType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/excursions/cancel.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/excursions/cancel.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/excursions/create.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/excursions/create.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/excursions/details.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/excursions/details.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/excursions/list.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/excursions/list.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/registration/register.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/register.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/user/profile.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/profile.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/~$DescriptionProduit.ods" beforeDir="false" afterPath="$PROJECT_DIR$/~$DescriptionProduit.ods" afterDir="false" />
     </list>
@@ -156,17 +161,18 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/uploads" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/excursions" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Maxime\dev\projet-symfony\bin" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\mboussin\workspace\eni\projet-symfony\templates\excursions" />
+      <recent name="C:\Users\mboussin\workspace\eni\projet-symfony\public\images" />
       <recent name="C:\Users\mboussin\workspace\eni\projet-symfony\public\uploads" />
       <recent name="C:\Users\vzercher2018\projet-symfony\templates\excursions" />
       <recent name="C:\Users\vzercher2018\projet-symfony" />
-      <recent name="C:\Users\Maxime\dev\projet-symfony\src\Form" />
     </key>
   </component>
   <component name="ServiceViewManager">
@@ -274,9 +280,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="197" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581979229695" />
-    <state x="210" y="278" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1582189755376">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="168" y="220" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1582202767999">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state x="168" y="220" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1582202767999" />
     <state x="210" y="278" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582189755376" />
     <state x="585" y="114" key="CommitChangelistDialog2" timestamp="1582189826585">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -320,15 +327,19 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="953" y="0" width="974" height="1047" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1582185691675" />
-    <state x="526" y="204" width="611" height="536" key="find.popup" timestamp="1582190742961">
+    <state x="526" y="204" width="611" height="536" key="find.popup" timestamp="1582202763899">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="526" y="204" width="611" height="536" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1582190742961" />
+    <state x="526" y="204" width="611" height="536" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1582202763899" />
     <state x="657" y="257" width="606" height="526" key="find.popup/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581965447878" />
     <state x="657" y="257" width="606" height="536" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1582189407729" />
     <state x="651" y="311" key="git4idea.merge.GitPullDialog" timestamp="1582189997463">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="651" y="311" key="git4idea.merge.GitPullDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582189997463" />
+    <state x="425" y="187" key="run.anything.popup" timestamp="1582198014833">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1582198014833" />
   </component>
 </project>

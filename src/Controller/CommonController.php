@@ -126,7 +126,7 @@ class CommonController extends AbstractController
     {
         $excursion = $em->getRepository(Excursion::class)->updateAndFind($id);
         if($excursion != null){
-            if($excursion->getState() != 0 && $excursion->getOrganizer() == $this->getUser()){
+            if($excursion->getState() != 5 && $excursion->getOrganizer() == $this->getUser()){
                 $cancellation = new Cancellation();
                 $form = $this->createForm(CancellationFormType::class, $cancellation);
                 $form->handleRequest($request);
@@ -184,7 +184,7 @@ class CommonController extends AbstractController
             return $this->redirectToRoute('app_excursions');
         }
 
-        return $this->render('excursions/create_excursion.html.twig', [
+        return $this->render('excursions/create.html.twig', [
             'createExcursionForm' => $form->createView()
         ]);
     }

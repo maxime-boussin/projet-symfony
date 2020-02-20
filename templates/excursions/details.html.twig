@@ -1,24 +1,52 @@
-{% extends 'base.html.twig' %}
+{% extends "layout.html.twig" %}
 
-{% block title %}Liste des sorties{% endblock %}
-{% block body %}
+{% block title %}Détail de sortie - {{ parent() }}{% endblock %}
+{% block main %}
+    <h1>Détails de la sortie</h1>
+    <table>
+        <tr>
+            <td>Intitulé de la sortie :</td>
+            <td>{{ excursion.name }}</td>
+        </tr>
+        <tr>
+            <td>Description :</td>
+            <td>{{ excursion.description }}</td>
+        </tr>
+        <tr>
+            <td>Site organisateur :</td>
+            <td>{{ site.name }}</td>
+        </tr>
+        <tr>
+            <td>Ville où se déroule l'évènement :</td>
+            <td>{{ city.name }}</td>
+        </tr>
+        <tr>
+            <td>Rue :</td>
+            <td>{{ place.address }}</td>
+        </tr>
+        <tr>
+            <td>Code Postale :</td>
+            <td>{{ city.postCode }}</td>
+        </tr>
+        <tr>
+            <td>Date et heure de la sortie :</td>
+            <td>{{ excursion.date|format_datetime() }}</td>
+        </tr>
+        <tr>
+            <td>Date limite d'inscription :</td>
+            <td>{{ excursion.limitDate|format_datetime() }}</td>
+        </tr>
+        <tr>
+            <td>Nombre de places maximum :</td>
+            <td>{{ excursion.participantLimit }}</td>
+        </tr>
+        <tr>
+            <td>Etat de la publication :</td>
+            <td>{{ excursion.state }}</td>
+        </tr>
+    </table>
     <div>
-        Détails de la sortie
-        Intitulé de la sortie : {{ excursion.name }}
-        Description : {{ excursion.description }}
-        Site organisateur : {{ site.name }}
-        Ville où se déroule l'évènement : {{ city.name }}
-        Rue : {{ place.address }}
-        Code Postale : {{ city.postCode }}
-        Date et heure de la sortie : {{ excursion.date|format_datetime() }}
-        Date limite d'inscription : {{ excursion.limitDate|format_datetime() }}
-        {#        Durée : {{ excursion.duration }}#}
-        {#        Participants : {{ excursion.nb_participants }}#}
-        Nombre de places maximum : {{ excursion.participantLimit }}
-        Etat de la publication : {{ excursion.state == 1 ?"Ouvert":"Fermé" }}
-    </div>
-    <div>
-        <a href="{{ path ('app_publish_excursions', { id: excursion.id })}}">Publier cette annonce</a>
+        <a href="{{ path ('app_publish_excursions', { id: excursion.id })}}" class="btn btn-lg btn-primary">Publier</a>
     </div>
 
 

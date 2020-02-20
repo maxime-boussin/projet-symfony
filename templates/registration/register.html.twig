@@ -1,21 +1,58 @@
-{% extends 'base.html.twig' %}
+{% extends "layout.html.twig" %}
 
-{% block title %}Register{% endblock %}
-
-{% block body %}
-    <h1>Register</h1>
-
+{% block title %}Inscription - {{ parent() }}{% endblock %}
+{% block main %}
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Inscription</h1>
+    </div>
     {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.firstName) }}
-        {{ form_row(registrationForm.lastName) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.nickname) }}
-        {{ form_row(registrationForm.phone) }}
-        {{ form_row(registrationForm.site) }}
-        {{ form_row(registrationForm.plainPassword) }}
-        <input type="checkbox" id="remember_me" name="_remember_me" checked/>
-        <label for="remember_me">Se souvenir de moi</label>
-
-        <button class="btn">Register</button>
+    <div class="row">
+    <div class="col-6">
+        <div class="form-group">
+            {{ form_errors(registrationForm.firstName) }}
+            {{ form_widget(registrationForm.firstName) }}
+        </div>
+        <div class="form-group">
+            {{ form_widget(registrationForm.lastName) }}
+            {{ form_errors(registrationForm.lastName) }}
+        </div>
+        <div class="form-group">
+            {{ form_errors(registrationForm.email) }}
+            {{ form_widget(registrationForm.email) }}
+        </div>
+        <div class="form-group">
+            {{ form_errors(registrationForm.plainPassword.first) }}
+            {{ form_widget(registrationForm.plainPassword.first) }}
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="form-group">
+            {{ form_widget(registrationForm.site) }}
+            {{ form_errors(registrationForm.site) }}
+        </div>
+        <div class="form-group">
+            {{ form_errors(registrationForm.nickname) }}
+            {{ form_widget(registrationForm.nickname) }}
+        </div>
+        <div class="form-group">
+            {{ form_widget(registrationForm.phone) }}
+            {{ form_errors(registrationForm.phone) }}
+        </div>
+        <div class="form-group">
+            {{ form_errors(registrationForm.plainPassword.second) }}
+            {{ form_widget(registrationForm.plainPassword.second) }}
+        </div>
+    </div>
+    </div>
+        <div class="d-flex flex-row justify-content-center">
+            {% block formSubmit %}
+                <button type="submit" class="btn btn-success btn-icon-split">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <span class="text">Valider</span>
+                </button>
+            {% endblock %}
+        </div>
     {{ form_end(registrationForm) }}
 {% endblock %}
