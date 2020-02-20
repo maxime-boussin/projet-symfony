@@ -10,6 +10,7 @@ use App\Form\ExcursionPostType;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CommonController extends AbstractController
 {
     /**
-     * @Route("/excursions/list", name="app_excursions")
+     * @Route("/excursions", name="app_excursions")
      * @IsGranted("ROLE_USER")
      * @param Request $request
      * @param EntityManagerInterface $em
@@ -42,13 +43,12 @@ class CommonController extends AbstractController
             );
         }
         else{
-            $dateNow = new \DateTime();
             $excursions = $em->getRepository(Excursion::class)->nativeFindByFilters(
                 $this->getUser()->getId(),
                 1,
                 null,
-                $dateNow->add(new \DateInterval("P10Y")),
-                $dateNow->sub(new \DateInterval("P10Y")),
+                (new \DateTime())->add(new \DateInterval("P10Y")),
+                (new \DateTime())->sub(new \DateInterval("P10Y")),
                 true,
                 true,
                 true,
@@ -71,7 +71,7 @@ class CommonController extends AbstractController
      */
     public function subscribeExcursions(EntityManagerInterface $em, $id): Response
     {
-        $excursion = $em->getRepository(Excursion::class)->find($id);
+        $excursion = $em->getRepository(Excursion::class)->updateAndFind($id);
         if($excursion != null){
             if($excursion->getState() != 0 &&
                 count($excursion->getParticipants()) < $excursion->getParticipantLimit() &&
@@ -98,7 +98,7 @@ class CommonController extends AbstractController
      */
     public function unsubscribeExcursions(EntityManagerInterface $em, $id): Response
     {
-        $excursion = $em->getRepository(Excursion::class)->find($id);
+        $excursion = $em->getRepository(Excursion::class)->updateAndFind($id);
         if($excursion != null){
             if($excursion->getState() != 0 &&
                 $excursion->getParticipants()->contains($this->getUser()) &&
@@ -124,7 +124,7 @@ class CommonController extends AbstractController
      */
     public function cancelExcursions(Request $request, EntityManagerInterface $em, $id): Response
     {
-        $excursion = $em->getRepository(Excursion::class)->find($id);
+        $excursion = $em->getRepository(Excursion::class)->updateAndFind($id);
         if($excursion != null){
             if($excursion->getState() != 0 && $excursion->getOrganizer() == $this->getUser()){
                 $cancellation = new Cancellation();
@@ -147,6 +147,46 @@ class CommonController extends AbstractController
             }
         }
         return $this->redirectToRoute('app_excursions');
+    }
+
+    /**
+     * @Route("/excursion/new", name="app_create_excursion")
+     *
+     * @param Request $request
+     * @return RedirectResponse|Response
+     */
+    public function createExcursion(Request $request){
+        $excursion = new Excursion();
+        $excursion->setParticipantLimit(10);
+
+        $user = $this->getUser();
+
+
+        /** @noinspection PhpParamsInspection */
+        $excursion->setOrganizer($user);
+
+
+        $form = $this->createForm(ExcursionPostType::class, $excursion);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $site = $form->get('site')->getData();
+            $city = $form->get('place')->get('city')->getData();
+            $place = $form->get('place')->getData();
+            $excursion->setSite($site);
+            $excursion->setState(0);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($city);
+            $entityManager->persist($place);
+            $entityManager->persist($excursion);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_excursions');
+        }
+
+        return $this->render('excursions/create_excursion.html.twig', [
+            'createExcursionForm' => $form->createView()
+        ]);
     }
 
     /**
