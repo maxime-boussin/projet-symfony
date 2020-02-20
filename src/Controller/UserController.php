@@ -75,6 +75,9 @@ class UserController extends AbstractController
                     )
                 );
             }
+            if($form['avatar']->getData() != null){
+                
+            }
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
         }
