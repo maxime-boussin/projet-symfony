@@ -132,12 +132,6 @@ class ExcursionRepository extends ServiceEntityRepository
     public function updateState($id){
         $excursion = $this->find($id);
         if($excursion != null){
-            //0 créé
-            //1 ouvert
-            //2 clôturée
-            //3 en cours
-            //4 passée
-            //5 annulée
             if($excursion->getState() != 0 && $excursion->getState() != 5){
                 if( $excursion->getLimitDate() > new \DateTime())
                     $excursion->setState(1);

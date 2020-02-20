@@ -24,30 +24,32 @@ class ExcursionListFormType extends AbstractType
         $builder
             ->add('site', EntityType::class, [
                     'class' => Site::class,
-                    'label'    => 'Site:',
                     'choice_label' => 'name',
                     ]
             )
             ->add('excursion_content', TextType::class, [
-                'label'    => 'Le nom de la sortie contient',
-                'required' => false,
+                'attr' => [
+                    'placeholder' => 'Recherche...',
+                    'class' => 'form-control'
+                ],
+                'required' => false
             ])
             ->add('from_date', DateType::class, [
-                'label'    => 'Entre',
+                'attr'    => ['class' => 'form-inline'],
             ])
             ->add('to_date', DateType::class, [
-                'label'    => 'et',
+                'attr'    => ['class' => 'form-inline'],
             ])
             ->add('owned_excursions', CheckboxType::class, [
-                'label'    => 'Sorties dont je suis l\'organisateur/trice',
+                'label'    => 'Sorties initiées',
                 'required' => false,
             ])
             ->add('subscribed_excursions', CheckboxType::class, [
-                'label'    => 'Sorties auxquelles je suis inscrit/e',
+                'label'    => 'Sorties souscrites',
                 'required' => false,
             ])
             ->add('not_subscribed_excursions', CheckboxType::class, [
-                'label'    => 'Sorties auxquelles je ne suis pas inscrit/e',
+                'label'    => 'Sorties non-souscrites',
                 'required' => false,
             ])
             ->add('past_excursions', CheckboxType::class, [
