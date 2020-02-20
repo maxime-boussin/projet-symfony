@@ -4,21 +4,46 @@
 {% block body %}
     <div>
         Détails de la sortie
+    </div>
+    <div>
         Intitulé de la sortie : {{ excursion.name }}
+    </div>
+    <div>
         Description : {{ excursion.description }}
+    </div>
+    <div>
         Site organisateur : {{ site.name }}
+    </div>
+    <div>
         Ville où se déroule l'évènement : {{ city.name }}
-        Rue : {{ place.adress }}
+    </div>
+    <div>
+        Rue : {{ place.address }}
+    </div>
+    <div>
         Code Postale : {{ city.postCode }}
+    </div>
+    <div>
         Date et heure de la sortie : {{ excursion.date|format_datetime() }}
+    </div>
+    <div>
         Date limite d'inscription : {{ excursion.limitDate|format_datetime() }}
+    </div>
+    <div>
         {#        Durée : {{ excursion.duration }}#}
+    </div>
+    <div>
         {#        Participants : {{ excursion.nb_participants }}#}
+    </div>
+    <div>
         Nombre de places maximum : {{ excursion.participantLimit }}
+    </div>
+    <div>
         Etat de la publication : {{ excursion.state == 1 ?"Ouvert":"Fermé" }}
     </div>
     <div>
-        <a href="{{ path ('app_publish_excursions', { id: excursion.id })}}">Publier cette annonce</a>
+        <a href="{{ path ('app_publish_excursions', { id: excursion.id })}}" class="btn btn-lg btn-primary">Publier</a>
+        <a href="{{ path('app_excursions') }}" class="btn btn-lg btn-primary">Retour</a>
     </div>
 
 

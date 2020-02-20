@@ -2,11 +2,13 @@
 
 namespace App\Controller;
 
+
 use App\Entity\Cancellation;
 use App\Entity\Excursion;
 use App\Form\CancellationFormType;
 use App\Form\ExcursionListFormType;
 use App\Form\ExcursionPostType;
+use App\Repository\ExcursionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -150,7 +152,7 @@ class CommonController extends AbstractController
     }
 
     /**
-     * @Route("/excursion/new", name="app_create_excursion")
+     * @Route("/excursions/new", name="app_create_excursion")
      *
      * @param Request $request
      * @return RedirectResponse|Response
@@ -184,7 +186,7 @@ class CommonController extends AbstractController
             return $this->redirectToRoute('app_excursions');
         }
 
-        return $this->render('excursions/create_excursion.html.twig', [
+        return $this->render('excursions/create.html.twig', [
             'createExcursionForm' => $form->createView()
         ]);
     }
@@ -211,14 +213,26 @@ class CommonController extends AbstractController
     }
 
     /**
-     * @Route(name="app_publish_excursions")
+     * @Route("/excursions/publish/{id}", name="app_publish_excursions")
+     * @param $id
+     * @return Response
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function publishExcursion ($id):Response
+    public function publishExcursion($id)
     {
         $em = $this->getDoctrine()->getManager();
         $excursion = $em->getRepository(Excursion::class)->find($id);
         if (($excursion != null) && ($excursion->getOrganizer()->getId() == $this->getUser()->getId())){
-            $excursion->setState(0);
+            $excursion->setState(1);
+            $em->flush();
+            $er = new ExcursionRepository($this->getDoctrine());
+            $er->updateState($id);
+//            $excursionRepository = $this->getDoctrine()->getRepository(Excursion::class)->find($id);
+//            $excursionRepository->updateState($id);
+            //TODO: Afficher un message success
+
+            return $this->redirectToRoute('app_excursions');
         }
     }
 }
