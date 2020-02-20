@@ -201,11 +201,13 @@ class CommonController extends AbstractController
             $site = $excursion->getSite();
             $place = $excursion->getPlace();
             $city = $place->getCity();
+            $isOwner = $excursion->getOrganizer()->getId() == $this->getUser()->getId();
             return $this->render('excursions/details.html.twig', [
                 'excursion' => $excursion,
                 'site' => $site,
                 'place' => $place,
-                'city' => $city
+                'city' => $city,
+                'is_owner' => $isOwner
             ]);
         }
 

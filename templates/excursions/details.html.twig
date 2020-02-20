@@ -2,52 +2,69 @@
 
 {% block title %}Détail de sortie - {{ parent() }}{% endblock %}
 {% block main %}
-    <h1>Détails de la sortie</h1>
-    <table>
-        <tr>
-            <td>Intitulé de la sortie :</td>
-            <td>{{ excursion.name }}</td>
-        </tr>
-        <tr>
-            <td>Description :</td>
-            <td>{{ excursion.description }}</td>
-        </tr>
-        <tr>
-            <td>Site organisateur :</td>
-            <td>{{ site.name }}</td>
-        </tr>
-        <tr>
-            <td>Ville où se déroule l'évènement :</td>
-            <td>{{ city.name }}</td>
-        </tr>
-        <tr>
-            <td>Rue :</td>
-            <td>{{ place.address }}</td>
-        </tr>
-        <tr>
-            <td>Code Postale :</td>
-            <td>{{ city.postCode }}</td>
-        </tr>
-        <tr>
-            <td>Date et heure de la sortie :</td>
-            <td>{{ excursion.date|format_datetime() }}</td>
-        </tr>
-        <tr>
-            <td>Date limite d'inscription :</td>
-            <td>{{ excursion.limitDate|format_datetime() }}</td>
-        </tr>
-        <tr>
-            <td>Nombre de places maximum :</td>
-            <td>{{ excursion.participantLimit }}</td>
-        </tr>
-        <tr>
-            <td>Etat de la publication :</td>
-            <td>{{ excursion.state }}</td>
-        </tr>
-    </table>
-    <div>
-        <a href="{{ path ('app_publish_excursions', { id: excursion.id })}}" class="btn btn-lg btn-primary">Publier</a>
-        <a href="{{ path('app_excursions') }}" class="btn btn-lg btn-primary">Retour</a>
+
+    <style>
+        a {
+            margin:10px 10px 10px 10px;
+        }
+    </style>
+
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Détails de la sortie</h1>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                Nom de la sortie : {{ excursion.name }}
+            </div>
+            <div class="form-group">
+                Description : {{ excursion.description }}
+            </div>
+            <div class="form-group">
+                Date et heure de la sortie : {{ excursion.date|format_datetime() }}
+            </div>
+            <div class="form-group">
+                Date limite d'inscription : {{ excursion.limitDate|format_datetime() }}
+            </div>
+            <div class="form-group">
+                Nombre de places maximum : {{ excursion.participantLimit }}
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                Site organisateur : {{ site.name }}
+            </div>
+            <div class="form-group">
+                Ville où se déroule l'évènement : {{ city.name }}
+            </div>
+            <div class="form-group">
+                Rue : {{ place.address }}
+            </div>
+            <div class="form-group">
+                Code Postale : {{ city.postCode }}
+            </div>
+            <div class="form-group">
+                Etat de la publication : {{ excursion.state }}
+            </div>
+        </div>
+    </div>
+    <div class="d-flex flex-row justify-content-center">
+        {% if is_owner %}
+            {% if excursion.state is same as(0) %}
+                <a href="{{ path ('app_publish_excursions', { id: excursion.id })}}" class="btn btn-success btn-icon-split" >
+                    <span class="icon text-white-50">
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <span class="text">Publier</span>
+                </a>
+            {% endif %}
+        {% endif %}
+        <a href="javascript:history.go(-1)" class="btn btn-secondary btn-icon-split">
+            <span class="icon text-white-50">
+                <i class="fas fa-chevron-circle-left"></i>
+            </span>
+            <span class="text">Retour</span>
+        </a>
     </div>
 
 
