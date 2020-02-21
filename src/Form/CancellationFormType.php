@@ -19,7 +19,11 @@ class CancellationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('description', TextareaType::class, [
-            'label' => false
+            'label' => false,
+            'attr' => [
+                'placeholder' => 'Motif',
+                'class' => 'form-control'
+            ],
         ]);
     }
 
