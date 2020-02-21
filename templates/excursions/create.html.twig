@@ -1,11 +1,30 @@
 {% extends "layout.html.twig" %}
 
-{% block title %}Créer sortie - {{ parent() }}{% endblock %}
 {% block main %}
-    <h1>Création de sortie</h1>
 
-    {{ form_start(createExcursionForm) }}
-        {{ form_row(createExcursionForm.name) }}
+<div class="offset-lg-3 col-lg-6 col-md-12 offset-md-0">
+    <div class="card shadow mb-4 mt-5">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Nouvelle sortie</h6>
+        </div>
+        {{ form_start(createExcursionForm) }}
+        <div class="card-body">
+
+        </div>
+        <div class="card-footer d-flex flex-row-reverse">
+
+            <a href="javascript:history.go(-1)" class="btn btn-info btn-icon-split m-1">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-chevron-circle-left"></i>
+                        </span>
+                <span class="text">Retour</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+    <h1>Création de sortie</h1>
+     {{ form_row(createExcursionForm.name) }}
         {{ form_row(createExcursionForm.site) }}
         {{ form_row(createExcursionForm.place) }}
         {{ form_row(createExcursionForm.description) }}
