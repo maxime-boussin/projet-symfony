@@ -22,7 +22,7 @@
                         <div>{{ excursion.description }}</div>
                         <div>{{ excursion.date|format_datetime() }}</div>
                         <div>{{ excursion.limitDate|format_datetime() }}</div>
-                        <div> ? / {{ excursion.participantLimit }} inscrit(s)</div>
+                        <div>{{ nb_participants }} / {{ excursion.participantLimit }} inscrit{% if nb_participants > 1 %}s{% endif %}</div>
                         <div>{{ site.name }}</div>
                         <div>{{ place.address }}, {{ city.postCode }}, {{ city.name }}</div>
                     </div>

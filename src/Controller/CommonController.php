@@ -207,12 +207,14 @@ class CommonController extends AbstractController
             $place = $excursion->getPlace();
             $city = $place->getCity();
             $isOwner = $excursion->getOrganizer()->getId() == $this->getUser()->getId();
+            $nbParticpants = $excursion->getParticipants()->count();
             return $this->render('excursions/details.html.twig', [
                 'excursion' => $excursion,
                 'site' => $site,
                 'place' => $place,
                 'city' => $city,
-                'is_owner' => $isOwner
+                'is_owner' => $isOwner,
+                'nb_participants' => $nbParticpants
             ]);
         }
 
