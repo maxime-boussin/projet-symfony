@@ -1,15 +1,15 @@
 {% if status == 0 %}
-    Créée
+    <span class="badge badge-primary">Créée</span>
 {% elseif status == 1 %}
-    Ouverte
+    <span class="badge badge-success">Ouverte</span>
 {% elseif status == 2 %}
-    Côturée
+    <span class="badge badge-warning">Côturée</span>
 {% elseif status == 3 %}
-    En cours
+    <span class="badge badge-warning">En cours</span>
 {% elseif status == 4 %}
-    Passée
+    <span class="badge badge-secondary">Passée</span>
 {% elseif status == 5 %}
-    Annulée
+    <span class="badge badge-danger">Annulée</span>
 {% else %}
-    Inconnue
+    <span class="badge badge-danger">Inconnue</span>
 {% endif %}
