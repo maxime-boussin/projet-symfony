@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Site;
 use App\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -21,31 +23,41 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
+                "label" => false,
                 'attr' => [
                     'placeholder' => 'Pseudonyme',
                     'class' => 'form-control'
                 ]
             ])
             ->add('nickname', TextType::class, [
+                "label" => false,
                     'attr' => [
                         'placeholder' => 'Pseudonyme',
                         'class' => 'form-control'
                     ]
             ])
             ->add('firstName', TextType::class, [
+                "label" => false,
                 'attr' => [
                     'placeholder' => 'Prénom',
                     'class' => 'form-control'
                 ]
             ])
             ->add('lastName', TextType::class, [
+                "label" => false,
                 'attr' => [
                     'placeholder' => 'Nom',
                     'class' => 'form-control'
                 ]
             ])
-            ->add('site')
+            ->add('site', EntityType::class, [
+                    'class' => Site::class,
+                    "label" => false,
+                    'choice_label' => 'name',
+                ]
+            )
             ->add('phone', TextType::class, [
+                "label" => false,
                 'attr' => [
                     'placeholder' => 'Téléphone',
                     'class' => 'form-control'
@@ -65,12 +77,14 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
                 'first_options'  => [
+                    "label" => false,
                     'attr' => [
                         'placeholder' => 'Mot de passe',
                         'class' => 'form-control'
                     ]
                 ],
                 'second_options'  => [
+                    "label" => false,
                     'attr' => [
                         'placeholder' => 'Confirmation',
                         'class' => 'form-control'
