@@ -2,24 +2,65 @@
 
 {% block title %}Profile - {{ parent() }}{% endblock %}
 {% block main %}
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+    <div class="offset-lg-3 col-lg-6 col-md-12 offset-md-0">
+        <div class="card shadow mb-4 mt-5">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Profile</h6>
+            </div>
+            {{ form_start(registrationForm) }}
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-2 p-0">
+                        <img class="rounded-circle img-fluid" src="{{ asset('uploads/'~(app.user.avatarPath == null? 'default.png': app.user.avatarPath)) }}">
+                    </div>
+                    <div class="col-10">{{ form_row(registrationForm.avatar) }}</div>
+                </div>
+                <div class="row pt-2">
+                    <div class="col-2 text-center pt-2"><i class="fas fa-address-card"></i></div>
+                    <div class="col-5">{{ form_row(registrationForm.firstName) }}</div>
+                    <div class="col-5">{{ form_row(registrationForm.lastName) }}</div>
+                </div>
+                <div class="row">
+                    <div class="col-2 text-center pt-2"><i class="fas fa-user"></i></div>
+                    <div class="col-10">{{ form_row(registrationForm.nickname) }}</div>
+                </div>
+                <div class="row">
+                    <div class="col-2 text-center pt-2"><i class="fas fa-at"></i></div>
+                    <div class="col-10">
+                        <div class="form-group">
+                            <input class="form-control" value="{{ app.user.email }}" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2 text-center pt-2"><i class="fas fa-phone"></i></div>
+                    <div class="col-10">{{ form_row(registrationForm.phone) }}</div>
+                </div>
+                <div class="row">
+                    <div class="col-2 text-center pt-2"><i class="fas fa-lock"></i></div>
+                    <div class="col-10">{{ form_row(registrationForm.oldPassword) }}</div>
+                </div>
+                <div class="row pt-2">
+                    <div class="col-2 text-center pt-2"><i class="fas fa-key"></i></div>
+                    <div class="col-5">{{ form_row(registrationForm.newPassword.first) }}</div>
+                    <div class="col-5">{{ form_row(registrationForm.newPassword.second) }}</div>
+                </div>
+            </div>
+            <div class="card-footer d-flex flex-row-reverse">
+                <button type="submit" class="btn btn-success btn-icon-split m-1">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-check"></i>
+                        </span>
+                    <span class="text">Modifier</span>
+                </button>
+                <a href="javascript:history.go(-1)" class="btn btn-info btn-icon-split m-1">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-chevron-circle-left"></i>
+                        </span>
+                    <span class="text">Retour</span>
+                </a>
+            </div>
         </div>
-    {% endif %}
-    <h1>Profile</h1>
-
-    <img class="fit-picture" width="100px" src="{{ asset('uploads/'~(app.user.avatarPath == null? 'default.png': app.user.avatarPath)) }}">
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.firstName) }}
-        {{ form_row(registrationForm.lastName) }}
-        {{ form_row(registrationForm.nickname) }}
-        {{ app.user.email }}
-        {{ form_row(registrationForm.phone) }}
-        {{ form_row(registrationForm.avatar) }}
-        {{ form_row(registrationForm.oldPassword) }}
-        {{ form_row(registrationForm.newPassword) }}
-
-        <button class="btn btn-lg btn-primary">Update</button>
-    {{ form_end(registrationForm) }}
+        {{ form_end(registrationForm) }}
+    </div>
 {% endblock %}

@@ -1,31 +1,36 @@
-{% extends 'base.html.twig' %}
+{% extends "layout.html.twig" %}
 
-{% block title %}{{ profile.nickname }}{% endblock %}
-
-{% block body %}
-    <h1>{{ profile.nickname }}</h1>
-        <table>
-            <tr>
-                <td>Prénom</td>
-                <td>{{ profile.firstName }}</td>
-            </tr>
-            <tr>
-                <td>Nom</td>
-                <td>{{ profile.lastName }}</td>
-            </tr>
-            <tr>
-                <td>Téléphone</td>
-                <td>{{ profile.phone }}</td>
-            </tr>
-            <tr>
-                <td>Email</td>
-                <td>{{ profile.email }}</td>
-            </tr>
-            <tr>
-                <td>Ville de rattachement</td>
-                <td>{{ profile.site.name }}</td>
-            </tr>
-        </table>
-
-    <a href="{{ path('app_excursions') }}" class="btn btn-lg btn-primary">Retour</a>
+{% block title %}Profile de {{ profile.nickname }} - {{ parent() }}{% endblock %}
+{% block main %}
+    <div class="offset-lg-3 col-lg-6 col-md-12 offset-md-0">
+        <div class="card shadow mb-4 mt-5">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">{{ profile.nickname }}</h6>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-2 text-center">
+                        <div><i class="fas fa-address-card"></i></div>
+                        <div><i class="fas fa-phone"></i></div>
+                        <div><i class="fas fa-at"></i></div>
+                        <div><i class="fas fa-city"></i></div>
+                    </div>
+                    <div class="col-10">
+                        <div>{{ profile.firstName }} {{ profile.lastName }}</div>
+                        <div>{{ profile.phone }}</div>
+                        <div>{{ profile.email }}</div>
+                        <div>{{ profile.site.name }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer d-flex flex-row-reverse">
+                <a href="javascript:history.go(-1)" class="btn btn-info btn-icon-split text-white m-1">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-chevron-circle-left"></i>
+                            </span>
+                    <span class="text">Retour</span>
+                </a>
+            </div>
+        </div>
+    </div>
 {% endblock %}
