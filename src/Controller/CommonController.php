@@ -237,4 +237,11 @@ class CommonController extends AbstractController
             return $this->redirectToRoute('app_excursions');
         }
     }
+
+    /**
+     * @Route("/", name="app_home")
+     */
+    public function home(){
+        return $this->render('main/blank.html.twig');
+    }
 }

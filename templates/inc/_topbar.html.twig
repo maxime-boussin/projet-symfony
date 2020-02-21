@@ -151,13 +151,13 @@
 
         <!-- Nav Item - User Information -->
         {% if app.user %}
-            <li class="nav-item dropdown no-arrow">
-                {{ include("user/onlineNavItem.html.twig") }}
+        <li class="nav-item dropdown no-arrow">
+            {{ include("user/onlineNavItem.html.twig") }}
             {% else %}
-                <li class="nav-item dropdown">
-                    {# render(controller('App\\Controller\\LoginController::login')) #}
-                {% endif %}
-            </li>
+        <li class="nav-item dropdown">
+            {{ render(controller('App\\Controller\\SecurityController::loginalt')) }}
+            {% endif %}
+        </li>
         </li>
     </ul>
 </nav>
