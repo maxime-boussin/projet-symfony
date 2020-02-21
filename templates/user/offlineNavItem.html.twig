@@ -1,3 +1,6 @@
+{% if error %}
+    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <i class="fas fa-sign-in-alt fa-fw"></i>
     <span class="mx-2 d-none d-lg-inline text-gray-600 small">
@@ -5,21 +8,27 @@
 </a>
 {# Dropdown #}
 <div class="dropdown-menu dropdown-menu-right login-dropdown shadow animated--grow-in border-left-primary" aria-labelledby="userDropdown">
-    {{ form_start(formLogin, {'attr': {'class': 'form-horizontal', 'action': path("login_login")}}) }}
+    <form method="post"  action="{{ path('app_login')}}">
     <p class="dropdown-item">
         <div class="form-group row no-gutters px-2">
-            <label for="{{ formLogin.email.vars.id }}" class="col-form-label col-sm-2">
+            <label for="email" class="col-form-label col-sm-2">
                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
             </label>
-            {{ form_widget(formLogin.email) }}
-            {{ form_errors(formLogin.email) }}
+            <input type="email" placeholder="Email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control col-sm-10" required>
         </div>
         <div class="form-group row no-gutters px-2">
-            <label for="{{ formLogin.password.vars.id }}" class="col-form-label col-sm-2">
+            <label for="password" class="col-form-label col-sm-2">
                 <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
             </label>
-            {{ form_widget(formLogin.password) }}
-            {{ form_errors(formLogin.password) }}
+            <input type="password" placeholder="••••••••" name="password" id="inputPassword" class="form-control col-sm-10" required>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+        </div>
+        <div class="form-group row no-gutters px-2">
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" name="_remember_me"> Remember me
+                </label>
+            </div>
         </div>
     </p>
     <div class="dropdown-divider"></div>
@@ -31,11 +40,11 @@
             <span class="text">Connexion</span>
         </button>
     </p>
-    {{ form_end(formLogin) }}
+    </form>
     <div class="dropdown-divider"></div>
     <p class="dropdown-item text-center">
         <span class="text-secondary">Pas encore de compte ?</span><br>
-        <a href="{{path("user_add")}}" class="btn btn-success btn-icon-split btn-sm">
+        <a href="{{path("app_register")}}" class="btn btn-success btn-icon-split btn-sm">
             <span class="icon text-white-50">
                 <i class="fas fa-user-plus"></i>
             </span>
