@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use function Sodium\add;
 
 class CommonController extends AbstractController
 {
@@ -159,14 +160,18 @@ class CommonController extends AbstractController
      */
     public function createExcursion(Request $request){
         $excursion = new Excursion();
-        $excursion->setParticipantLimit(10);
 
         $user = $this->getUser();
 
 
         /** @noinspection PhpParamsInspection */
         $excursion->setOrganizer($user);
+        $excursion->setVisibility(true);
 
+        $date = date_add(new \DateTime(), new \DateInterval('PT3H'));
+        $limitDate = date_add(new \DateTime(), new \DateInterval('PT2H'));
+        $excursion->setDate($date);
+        $excursion->setLimitDate($limitDate);
 
         $form = $this->createForm(ExcursionPostType::class, $excursion);
 

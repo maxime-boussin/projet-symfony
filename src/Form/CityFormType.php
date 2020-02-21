@@ -15,10 +15,18 @@ class CityFormType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Nom de la ville : '
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Nom du site',
+                    'class' => 'form-control'
+                ]
             ])
             ->add('postCode', NumberType::class, [
-                'label' => 'Code postal : '
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Code postal',
+                    'class' => 'form-control'
+                ]
             ])
         ;
     }

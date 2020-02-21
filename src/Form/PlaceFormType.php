@@ -22,13 +22,25 @@ class PlaceFormType extends AbstractType
                 'choice_label' => 'name',
             ])
             ->add('address', TextType::class, [
-                'label' => 'Adresse de l\'évènement : '
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Voie',
+                    'class' => 'form-control'
+                ]
             ])
             ->add('longitude', NumberType::class, [
-                'label' => 'Longitude : '
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Longitude',
+                    'class' => 'form-control'
+                ]
             ])
             ->add('latitude', NumberType::class, [
-                'label' => 'Latitude : '
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Latitude',
+                    'class' => 'form-control'
+                ]
             ])
         ;
     }

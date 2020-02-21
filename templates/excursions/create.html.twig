@@ -1,5 +1,6 @@
 {% extends "layout.html.twig" %}
 
+{% block title %}Créer sortie - {{ parent() }}{% endblock %}
 {% block main %}
 
 <div class="offset-lg-3 col-lg-6 col-md-12 offset-md-0">
@@ -9,10 +10,47 @@
         </div>
         {{ form_start(createExcursionForm) }}
         <div class="card-body">
-
+            <div class="row">
+                <div class="col-2 text-center pt-2" data-toggle="tooltip" title="Nom de l'activité"><i class="fas fa-edit"></i></div>
+                <div class="col-10">{{ form_row(createExcursionForm.name) }}</div>
+            </div>
+            <div class="row">
+                <div class="col-2 text-center pt-2" data-toggle="tooltip" title="Choisir le site organisateur"><i class="fas fa-city"></i></div>
+                <div class="col-10">{{ form_row(createExcursionForm.site) }}</div>
+            </div>
+            <div class="row">
+                <div class="col-2 text-center pt-2" data-toggle="tooltip" title="Lieu de l'activité"><i class="fas fa-map-marker-alt"></i></div>
+                <div class="col-4">{{ form_row(createExcursionForm.place.address) }}</div>
+                <div class="col-2">{{ form_row(createExcursionForm.place.city) }}</div>
+                <div class="col-2">{{ form_row(createExcursionForm.place.longitude) }}</div>
+                <div class="col-2">{{ form_row(createExcursionForm.place.latitude) }}</div>
+            </div>
+            <div class="row">
+                <div class="col-2 text-center pt-2" data-toggle="tooltip" title="Description de l'activité"><i class="fas fa-file-alt"></i></div>
+                <div class="col-10">{{ form_row(createExcursionForm.description) }}</div>
+            </div>
+            <div class="row">
+                <div class="col-2 text-center pt-2" data-toggle="tooltip" title="Date et heure de l'activité"><i class="fas fa-calendar-alt"></i></div>
+                <div class="col-10">{{ form_row(createExcursionForm.date) }}</div>
+            </div>
+            <div class="row">
+                <div class="col-2 text-center pt-2" data-toggle="tooltip" title="Date et heure limite de l'inscription"><i class="fas fa-hourglass-half"></i></div>
+                <div class="col-10">{{ form_row(createExcursionForm.limitDate) }}</div>
+            </div>
+            <div class="row">
+                <div class="col-2 text-center pt-2" data-toggle="tooltip" title="Durée estimée de l'activité"><i class="fas fa-stopwatch"></i></div>
+                <div class="col-10">{{ form_row(createExcursionForm.duration) }}</div>
+            </div>
+            <div class="row">
+                <div class="col-2 text-center pt-2" data-toggle="tooltip" title="Nombre de participants maximum"><i class="fas fa-users"></i></div>
+                <div class="col-10">{{ form_row(createExcursionForm.participantLimit) }}</div>
+            </div>
         </div>
         <div class="card-footer d-flex flex-row-reverse">
-
+            <button class="btn btn-success btn-icon-split m-1">
+                <span class="icon text-white-50"><i class="fas fa-check"></i></span>
+                <span class="text">Créer</span>
+            </button>
             <a href="javascript:history.go(-1)" class="btn btn-info btn-icon-split m-1">
                         <span class="icon text-white-50">
                             <i class="fas fa-chevron-circle-left"></i>
@@ -20,21 +58,16 @@
                 <span class="text">Retour</span>
             </a>
         </div>
+        {{ form_end(createExcursionForm) }}
     </div>
 </div>
+{% endblock %}
 
-    <h1>Création de sortie</h1>
-     {{ form_row(createExcursionForm.name) }}
-        {{ form_row(createExcursionForm.site) }}
-        {{ form_row(createExcursionForm.place) }}
-        {{ form_row(createExcursionForm.description) }}
-        {{ form_row(createExcursionForm.date) }}
-        {{ form_row(createExcursionForm.limitDate) }}
-        {{ form_row(createExcursionForm.duration) }}
-        {{ form_row(createExcursionForm.visibility) }}
-
-        {{ form_row(createExcursionForm.participantLimit) }}
-
-        <button class="btn btn-lg btn-primary">Créer</button>
-    {{ form_end(createExcursionForm) }}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
 {% endblock %}
