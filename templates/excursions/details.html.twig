@@ -3,16 +3,10 @@
 {% block title %}Détail de sortie - {{ parent() }}{% endblock %}
 {% block main %}
 
-    <style>
-        a {
-            margin: 10px 10px 10px 10px;
-        }
-    </style>
-
     <div class="offset-lg-3 col-lg-6 col-md-12 offset-md-0">
         <div class="card shadow mb-4 mt-5">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">{{ excursion.name }} ({{ excursion.state }})</h6>
+                <h6 class="m-0 font-weight-bold text-primary">{{ excursion.name }} {% include 'inc/_status.html.twig' with {'status': excursion.state} %}</h6>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -38,7 +32,7 @@
                 {% if is_owner %}
                     {% if excursion.state is same as(0) %}
                         <a href="{{ path ('app_publish_excursions', { id: excursion.id }) }}"
-                           class="btn btn-success btn-icon-split">
+                           class="btn btn-success btn-icon-split m-1">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-check"></i>
                                 </span>
@@ -46,7 +40,7 @@
                         </a>
                     {% endif %}
                 {% endif %}
-                <a href="javascript:history.go(-1)" class="btn btn-info btn-icon-split">
+                <a href="javascript:history.go(-1)" class="btn btn-info btn-icon-split m-1">
                         <span class="icon text-white-50">
                             <i class="fas fa-chevron-circle-left"></i>
                         </span>

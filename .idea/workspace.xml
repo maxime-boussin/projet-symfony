@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="3a6b97c5-c01b-4c82-9590-8cea1a38cf13" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/templates/main/blank.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -30,6 +31,13 @@
       <change beforePath="$PROJECT_DIR$/templates/user/offlineNavItem.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/offlineNavItem.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/user/onlineNavItem.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/onlineNavItem.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/~$DescriptionProduit.ods" beforeDir="false" afterPath="$PROJECT_DIR$/~$DescriptionProduit.ods" afterDir="false" />
+=======
+    <list default="true" id="e52a300b-a96f-4a14-8762-874d6867e984" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/excursions/create.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/excursions/create.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/excursions/details.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/excursions/details.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/inc/_status.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inc/_status.html.twig" afterDir="false" />
+>>>>>>> a3a2c55d183166790bce28fe97bd9bce72d2f599
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -222,7 +230,7 @@
       <workItem from="1582015362395" duration="19484000" />
       <workItem from="1582099363974" duration="23942000" />
       <workItem from="1582185650518" duration="22644000" />
-      <workItem from="1582272071057" duration="6221000" />
+      <workItem from="1582272071057" duration="7724000" />
     </task>
     <task id="LOCAL-00001" summary="commit pour pull">
       <created>1582030413445</created>
@@ -336,7 +344,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582274549202</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Page details (non finie)">
+      <created>1582278764333</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1582278764333</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -349,7 +364,8 @@
     <MESSAGE value="Commit pour pull" />
     <MESSAGE value="Publication d'un sortie : down" />
     <MESSAGE value="commit pour pull" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit pour pull" />
+    <MESSAGE value="Page details (non finie)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Page details (non finie)" />
   </component>
   <component name="WindowStateProjectService">
     <state x="195" y="135" key="#CLI_Interpreters" timestamp="1582195804538">
@@ -376,15 +392,21 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="197" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581979229695" />
+<<<<<<< HEAD
     <state x="168" y="220" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1582281674336">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="168" y="220" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1582281674336" />
-    <state x="210" y="278" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582189755376" />
-    <state x="585" y="114" key="CommitChangelistDialog2" timestamp="1582274548505">
+=======
+    <state x="210" y="278" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1582189755376">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="585" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1582274548505" />
+>>>>>>> a3a2c55d183166790bce28fe97bd9bce72d2f599
+    <state x="210" y="278" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582189755376" />
+    <state x="585" y="114" key="CommitChangelistDialog2" timestamp="1582278763731">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="585" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1582278763731" />
     <state x="184" y="86" key="DiffContextDialog" timestamp="1582190032288">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -439,10 +461,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="849" y="437" key="VCS.EditChangelistDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582205165054" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1582203451349">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1582278783044">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1582203451349" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1582278783044" />
     <state x="655" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1582272071458">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -455,15 +477,32 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="953" y="0" width="974" height="1047" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1582273083912" />
+<<<<<<< HEAD
     <state x="526" y="204" width="609" height="536" key="find.popup" timestamp="1582284131017">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="526" y="204" width="609" height="536" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1582284131017" />
-    <state x="657" y="257" width="606" height="526" key="find.popup/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581965447878" />
-    <state x="657" y="257" width="606" height="536" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1582197361699" />
-    <state x="651" y="311" key="git4idea.merge.GitPullDialog" timestamp="1582274558239">
+=======
+    <state x="657" y="257" width="606" height="536" key="find.popup" timestamp="1582280172971">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="651" y="311" key="git4idea.merge.GitPullDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582274558239" />
+>>>>>>> a3a2c55d183166790bce28fe97bd9bce72d2f599
+    <state x="657" y="257" width="606" height="526" key="find.popup/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581965447878" />
+    <state x="657" y="257" width="606" height="536" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1582280172971" />
+    <state x="651" y="311" key="git4idea.merge.GitPullDialog" timestamp="1582278775496">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="651" y="311" key="git4idea.merge.GitPullDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582278775496" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/templates/registration/register.html.twig</url>
+          <line>11</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
