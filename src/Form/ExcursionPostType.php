@@ -64,10 +64,10 @@ class ExcursionPostType extends AbstractType
                     'minutes' => false
                 ],
                 'placeholder' => ['years' => 'Année', 'months' => 'Mois', 'days' => 'Jours', 'hours' => 'Heures', 'minutes' => 'Minutes'],
-                    'with_years' => false,
-                    'with_months'   => false,
-                    'with_minutes' => true,
-                    'with_hours'   => true,
+                'with_years' => false,
+                'with_months'   => false,
+                'with_minutes' => true,
+                'with_hours'   => true,
             ])
             ->add('participantLimit', NumberType::class, [
                 'label' => false,

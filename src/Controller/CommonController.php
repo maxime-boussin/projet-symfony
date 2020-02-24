@@ -169,10 +169,10 @@ class CommonController extends AbstractController
         $excursion->setOrganizer($user);
         $excursion->setVisibility(true);
 
-        $date = date_add(new \DateTime(), new \DateInterval('PT3H'));
-        $limitDate = date_add(new \DateTime(), new \DateInterval('PT2H'));
-        $excursion->setDate($date);
-        $excursion->setLimitDate($limitDate);
+//        $date = date_add(new \DateTime(), new \DateInterval('PT3H'));
+//        $limitDate = date_add(new \DateTime(), new \DateInterval('PT2H'));
+//        $excursion->setDate($date);
+//        $excursion->setLimitDate($limitDate);
 
         $form = $this->createForm(ExcursionPostType::class, $excursion);
 
@@ -215,7 +215,8 @@ class CommonController extends AbstractController
                 'place' => $place,
                 'city' => $city,
                 'is_owner' => $isOwner,
-                'nb_participants' => $nbParticipants
+                'nb_participants' => $nbParticipants,
+                'participants' => $excursion->getParticipants()
             ]);
         }
 
