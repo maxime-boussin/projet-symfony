@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\PrivateGroup;
 use App\Entity\Site;
 use App\Entity\User;
+use App\Form\PrivateGroupFormType;
 use App\Form\ProfileFormType;
 use App\Form\RecoverPasswordFormType;
 use App\Form\RegistrationFormType;
@@ -36,7 +38,7 @@ class UserController extends AbstractController
         $form = $this->createForm(ProfileFormType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            if($form->get('newPassword')->getData() !== null){
+            if ($form->get('newPassword')->getData() !== null) {
                 $user->setPassword(
                     $passwordEncoder->encodePassword(
                         $user,
@@ -44,11 +46,11 @@ class UserController extends AbstractController
                     )
                 );
             }
-            if($form['avatar']->getData() != null){
+            if ($form['avatar']->getData() != null) {
                 /** @var UploadedFile $uploadedFile */
                 $uploadedFile = $form['avatar']->getData();
-                $destination = $this->getParameter('kernel.project_dir').'/public/uploads';
-                $newFilename = uniqid().'.'.$uploadedFile->guessExtension();
+                $destination = $this->getParameter('kernel.project_dir') . '/public/uploads';
+                $newFilename = uniqid() . '.' . $uploadedFile->guessExtension();
                 $uploadedFile->move(
                     $destination,
                     $newFilename
@@ -74,13 +76,12 @@ class UserController extends AbstractController
      */
     public function displayProfile(Request $request, EntityManagerInterface $em, string $username): Response
     {
-        $profile = $em->getRepository(User::class)->findOneBy(['nickname' =>$username]);
-        if($profile != null){
+        $profile = $em->getRepository(User::class)->findOneBy(['nickname' => $username]);
+        if ($profile != null) {
             return $this->render('user/foreign-profile.html.twig', [
                 'profile' => $profile,
             ]);
-        }
-        else{
+        } else {
             //TODO: Afficher "Not found profile" info
             return $this->redirectToRoute('app_excursions');
         }
@@ -93,25 +94,26 @@ class UserController extends AbstractController
      * @param TokenGeneratorInterface $tokenGenerator
      * @return Response
      */
-    public function forgottenPassword(Request $request, EntityManagerInterface $em, TokenGeneratorInterface $tokenGenerator){
+    public function forgottenPassword(Request $request, EntityManagerInterface $em, TokenGeneratorInterface $tokenGenerator)
+    {
         $token = null;
         $form = $this->createForm(RecoverPasswordFormType::class);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            if($form['email']->getData() != null){
+            if ($form['email']->getData() != null) {
                 $user = $em->getRepository(User::class)->findOneBy(['email' => $form['email']->getData()]);
-                if($user instanceof User){
+                if ($user instanceof User) {
                     $token = $tokenGenerator->generateToken();
                     $user->setResetToken($token);
                     $em->flush();
-                    $token = $request->getUri().'/'.$token;
+                    $token = $request->getUri() . '/' . $token;
                 }
             }
         }
         return $this->render('user/recoverPassword.html.twig', [
             'recoverForm' => $form->createView(),
             'token' => $token
-            ]);
+        ]);
     }
 
 
@@ -123,13 +125,14 @@ class UserController extends AbstractController
      * @param $token
      * @return Response
      */
-    public function resetPassword(Request $request, EntityManagerInterface $em, UserPasswordEncoderInterface $passwordEncoder, $token){
+    public function resetPassword(Request $request, EntityManagerInterface $em, UserPasswordEncoderInterface $passwordEncoder, $token)
+    {
         $user = $em->getRepository(User::class)->findOneBy(['resetToken' => $token]);
-        if($user instanceof User){
+        if ($user instanceof User) {
             $form = $this->createForm(ResetPasswordFormType::class, $user);
             $form->handleRequest($request);
             if ($form->isSubmitted() && $form->isValid()) {
-                if($form->get('newPassword')->getData() !== null){
+                if ($form->get('newPassword')->getData() !== null) {
                     $user->setPassword(
                         $passwordEncoder->encodePassword(
                             $user,
@@ -140,17 +143,39 @@ class UserController extends AbstractController
                     $em->flush();
                     //TODO ajouter un flash "Mot de passe changé avec succès."
                     return $this->redirectToRoute('app_home');
-                }
-                else{
+                } else {
                     //TODO erreur mot de passe inchangé
                 }
             }
             return $this->render('user/resetPassword.html.twig', [
                 'resetForm' => $form->createView(),
             ]);
-        }
-        else{
+        } else {
             //TODO erreur mauvais token
         }
+    }
+
+    /**
+     * @Route("/profile/group/create", name="app_create_private_group")
+     * @IsGranted("ROLE_USER")
+     * @param Request $request
+     * @return Response
+     */
+    public function createPrivateGroup(Request $request): Response
+    {
+        $privateGroup = new PrivateGroup();
+        $form = $this->createForm(PrivateGroupFormType::class, $privateGroup);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $privateGroup->setGroupMaster($this->getUser());
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($privateGroup);
+            $entityManager->flush();
+            //TODO: Afficher un message success
+            return $this->redirectToRoute('app_excursions');
+        }
+        return $this->render('user/createPrivateGroup.html.twig', [
+            'createPrivateGroupForm' => $form->createView()
+        ]);
     }
 }

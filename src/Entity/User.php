@@ -89,10 +89,16 @@ class User implements UserInterface
      */
     private $active;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\PrivateGroup", mappedBy="groupMaster", orphanRemoval=true)
+     */
+    private $privateGroups;
+
     public function __construct()
     {
         $this->excursions = new ArrayCollection();
         $this->ownedExcursions = new ArrayCollection();
+        $this->privateGroups = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -344,6 +350,37 @@ class User implements UserInterface
     public function setActive(bool $active): self
     {
         $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|PrivateGroup[]
+     */
+    public function getPrivateGroups(): Collection
+    {
+        return $this->privateGroups;
+    }
+
+    public function addPrivateGroup(PrivateGroup $privateGroup): self
+    {
+        if (!$this->privateGroups->contains($privateGroup)) {
+            $this->privateGroups[] = $privateGroup;
+            $privateGroup->setGroupMaster($this);
+        }
+
+        return $this;
+    }
+
+    public function removePrivateGroup(PrivateGroup $privateGroup): self
+    {
+        if ($this->privateGroups->contains($privateGroup)) {
+            $this->privateGroups->removeElement($privateGroup);
+            // set the owning side to null (unless already changed)
+            if ($privateGroup->getGroupMaster() === $this) {
+                $privateGroup->setGroupMaster(null);
+            }
+        }
 
         return $this;
     }
