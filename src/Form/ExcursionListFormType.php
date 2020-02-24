@@ -36,10 +36,12 @@ class ExcursionListFormType extends AbstractType
             ])
             ->add('from_date', DateType::class, [
                 'attr'    => ['class' => 'form-inline'],
+                'widget' => 'single_text',
                 'data' => (new \DateTime())->sub(new \DateInterval('P5Y'))
             ])
             ->add('to_date', DateType::class, [
                 'attr'    => ['class' => 'form-inline'],
+                'widget' => 'single_text',
                 'data' => (new \DateTime())->add(new \DateInterval('P5Y'))
             ])
             ->add('owned_excursions', CheckboxType::class, [
