@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e52a300b-a96f-4a14-8762-874d6867e984" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/CommonController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CommonController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ExcursionPostType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ExcursionPostType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/excursions/details.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/excursions/details.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +19,7 @@
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
         <option value="vincentzercher &lt;vincent.zercher@laposte.net&gt;" />
+        <option value="vincentzercher &lt;vincent.zercher@laposte.net&gt;ag" />
       </list>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -197,7 +195,7 @@
       <workItem from="1582099363974" duration="23942000" />
       <workItem from="1582185650518" duration="22644000" />
       <workItem from="1582272071057" duration="23636000" />
-      <workItem from="1582531102137" duration="494000" />
+      <workItem from="1582531102137" duration="1740000" />
     </task>
     <task id="LOCAL-00001" summary="commit pour pull">
       <created>1582030413445</created>
@@ -339,7 +337,28 @@
       <option name="project" value="LOCAL" />
       <updated>1582295374079</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Finition page création de sortie + page détails (reste à afficher la liste des participants)">
+      <created>1582531871561</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1582531871561</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Date de recherche mis sous format &quot;single_text&quot;">
+      <created>1582532761679</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1582532761679</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Date de recherche mis sous format &quot;single_text&quot;">
+      <created>1582532775811</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1582532775811</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -355,7 +374,9 @@
     <MESSAGE value="Commit pour pull + page details finie" />
     <MESSAGE value="Création d'une sortie : ok" />
     <MESSAGE value="commit pour pull" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit pour pull" />
+    <MESSAGE value="Finition page création de sortie + page détails (reste à afficher la liste des participants)" />
+    <MESSAGE value="Date de recherche mis sous format &quot;single_text&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Date de recherche mis sous format &quot;single_text&quot;" />
   </component>
   <component name="WindowStateProjectService">
     <state x="195" y="135" key="#CLI_Interpreters" timestamp="1582195804538">
@@ -386,14 +407,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="210" y="278" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582189755376" />
-    <state x="585" y="114" key="CommitChangelistDialog2" timestamp="1582295373512">
+    <state x="585" y="114" key="CommitChangelistDialog2" timestamp="1582532775218">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="585" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1582295373512" />
-    <state x="184" y="86" width="1536" height="860" key="DiffContextDialog" timestamp="1582531377962">
+    <state x="585" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1582532775218" />
+    <state x="184" y="86" width="1536" height="860" key="DiffContextDialog" timestamp="1582532767908">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="184" y="86" width="1536" height="860" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582531377962" />
+    <state x="184" y="86" width="1536" height="860" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582532767908" />
     <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1582022305806">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -443,10 +464,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="849" y="437" key="VCS.EditChangelistDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582205165054" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1582295390352">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1582532791872">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1582295390352" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1582532791872" />
     <state x="655" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1582531103412">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -472,10 +493,10 @@
     </state>
     <state x="657" y="257" width="606" height="526" key="find.popup/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581965447878" />
     <state x="657" y="257" width="606" height="536" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1582282864722" />
-    <state x="651" y="311" key="git4idea.merge.GitPullDialog" timestamp="1582531815986">
+    <state x="651" y="311" key="git4idea.merge.GitPullDialog" timestamp="1582532999596">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="651" y="311" key="git4idea.merge.GitPullDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582531815986" />
+    <state x="651" y="311" key="git4idea.merge.GitPullDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582532999596" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
