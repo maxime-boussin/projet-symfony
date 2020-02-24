@@ -129,7 +129,7 @@ class CommonController extends AbstractController
     {
         $excursion = $em->getRepository(Excursion::class)->updateAndFind($id);
         if($excursion != null){
-            if($excursion->getState() != 5 && $excursion->getOrganizer() == $this->getUser()){
+            if($excursion->getState() != 5 && ($excursion->getOrganizer() == $this->getUser() || in_array('ROLE_ADMIN', $this->getUser()->getRoles()))){
                 $cancellation = new Cancellation();
                 $form = $this->createForm(CancellationFormType::class, $cancellation);
                 $form->handleRequest($request);

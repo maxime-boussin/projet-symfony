@@ -107,7 +107,7 @@
                                             </a>
                                         {% endif %}
                                     {% endif %}
-                                    {% if excursion.organizer_id == app.user.id %}
+                                    {% if (excursion.organizer_id == app.user.id or is_granted('ROLE_ADMIN')) %}
                                         <a href="{{ path('app_cancel_excursion', { id: excursion.id }) }}"
                                            data-toggle="tooltip" title="Annuler">
                                             <i class="fas fa-times-circle"></i>

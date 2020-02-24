@@ -42,6 +42,7 @@ class AdminController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
+            $user->setActive(true);
             $site = $em->getRepository(Site::class)->findOneBy(['name' => $user->getSite()]);
             $user->setSite($site === null ? $em->getRepository(Site::class)->find(1) : $site);
             $entityManager = $this->getDoctrine()->getManager();
@@ -121,46 +122,44 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/users/delete/{id}", name="app_admin_user_disable")
+     * @Route("/admin/users/disable/{id}", name="app_admin_user_disable")
      * @param Request $request
      * @param EntityManagerInterface $em
-     * @param int $page
+     * @param int $id
      * @return Response
-     * @throws \Exception
      */
-    public function userDisable(Request $request, EntityManagerInterface $em, int $page): Response
+    public function userDisable(Request $request, EntityManagerInterface $em, int $id): Response
     {
-        $users = $em->getRepository(User::class)->paginate($page, 5);
-
-        $pagination = array(
-            'page' => $page,
-            'nbPages' => ceil(count($users) / 5)
-        );
-        return $this->render('admin/listUser.html.twig', [
-            'pagination' => $pagination,
-            'users' => $users,
-        ]);
+        $user = $em->getRepository(User::class)->find($id);
+        if($user instanceof User){
+            $user->setActive(false);
+            $em->flush($user);
+            //TODO: flash success
+        }
+        else{
+            //TODO: flash erreur not found user
+        }
+        return $this->redirectToRoute('app_admin_users', ['page' => 1]);
     }
 
     /**
-     * @Route("/admin/users/{page}", name="app_admin_user_disable")
+     * @Route("/admin/users/delete/{id}", name="app_admin_user_delete")
      * @param Request $request
      * @param EntityManagerInterface $em
-     * @param int $page
+     * @param int $id
      * @return Response
-     * @throws \Exception
      */
-    public function userDelete(Request $request, EntityManagerInterface $em, int $page): Response
+    public function userDelete(Request $request, EntityManagerInterface $em, int $id): Response
     {
-        $users = $em->getRepository(User::class)->paginate($page, 5);
-
-        $pagination = array(
-            'page' => $page,
-            'nbPages' => ceil(count($users) / 5)
-        );
-        return $this->render('admin/listUser.html.twig', [
-            'pagination' => $pagination,
-            'users' => $users,
-        ]);
+        $user = $em->getRepository(User::class)->find($id);
+        if($user instanceof User){
+            $em->remove($user);
+            $em->flush();
+            //TODO: flash success
+        }
+        else{
+            //TODO: flash erreur not found user
+        }
+        return $this->redirectToRoute('app_admin_users', ['page' => 1]);
     }
 }

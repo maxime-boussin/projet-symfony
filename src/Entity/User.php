@@ -70,7 +70,7 @@ class User implements UserInterface
     private $nickname;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Excursion", mappedBy="organizer")
+     * @ORM\OneToMany(targetEntity="App\Entity\Excursion", mappedBy="organizer", cascade={"remove"})
      */
     private $ownedExcursions;
 
