@@ -20,8 +20,8 @@
                     </div>
                     <div class="col-10">
                         <div>{{ excursion.description }}</div>
-                        <div>{{ excursion.date|format_datetime() }}</div>
-                        <div>{{ excursion.limitDate|format_datetime() }}</div>
+                        <div>{{ excursion.date|format_datetime('short', 'short', locale='fr') }}</div>
+                        <div>{{ excursion.limitDate|format_datetime('short', 'short', locale='fr') }}</div>
                         <div>{{ nb_participants }} / {{ excursion.participantLimit }} inscrit{% if nb_participants > 1 %}s{% endif %}</div>
                         <div>{{ site.name }}</div>
                         <div>{{ place.address }}, {{ city.postCode }}, {{ city.name }}</div>
@@ -54,6 +54,24 @@
                         </span>
                     <span class="text">Retour</span>
                 </a>
+            </div>
+        </div>
+        <div class="card shadow mb-4">
+            <!-- Card Header - Accordion -->
+            <a href="#collapseCardParticipantsList" class="d-block card-header py-3" data-toggle="collapse" role="button">
+                <h6 class="m-0 font-weight-bold text-primary">Liste des participants</h6>
+            </a>
+            <!-- Card Content - Collapse -->
+            <div class="collapse show" id="collapseCardParticipantsList">
+                <div class="card-body">
+                    {% for participant in participants %}
+                        <div>
+                            <a href="{{ path ('app_foreign_profile', { username: participant.nickname }) }}">
+                                {{ participant.firstName }} {{ participant.lastName }}
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>
