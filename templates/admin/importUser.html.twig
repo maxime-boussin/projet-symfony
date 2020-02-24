@@ -1,0 +1,12 @@
+{% extends "layout.html.twig" %}
+{% block main %}
+    {{ form_start(importForm) }}
+    {{ form_row(importForm.file) }}
+
+    <button class="btn btn-lg btn-primary">Importer</button>
+    {{ form_end(importForm) }}
+{% endblock %}
+
+{% block title %}
+    Import - {{ parent() }}
+{% endblock %}

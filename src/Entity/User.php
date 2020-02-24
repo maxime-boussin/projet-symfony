@@ -33,7 +33,7 @@ class User implements UserInterface
     private $lastName;
 
     /**
-     * @ORM\Column(type="string", length=30, unique=true)
+     * @ORM\Column(type="string", length=30)
      */
     private $phone;
 
@@ -79,6 +79,11 @@ class User implements UserInterface
      */
     private $avatarPath;
 
+    /**
+     * @ORM\Column(type="string", length=500, nullable=true)
+     */
+    private $resetToken;
+
     public function __construct()
     {
         $this->excursions = new ArrayCollection();
@@ -100,10 +105,13 @@ class User implements UserInterface
 
     /**
      * @param mixed $firstName
+     * @return User
      */
-    public function setFirstName($firstName): void
+    public function setFirstName($firstName): self
     {
         $this->firstName = $firstName;
+
+        return $this;
     }
 
     /**
@@ -116,10 +124,13 @@ class User implements UserInterface
 
     /**
      * @param mixed $lastName
+     * @return User
      */
-    public function setLastName($lastName): void
+    public function setLastName($lastName): self
     {
         $this->lastName = $lastName;
+
+        return $this;
     }
 
     /**
@@ -132,10 +143,13 @@ class User implements UserInterface
 
     /**
      * @param mixed $phone
+     * @return User
      */
-    public function setPhone($phone): void
+    public function setPhone($phone): self
     {
         $this->phone = $phone;
+
+        return $this;
     }
 
     public function getEmail(): ?string
@@ -302,6 +316,18 @@ class User implements UserInterface
     public function setAvatarPath(?string $avatarPath): self
     {
         $this->avatarPath = $avatarPath;
+
+        return $this;
+    }
+
+    public function getResetToken(): ?string
+    {
+        return $this->resetToken;
+    }
+
+    public function setResetToken(?string $resetToken): self
+    {
+        $this->resetToken = $resetToken;
 
         return $this;
     }
