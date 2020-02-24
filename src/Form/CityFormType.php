@@ -17,7 +17,7 @@ class CityFormType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => false,
                 'attr' => [
-                    'placeholder' => 'Nom du site',
+                    'placeholder' => 'Nom de la ville',
                     'class' => 'form-control'
                 ]
             ])
