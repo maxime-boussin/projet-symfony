@@ -48,15 +48,11 @@ class ExcursionPostType extends AbstractType
             ])
             ->add('date', DateTimeType::class, [
                 'label' => false,
-                'html5' => false,
-                'date_format' => 'dd-MM-yyyy',
-                'minutes' => ['0', '10', '20', '30', '40', '50']
+                'widget' => 'single_text'
             ])
             ->add('limitDate', DateTimeType::class, [
                 'label' => false,
-                'html5' => false,
-                'date_format' => 'dd-MM-yyyy',
-                'minutes' => ['0', '10', '20', '30', '40', '50']
+                'widget' => 'single_text'
             ])
             ->add('duration', DateIntervalType::class, [
                 'label' => false,
