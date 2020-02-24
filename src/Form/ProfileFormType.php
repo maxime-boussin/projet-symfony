@@ -52,6 +52,7 @@ class ProfileFormType extends AbstractType
             ->add('avatar', FileType::class, [
                 'mapped' => false,
                 "label" => false,
+                'required' => false,
                 'attr'    => [
                     'placeholder' => 'Avatar'
                 ],
