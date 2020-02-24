@@ -4,8 +4,10 @@ namespace App\Controller;
 
 
 use App\Entity\Cancellation;
+use App\Entity\City;
 use App\Entity\Excursion;
 use App\Form\CancellationFormType;
+use App\Form\CityFormType;
 use App\Form\ExcursionListFormType;
 use App\Form\ExcursionPostType;
 use App\Repository\ExcursionRepository;
@@ -169,11 +171,6 @@ class CommonController extends AbstractController
         $excursion->setOrganizer($user);
         $excursion->setVisibility(true);
 
-//        $date = date_add(new \DateTime(), new \DateInterval('PT3H'));
-//        $limitDate = date_add(new \DateTime(), new \DateInterval('PT2H'));
-//        $excursion->setDate($date);
-//        $excursion->setLimitDate($limitDate);
-
         $form = $this->createForm(ExcursionPostType::class, $excursion);
 
         $form->handleRequest($request);
@@ -252,5 +249,26 @@ class CommonController extends AbstractController
      */
     public function home(){
         return $this->render('main/blank.html.twig');
+    }
+
+    /**
+     * @Route("/city/create", name="app_create_city")
+     * @param Request $request
+     * @return Response
+     */
+    public function newCity(Request $request): Response {
+        $city = new City();
+        $form = $this->createForm(CityFormType::class, $city);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($city);
+            $entityManager->flush();
+            //TODO: Afficher un message success
+            return $this->redirectToRoute('app_excursions');
+        }
+        return $this->render('city/create.html.twig', [
+            'createCityForm' => $form->createView()
+        ]);
     }
 }
