@@ -1,0 +1,56 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Sorties - {{ parent() }}{% endblock %}
+{% block main %}
+<div class="card shadow mb-4 mt-5">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Utilisateurs</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Pseudonyme</th>
+                    <th>Email</th>
+                    <th>Site</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.firstName }} {{ user.lastName }}</td>
+                        <td>{{ user.nickname }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.site.name }}</td>
+                        <td class="text-center">
+                            {% if user.active == true %}
+                            <a href="{{ path('app_admin_user_disable', { id: user.id }) }}"><i class="fas fa-user-lock"></i></a>
+                            {% endif %}
+                            <a href="{{ path('app_admin_user_delete', { id: user.id }) }}"><i class="fas fa-user-times"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
+                <ul class="pagination">
+                    <li class="paginate_button page-item previous {% if pagination.page == 1 %}disabled{% endif %}" id="dataTable_previous">
+                        <a href="{{ path('app_admin_users', { page: pagination.page-1 }) }}" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link"><i class="fas fa-chevron-circle-left"></i></a>
+                    </li>
+                    {% for i in 1..pagination.nbPages %}
+                    <li class="paginate_button page-item {% if pagination.page == i %}active{% endif %}">
+                        <a href="{{ path('app_admin_users', { page: i }) }}" aria-controls="dataTable" data-dt-idx="{{ i }}" tabindex="0" class="page-link">{{ i }}</a>
+                    </li>
+                    {% endfor %}
+                    <li class="paginate_button page-item next {% if pagination.page == pagination.nbPages %}disabled{% endif %}" id="dataTable_next">
+                        <a href="{{ path('app_admin_users', { page: pagination.page+1 }) }}" aria-controls="dataTable" data-dt-idx="{{ pagination.nbPages+1 }}" tabindex="0" class="page-link"><i class="fas fa-chevron-circle-right"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -22,6 +22,7 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
+      {% if app.user %}
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-calendar-alt"></i>
@@ -31,13 +32,28 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Pages:</h6>
             <a class="collapse-item" href="{{ path("app_excursions") }}">Liste</a>
-            <a class="collapse-item" href="{{ path("app_excursions") }}">Détails</a>
-            {% if app.user %}
+            <a class="collapse-item" href="{{ path("app_excursions") }}">Mes sorties</a>
             <a class="collapse-item" href="{{ path("app_create_excursion") }}">Ajouter</a>
-            {% endif %}
           </div>
         </div>
       </li>
+      {% endif %}
+      {% if is_granted('ROLE_ADMIN') %}
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+          <i class="fas fa-chevron-circle-left"></i>
+          <span>Administration</span>
+        </a>
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">Pages:</h6>
+              <a class="collapse-item" href="{{ path("app_register") }}">Utilisateurs</a>
+              <a class="collapse-item" href="{{ path("app_excursions") }}">Lieux</a>
+              <a class="collapse-item" href="{{ path("app_excursions") }}">Villes</a>
+            </div>
+          </div>
+      </li>
+      {% endif %}
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">

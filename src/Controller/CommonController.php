@@ -135,7 +135,7 @@ class CommonController extends AbstractController
                 $form->handleRequest($request);
                 if ($form->isSubmitted() && $form->isValid()) {
                     $entityManager = $this->getDoctrine()->getManager();
-                    $excursion->setState(-1);
+                    $excursion->setState(5);
                     $cancellation->setExcursion($excursion);
                     $entityManager->persist($cancellation);
                     $entityManager->flush();
@@ -157,6 +157,7 @@ class CommonController extends AbstractController
      *
      * @param Request $request
      * @return RedirectResponse|Response
+     * @throws \Exception
      */
     public function createExcursion(Request $request){
         $excursion = new Excursion();
