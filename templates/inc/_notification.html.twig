@@ -1,0 +1,22 @@
+<a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <i class="fas fa-bell fa-fw"></i>
+    {% if app.user.notifications|length > 0 %}
+    <span class="badge badge-danger badge-counter">{{ app.user.notifications|length }}</span>
+    {% endif %}
+</a>
+<div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+    <h6 class="dropdown-header">
+        Notifications
+    </h6>
+    {% for notif in app.user.notifications %}
+    <a class="notif-item dropdown-item d-flex align-items-center" data-text="{{ notif.id }}" href="{{ notif.concerned is null ? '#' : path('app_details_excursions', { id:notif.concerned.id }) }}">
+        <div class="mr-3">
+            {% include 'inc/_notification_type.html.twig' with {'type': notif.type} %}
+        </div>
+        <div>
+            <div class="small text-gray-500">{{ notif.date|format_datetime("medium", "medium", locale="fr") }}</div>
+            <span class="font-weight-bold">{{ notif.message }}</span>
+        </div>
+    </a>
+    {% endfor %}
+</div>

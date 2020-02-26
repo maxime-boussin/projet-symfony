@@ -177,6 +177,85 @@ class ExcursionRepository extends ServiceEntityRepository
         $this->getEntityManager()->flush();
         return $nb;
     }
+
+
+    public function getNbYear()
+    {
+        $from = new \DateTime();
+        $to = new \DateTime();
+        $from->sub(new \DateInterval('P1Y'));
+        return $this->createQueryBuilder('e')
+            ->select('COUNT(e)')
+            ->andWhere('e.date BETWEEN :from AND :to')
+            ->setParameter('from', $from)
+            ->setParameter('to', $to)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    public function getNbMonth()
+    {
+        $from = new \DateTime();
+        $to = new \DateTime();
+        $from->sub(new \DateInterval('P1M'));
+        return $this->createQueryBuilder('e')
+            ->select('COUNT(e)')
+            ->andWhere('e.date BETWEEN :from AND :to')
+            ->setParameter('from', $from)
+            ->setParameter('to', $to)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    public function getTopUser()
+    {
+        $max = 0;
+        $topUser = "";
+        //id, date, limit_date, duration, e0_.name AS name_4, e0_.description AS description_5, e0_.visibility AS visibility_6, e0_.participant_limit AS participant_limit_7, e0_.state AS state_8, u1_.nickname AS nickname_9, count(e0_.organizer_id) AS sclr_10, e0_.site_id AS site_id_11, e0_.organizer_id AS organizer_id_12, e0_.place_id AS place_id_13
+        $count = $this->createQueryBuilder('e')
+            ->addSelect('u.nickname as nick')
+            ->addSelect('count(e.organizer) as counter')
+            ->join('e.organizer', 'u')
+            ->groupBy('e.id, nick')
+            ->getQuery()
+            ->getResult();
+        foreach ($count as $key => $value) {
+            if ($value["counter"] > $max) {
+                $max = $value["counter"];
+                $topUser = $value["nick"];
+            }
+        }
+        return $topUser . " (" . $max . ")";
+    }
+
+    public function getYearCut()
+    {
+        $res = "{";
+        $year = intval(date("Y"))-1;
+        $month = intval(date("m"))+1;
+        for ($i=1; $i <= 12; $i++) {
+            if($month == 13){
+                $month = 1;
+                $year++;
+            }
+            $from= new \Datetime($year.'-'.$month.'-01');
+            $to= new \Datetime(($month==12?$year+1:$year).'-'.($month==12?1:$month+1).'-01');
+            $to->sub(new \DateInterval('P1D'));
+            $nb = $this->createQueryBuilder('e')
+                ->select('COUNT(e)')
+                ->andWhere('e.date BETWEEN :from AND :to')
+                ->setParameter('from', $from)
+                ->setParameter('to', $to )
+                ->getQuery()
+                ->getSingleScalarResult();
+
+
+            //dump("from ".date_format($from, 'd/m/Y')." to ".date_format($to, 'd/m/Y')." -> ".$nb);
+            $res .= '"'.date('M', mktime(0, 0, 0, $month, 10)).'" : '.$nb.", ";
+            $month++;
+        }
+        return $res."}";
+    }
     // /**
     //  * @return Excursion[] Returns an array of Excursion objects
     //  */

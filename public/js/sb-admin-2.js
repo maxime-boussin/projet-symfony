@@ -46,4 +46,37 @@
     e.preventDefault();
   });
 
-})(jQuery); // End of use strict
+  $('.notif-item').on('click', function(e) {
+      let notif = $(this);
+      let id = $(this).attr('data-text');
+      $.ajax({
+        url : window.location.origin+'/notifications/seen/'+id,
+        type : 'GET',
+        dataType : 'html',
+        success : function(code_html, statut){
+          notif.remove();
+          let nb=parseInt($('#alertsDropdown').find('span').html())-1;
+          if(nb === 0){
+            $('#alertsDropdown').find('span').remove();
+          }
+          else{
+            $('#alertsDropdown').find('span').html(nb)
+          }
+        }
+      });
+  });
+
+  $('#messageSubmit').on('click', function (e) {
+    let content = $('#messageContent').val();
+    let contact = $('#messageContact').val();
+    $.ajax({
+      url : window.location.origin+'/messenger/send',
+      type : 'POST',
+      data: { contact: contact, content: content },
+      success : function(data){
+        console.log(data)
+      }
+    });
+  })
+
+})(jQuery);

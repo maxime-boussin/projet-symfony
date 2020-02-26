@@ -1,0 +1,13 @@
+{% if type == 'subscribe' %}
+    <div class="icon-circle bg-primary">
+        <i class="fas fa-user-plus text-white"></i>
+    </div>
+{% elseif type == 'unsubscribe' %}
+    <div class="icon-circle bg-warning">
+        <i class="fas fa-user-minus text-white"></i>
+    </div>
+{% else %}
+    <div class="icon-circle bg-success">
+        <i class="fas fa-globe-americas text-white"></i>
+    </div>
+{% endif %}
