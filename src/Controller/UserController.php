@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\PrivateGroup;
 use App\Entity\Site;
 use App\Entity\User;
+use App\Form\AddGroupMemberFormType;
 use App\Form\PrivateGroupFormType;
 use App\Form\ProfileFormType;
 use App\Form\RecoverPasswordFormType;
@@ -172,10 +173,119 @@ class UserController extends AbstractController
             $entityManager->persist($privateGroup);
             $entityManager->flush();
             //TODO: Afficher un message success
-            return $this->redirectToRoute('app_excursions');
+            return $this->redirectToRoute('app_list_private_group');
         }
         return $this->render('user/createPrivateGroup.html.twig', [
             'createPrivateGroupForm' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/profile/group/list", name="app_list_private_group")
+     * @IsGranted("ROLE_USER")
+     * @param EntityManagerInterface $em
+     * @return Response
+     */
+    public function listPrivateGroup(EntityManagerInterface $em): Response
+    {
+        $privateGroups = $em->getRepository(PrivateGroup::class)->findBy(['groupMaster' => $this->getUser()]);
+        return $this->render('user/privateGroupList.html.twig', [
+            'privateGroups' => $privateGroups
+        ]);
+    }
+
+    /**
+     * @Route("/profile/group/member/add/{id}", name="app_add_member_private_group")
+     * @IsGranted("ROLE_USER")
+     * @param EntityManagerInterface $em
+     * @param Request $request
+     * @param $id
+     * @return Response
+     */
+    public function addMemberToGroup(EntityManagerInterface $em, Request $request, $id): Response
+    {
+        $privateGroup = $em->getRepository(PrivateGroup::class)->find($id);
+        $form = $this->createForm(AddGroupMemberFormType::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            if ($form->get('email')->getData() != null){
+                $user = $em->getRepository(User::class)->findOneBy(['email' => $form->get('email')->getData()]);
+                if ($user != null) {
+                    if (!$privateGroup->getGroupMember()->contains($user)) {
+                        $privateGroup->addGroupMember($user);
+                        $em->flush();
+                        //TODO: Afficher un message success
+                        return $this->redirectToRoute('app_list_member_private_group',['id' => $id]);
+                    }
+                }
+            }
+            if ($form->get('nickname')->getData() != null){
+                $user = $em->getRepository(User::class)->findOneBy(['nickname' => $form->get('nickname')->getData()]);
+                if ($user != null) {
+                    if (!$privateGroup->getGroupMember()->contains($user)) {
+                        $privateGroup->addGroupMember($user);
+                        $em->flush();
+                        //TODO: Afficher un message success
+                        return $this->redirectToRoute('app_list_member_private_group', ['id' => $id]);
+                    }
+                    //TODO: message d'erreur -> user déjà dans le groupe
+                }
+            }
+            //TODO: message d'erreur -> user n'existe pas
+        }
+        $allUsers = $em->getRepository(User::class)->findAll();
+        return $this->render('user/addMemberGroup.html.twig', [
+            'addMemberGroupForm' => $form->createView(),
+            'privateGroup' => $privateGroup,
+            'allUsers' => $allUsers
+        ]);
+    }
+
+    /**
+     * @Route("/profile/group/member/list/{id}", name="app_list_member_private_group")
+     * @IsGranted("ROLE_USER")
+     * @param EntityManagerInterface $em
+     * @param $id
+     * @return Response
+     */
+    public function listMemberGroup(EntityManagerInterface $em, $id): Response
+    {
+        $privateGroup = $em->getRepository(PrivateGroup::class)->find($id);
+        $members = $privateGroup->getGroupMember();
+        return $this->render('user/listGroupMember.html.twig', [
+            'privateGroup' => $privateGroup,
+            'members' => $members
+        ]);
+    }
+
+    /**
+     * @Route("/profile/group/member/delete/{groupId}/{userId}", name="app_delete_member_private_group")
+     * @IsGranted("ROLE_USER")
+     * @param EntityManagerInterface $em
+     * @param $userId
+     * @param $groupId
+     * @return Response
+     */
+    public function deleteMemberGroup(EntityManagerInterface $em, $userId, $groupId): Response
+    {
+        $member = $em->getRepository(User::class)->find($userId);
+        $em->getRepository(PrivateGroup::class)->find($groupId)->removeGroupMember($member);
+        $em->flush();
+        return $this->redirectToRoute('app_list_member_private_group', ['id' => $groupId]);
+    }
+
+    /**
+     * @Route("/profile/group/delete/{groupId}", name="app_delete_private_group")
+     * @IsGranted("ROLE_USER")
+     * @param EntityManagerInterface $em
+     * @param $groupId
+     * @return Response
+     */
+    public function deleteGroup(EntityManagerInterface $em, $groupId): Response
+    {
+        $group = $em->getRepository(PrivateGroup::class)->find($groupId);
+        $em->getRepository(User::class)->find($this->getUser()->getId())->removePrivateGroup($group);
+        $em->flush();
+        return $this->redirectToRoute('app_list_private_group');
     }
 }
