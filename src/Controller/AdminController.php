@@ -8,6 +8,7 @@ use App\Form\CsvUserFormType;
 use App\Form\ProfileFormType;
 use App\Form\RegistrationFormType;
 use App\Security\LoginAuthenticator;
+use App\Service\NotificationService;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -25,12 +26,11 @@ class AdminController extends AbstractController
      * @Route("/admin/register", name="app_register")
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder
-     * @param GuardAuthenticatorHandler $guardHandler
-     * @param LoginAuthenticator $authenticator
      * @param EntityManagerInterface $em
+     * @param NotificationService $notif
      * @return Response
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginAuthenticator $authenticator, EntityManagerInterface $em): Response
+    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $em, NotificationService $notif): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -48,7 +48,11 @@ class AdminController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
-            //TODO: Ajouter flash succès
+            $notif->init($user, 'Bienvenue sur Sortir.com, vous pouvez dès maintenant créer une sortie !', 'welcome');
+            $this->addFlash(
+                'success',
+                'Utilisateur enregistré avec succès.'
+            );
         }
 
         return $this->render('registration/register.html.twig', [
@@ -90,7 +94,10 @@ class AdminController extends AbstractController
                     $em->flush();
                 }
                 else{
-                    //TODO: Afficher erreur format
+                    $this->addFlash(
+                        'danger',
+                        'Format de fichier inconnu.'
+                    );
                 }
             }
         }
@@ -134,10 +141,16 @@ class AdminController extends AbstractController
         if($user instanceof User){
             $user->setActive(false);
             $em->flush($user);
-            //TODO: flash success
+            $this->addFlash(
+                'success',
+                'Utilisateur desactivé avec succès.'
+            );
         }
         else{
-            //TODO: flash erreur not found user
+            $this->addFlash(
+                'danger',
+                'Utilisatteur introuvable.'
+            );
         }
         return $this->redirectToRoute('app_admin_users', ['page' => 1]);
     }
@@ -155,10 +168,16 @@ class AdminController extends AbstractController
         if($user instanceof User){
             $em->remove($user);
             $em->flush();
-            //TODO: flash success
+            $this->addFlash(
+                'success',
+                'Utilisateur supprimé avec succès.'
+            );
         }
         else{
-            //TODO: flash erreur not found user
+            $this->addFlash(
+                'danger',
+                'Utilisateur inconnu.'
+            );
         }
         return $this->redirectToRoute('app_admin_users', ['page' => 1]);
     }

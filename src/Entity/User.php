@@ -90,6 +90,20 @@ class User implements UserInterface
     private $active;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Notification", mappedBy="user", orphanRemoval=true)
+     */
+    private $notifications;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="sender")
+     */
+    private $messages;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="receiver")
+     */
+    private $receivedMessages;
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\PrivateGroup", mappedBy="groupMaster", orphanRemoval=true)
      */
     private $privateGroups;
@@ -98,6 +112,9 @@ class User implements UserInterface
     {
         $this->excursions = new ArrayCollection();
         $this->ownedExcursions = new ArrayCollection();
+        $this->notifications = new ArrayCollection();
+        $this->messages = new ArrayCollection();
+        $this->receivedMessages = new ArrayCollection();
         $this->privateGroups = new ArrayCollection();
     }
 
@@ -355,6 +372,21 @@ class User implements UserInterface
     }
 
     /**
+     * @return Collection|Notification[]
+     */
+    public function getNotifications(): Collection
+    {
+        return $this->notifications;
+    }
+
+    public function addNotification(Notification $notification): self
+    {
+        if (!$this->notifications->contains($notification)) {
+            $this->notifications[] = $notification;
+            $notification->setUser($this);
+        }
+    }
+    /**
      * @return Collection|PrivateGroup[]
      */
     public function getPrivateGroups(): Collection
@@ -372,6 +404,80 @@ class User implements UserInterface
         return $this;
     }
 
+    public function removeNotification(Notification $notification): self
+    {
+        if ($this->notifications->contains($notification)) {
+            $this->notifications->removeElement($notification);
+            // set the owning side to null (unless already changed)
+            if ($notification->getUser() === $this) {
+                $notification->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Message[]
+     */
+    public function getMessages(): Collection
+    {
+        return $this->messages;
+    }
+
+    public function addMessage(Message $message): self
+    {
+        if (!$this->messages->contains($message)) {
+            $this->messages[] = $message;
+            $message->setSender($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessage(Message $message): self
+    {
+        if ($this->messages->contains($message)) {
+            $this->messages->removeElement($message);
+            // set the owning side to null (unless already changed)
+            if ($message->getSender() === $this) {
+                $message->setSender(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Message[]
+     */
+    public function getReceivedMessages(): Collection
+    {
+        return $this->receivedMessages;
+    }
+
+    public function addReceivedMessage(Message $receivedMessage): self
+    {
+        if (!$this->receivedMessages->contains($receivedMessage)) {
+            $this->receivedMessages[] = $receivedMessage;
+            $receivedMessage->setReceiver($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReceivedMessage(Message $receivedMessage): self
+    {
+        if ($this->receivedMessages->contains($receivedMessage)) {
+            $this->receivedMessages->removeElement($receivedMessage);
+            // set the owning side to null (unless already changed)
+            if ($receivedMessage->getReceiver() === $this) {
+                $receivedMessage->setReceiver(null);  
+            }
+        }
+    
+        return $this;
+    }
     public function removePrivateGroup(PrivateGroup $privateGroup): self
     {
         if ($this->privateGroups->contains($privateGroup)) {

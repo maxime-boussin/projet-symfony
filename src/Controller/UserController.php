@@ -9,10 +9,7 @@ use App\Form\AddGroupMemberFormType;
 use App\Form\PrivateGroupFormType;
 use App\Form\ProfileFormType;
 use App\Form\RecoverPasswordFormType;
-use App\Form\RegistrationFormType;
 use App\Form\ResetPasswordFormType;
-use App\Security\LoginAuthenticator;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,7 +19,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
-use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 
 class UserController extends AbstractController
 {
@@ -82,8 +78,12 @@ class UserController extends AbstractController
             return $this->render('user/foreign-profile.html.twig', [
                 'profile' => $profile,
             ]);
-        } else {
-            //TODO: Afficher "Not found profile" info
+        }
+        else{
+            $this->addFlash(
+                'danger',
+                'Utilisateur introuvable.'
+            );
             return $this->redirectToRoute('app_excursions');
         }
     }
@@ -142,17 +142,28 @@ class UserController extends AbstractController
                     );
                     $user->setResetToken(null);
                     $em->flush();
-                    //TODO ajouter un flash "Mot de passe changé avec succès."
+                    $this->addFlash(
+                        'success',
+                        'Mot de passe changé avec succès.'
+                    );
                     return $this->redirectToRoute('app_home');
-                } else {
-                    //TODO erreur mot de passe inchangé
+                }
+                else{
+                    $this->addFlash(
+                        'danger',
+                        'Mot de passe inchangé.'
+                    );
                 }
             }
             return $this->render('user/resetPassword.html.twig', [
                 'resetForm' => $form->createView(),
             ]);
-        } else {
-            //TODO erreur mauvais token
+        }
+        else{
+            $this->addFlash(
+                'danger',
+                'Lien incorrect.'
+            );
         }
     }
 

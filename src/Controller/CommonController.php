@@ -6,11 +6,13 @@ namespace App\Controller;
 use App\Entity\Cancellation;
 use App\Entity\City;
 use App\Entity\Excursion;
+use App\Entity\Notification;
 use App\Form\CancellationFormType;
 use App\Form\CityFormType;
 use App\Form\ExcursionListFormType;
 use App\Form\ExcursionPostType;
 use App\Repository\ExcursionRepository;
+use App\Service\NotificationService;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -71,10 +73,11 @@ class CommonController extends AbstractController
      * @IsGranted("ROLE_USER")
      * @param EntityManagerInterface $em
      * @param $id
+     * @param NotificationService $notif
      * @return Response
      * @throws \Exception
      */
-    public function subscribeExcursions(EntityManagerInterface $em, $id): Response
+    public function subscribeExcursions(EntityManagerInterface $em, $id, NotificationService $notif): Response
     {
         $excursion = $em->getRepository(Excursion::class)->updateAndFind($id);
         if($excursion != null){
@@ -85,9 +88,17 @@ class CommonController extends AbstractController
             ){
                 $excursion->addParticipant($this->getUser());
                 $em->flush();
+                $notif->init($excursion->getOrganizer(), sprintf('%s s\'est inscrit à votre sortie.', $this->getUser()->getNickname()), 'subscribe', $excursion);
+                $this->addFlash(
+                    'success',
+                    sprintf('Souscription à %s effectuée.', $excursion->getName())
+                );
             }
             else{
-                //TODO: Afficher message d'erreur
+                $this->addFlash(
+                    'danger',
+                    'Souscription impossible.'
+                );
             }
         }
         return $this->redirectToRoute('app_excursions');
@@ -98,10 +109,11 @@ class CommonController extends AbstractController
      * @IsGranted("ROLE_USER")
      * @param EntityManagerInterface $em
      * @param $id
+     * @param NotificationService $notif
      * @return Response
      * @throws \Exception
      */
-    public function unsubscribeExcursions(EntityManagerInterface $em, $id): Response
+    public function unsubscribeExcursions(EntityManagerInterface $em, $id, NotificationService $notif): Response
     {
         $excursion = $em->getRepository(Excursion::class)->updateAndFind($id);
         if($excursion != null){
@@ -111,9 +123,13 @@ class CommonController extends AbstractController
             ){
                 $excursion->removeParticipant($this->getUser());
                 $em->flush();
+                $notif->init($excursion->getOrganizer(), sprintf('%s s\'est désinscrit de votre sortie.', $this->getUser()->getNickname()), 'unsubscribe', $excursion);
             }
             else{
-                //TODO: Afficher message d'erreur
+                $this->addFlash(
+                    'danger',
+                    'Désinscription impossible.'
+                );
             }
         }
         return $this->redirectToRoute('app_excursions');
@@ -141,7 +157,10 @@ class CommonController extends AbstractController
                     $cancellation->setExcursion($excursion);
                     $entityManager->persist($cancellation);
                     $entityManager->flush();
-                    //TODO: Afficher un message success
+                    $this->addFlash(
+                        'success',
+                        'Sortie annulée avec succès.'
+                    );
                 }
                 else{
                     return $this->render('excursions/cancel.html.twig', [
@@ -236,9 +255,10 @@ class CommonController extends AbstractController
             $em->flush();
             $er = new ExcursionRepository($this->getDoctrine());
             $er->updateState($id);
-//            $excursionRepository = $this->getDoctrine()->getRepository(Excursion::class)->find($id);
-//            $excursionRepository->updateState($id);
-            //TODO: Afficher un message success
+            $this->addFlash(
+                'success',
+                'Sortie publiée.'
+            );
 
             return $this->redirectToRoute('app_excursions');
         }
@@ -247,8 +267,26 @@ class CommonController extends AbstractController
     /**
      * @Route("/", name="app_home")
      */
-    public function home(){
-        return $this->render('main/blank.html.twig');
+    public function home(EntityManagerInterface $em) {
+        $rep = $em->getRepository(Excursion::class);
+        $year = $rep->getNbYear();
+        $month = $rep->getNbMonth();
+        $top = $rep->getTopUser();
+        $chart = $rep->getYearCut();
+        return $this->render("main/home.html.twig", [
+            "nbYear" => $year,
+            "nbMonth" => $month,
+            "topUser" => $top,
+            "chart" => $chart
+        ]);
+    }
+
+
+    /**
+     * @Route("/aboutus", name="app_aboutus")
+     */
+    public function aboutus() {
+        return $this->render("main/aboutus.html.twig");
     }
 
     /**
@@ -264,11 +302,26 @@ class CommonController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($city);
             $entityManager->flush();
-            //TODO: Afficher un message success
+            $this->addFlash(
+                'success',
+                'Ville créée avec succès.'
+            );
             return $this->redirectToRoute('app_excursions');
         }
         return $this->render('city/create.html.twig', [
             'createCityForm' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/notifications/seen/{id}", name="app_notification_seen")
+     * @param Request $request
+     * @param int $id
+     * @param NotificationService $notif
+     * @return Response
+     */
+    public function notificationSeen(Request $request, int $id, NotificationService $notif):Response{
+        $notif->seen($id);
+        return new Response($id);
     }
 }
