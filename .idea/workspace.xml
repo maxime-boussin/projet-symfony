@@ -1,40 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e52a300b-a96f-4a14-8762-874d6867e984" name="Default Changelist" comment="Commit pour pull">
-      <change afterPath="$PROJECT_DIR$/public/css/messenger.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/MessageController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/Date.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/Message.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/Notification.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/DateRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/MessageRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/NotificationRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/MessengerService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/NotificationService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/Exception/error.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/Exception/error403.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/Exception/error404.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/bundles/TwigBundle/Exception/error.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/bundles/TwigBundle/Exception/error404.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/main/messenger.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.test" beforeDir="false" afterPath="$PROJECT_DIR$/.env.test" afterDir="false" />
+    <list default="true" id="e52a300b-a96f-4a14-8762-874d6867e984" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/sb-admin-2.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/sb-admin-2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AdminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/CommonController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CommonController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ExcursionRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ExcursionRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/importUser.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/importUser.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/error.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/inc/_sidebar.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inc/_sidebar.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/inc/_topbar.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inc/_topbar.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/layout.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/main/home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/main/home.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/~$DescriptionProduit.ods" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -411,7 +379,21 @@
       <option name="project" value="LOCAL" />
       <updated>1582539471069</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Merge">
+      <created>1582707228648</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1582707228648</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Merge">
+      <created>1582707285052</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1582707285052</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -432,7 +414,8 @@
     <MESSAGE value="Commit workspace pour pouvoir pull" />
     <MESSAGE value="Liste des participants dans la page détails + lien vers le profil d'un participant au clic sur son nom + date en francais dans la page détails" />
     <MESSAGE value="Ajout bouton &quot;créer une sortie&quot; sur la liste des sorties" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout bouton &quot;créer une sortie&quot; sur la liste des sorties" />
+    <MESSAGE value="Merge" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge" />
   </component>
   <component name="WindowStateProjectService">
     <state x="195" y="135" key="#CLI_Interpreters" timestamp="1582195804538">
@@ -463,10 +446,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="210" y="278" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582189755376" />
-    <state x="552" y="114" key="CommitChangelistDialog2" timestamp="1582707074212">
+    <state x="552" y="114" key="CommitChangelistDialog2" timestamp="1582707324862">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1582707074212" />
+    <state x="552" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1582707324862" />
     <state x="184" y="86" width="1536" height="860" key="DiffContextDialog" timestamp="1582532767908">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -553,10 +536,10 @@
     </state>
     <state x="657" y="257" width="606" height="526" key="find.popup/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581965447878" />
     <state x="657" y="257" width="606" height="536" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1582539819702" />
-    <state x="651" y="311" key="git4idea.merge.GitPullDialog" timestamp="1582707117562">
+    <state x="651" y="311" key="git4idea.merge.GitPullDialog" timestamp="1582707379280">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="651" y="311" key="git4idea.merge.GitPullDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582707117562" />
+    <state x="651" y="311" key="git4idea.merge.GitPullDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582707379280" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
