@@ -1,0 +1,63 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Mes groupes privés - {{ parent() }}{% endblock %}
+{% block main %}
+    <div class="card shadow mb-4 mt-5">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Mes groupes privés</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>Nom du groupe</th>
+                        <th style="width: 40px">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for privateGroup in privateGroups %}
+                        <tr>
+                            <td>
+                                <a href="{{ path("app_list_member_private_group", {id: privateGroup.id}) }}">
+                                    {{ privateGroup.name }}
+                                </a>
+                            </td>
+                            <td style="width: 40px">
+                                <div class="col-auto text-center">
+                                    <a href="{{ path("app_delete_private_group", {groupId: privateGroup.id}) }}"
+                                       data-toggle="tooltip" title="Supprimer le groupe">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="float-right">
+        <a href="{{ path("app_create_private_group") }}" class="btn btn-success btn-icon-split m-1">
+            <span class="icon text-white-50">
+                <i class="fas fa-plus-circle"></i>
+            </span>
+            <span class="text">Créer un groupe</span>
+        </a>
+        <a href="javascript:history.go(-1)" class="btn btn-info btn-icon-split m-1">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-chevron-circle-left"></i>
+                        </span>
+            <span class="text">Retour</span>
+        </a>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+{% endblock %}

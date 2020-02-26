@@ -1,0 +1,41 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Ajouter un membre - {{ parent() }}{% endblock %}
+{% block main %}
+
+    <div class="offset-lg-3 col-lg-6 col-md-12 offset-md-0">
+        <div class="card shadow mb-4 mt-5">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">{{ privateGroup.name }}</h6>
+            </div>
+            {{ form_start(addMemberGroupForm) }}
+            <div class="card-body">
+                {{ form_row(addMemberGroupForm.email) }}
+                <datalist id="usersEmails">
+                    {% for user in allUsers %}
+                    <option value="{{ user.email }}">
+                        {% endfor %}
+                </datalist>
+                {{ form_row(addMemberGroupForm.nickname) }}
+                <datalist id="usersNicknames">
+                    {% for user in allUsers %}
+                    <option value="{{ user.nickname }}">
+                        {% endfor %}
+                </datalist>
+            </div>
+            <div class="card-footer d-flex flex-row-reverse">
+                <button class="btn btn-success btn-icon-split m-1">
+                    <span class="icon text-white-50"><i class="fas fa-check"></i></span>
+                    <span class="text">Ajouter</span>
+                </button>
+                <a href="javascript:history.go(-1)" class="btn btn-info btn-icon-split m-1">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-chevron-circle-left"></i>
+                        </span>
+                    <span class="text">Retour</span>
+                </a>
+            </div>
+            {{ form_end(addMemberGroupForm) }}
+        </div>
+    </div>
+{% endblock %}

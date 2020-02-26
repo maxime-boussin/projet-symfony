@@ -103,6 +103,10 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="receiver")
      */
     private $receivedMessages;
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\PrivateGroup", mappedBy="groupMaster", orphanRemoval=true)
+     */
+    private $privateGroups;
 
     public function __construct()
     {
@@ -111,6 +115,7 @@ class User implements UserInterface
         $this->notifications = new ArrayCollection();
         $this->messages = new ArrayCollection();
         $this->receivedMessages = new ArrayCollection();
+        $this->privateGroups = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -380,6 +385,21 @@ class User implements UserInterface
             $this->notifications[] = $notification;
             $notification->setUser($this);
         }
+    }
+    /**
+     * @return Collection|PrivateGroup[]
+     */
+    public function getPrivateGroups(): Collection
+    {
+        return $this->privateGroups;
+    }
+
+    public function addPrivateGroup(PrivateGroup $privateGroup): self
+    {
+        if (!$this->privateGroups->contains($privateGroup)) {
+            $this->privateGroups[] = $privateGroup;
+            $privateGroup->setGroupMaster($this);
+        }
 
         return $this;
     }
@@ -452,7 +472,19 @@ class User implements UserInterface
             $this->receivedMessages->removeElement($receivedMessage);
             // set the owning side to null (unless already changed)
             if ($receivedMessage->getReceiver() === $this) {
-                $receivedMessage->setReceiver(null);
+                $receivedMessage->setReceiver(null);  
+            }
+        }
+    
+        return $this;
+    }
+    public function removePrivateGroup(PrivateGroup $privateGroup): self
+    {
+        if ($this->privateGroups->contains($privateGroup)) {
+            $this->privateGroups->removeElement($privateGroup);
+            // set the owning side to null (unless already changed)
+            if ($privateGroup->getGroupMaster() === $this) {
+                $privateGroup->setGroupMaster(null);
             }
         }
 

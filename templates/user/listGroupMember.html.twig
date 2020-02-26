@@ -1,0 +1,56 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Liste des membres - {{ parent() }}{% endblock %}
+{% block main %}
+<div class="offset-lg-3 col-lg-6 col-md-12 offset-md-0">
+    <div class="card shadow mb-4 mt-5">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">{{ privateGroup.name }}</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <tbody>
+                        {% for member in members %}
+                            <tr>
+                                <td>
+                                    <a href="{{ path('app_foreign_profile', {username: member.nickname}) }}">
+                                        {{ member.firstName }} {{ member.lastName }}
+                                    </a>
+                                </td>
+                                <td style="width: 40px">
+                                    <a href="{{ path('app_delete_member_private_group', {groupId: privateGroup.id, userId: member.id}) }}" data-toggle="tooltip" title="Supprimer le membre">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="float-right">
+        <a href="{{ path("app_add_member_private_group", {id: privateGroup.id}) }}" class="btn btn-success btn-icon-split m-1">
+            <span class="icon text-white-50">
+                <i class="fas fa-plus-circle"></i>
+            </span>
+            <span class="text">Ajouter un membre</span>
+        </a>
+        <a href="javascript:history.go(-1)" class="btn btn-info btn-icon-split m-1">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-chevron-circle-left"></i>
+                        </span>
+            <span class="text">Retour</span>
+        </a>
+    </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+{% endblock %}
