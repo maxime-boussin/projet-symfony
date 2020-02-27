@@ -116,9 +116,9 @@ class ExcursionRepository extends ServiceEntityRepository
         $stmt->bindParam(':user', $user);
         $stmt->execute();
         $res = $stmt->fetchAll();
-        foreach($res as $excursion){
+        foreach($res as $key => $excursion){
             $state = $this-> updateState($excursion['id']);
-            $excursion['state'] = $state;
+            $res[$key]['state'] = $state;
         }
         return $res;
     }
@@ -132,7 +132,8 @@ class ExcursionRepository extends ServiceEntityRepository
     public function updateState($id){
         $excursion = $this->find($id);
         if($excursion != null){
-            if($excursion->getState() != 0 && $excursion->getState() != 5){
+            $initialState = $excursion->getState();
+            if($initialState != 0 && $initialState != 5){
                 if( $excursion->getLimitDate() > new \DateTime())
                     $excursion->setState(1);
                 if( $excursion->getLimitDate() < new \DateTime())
@@ -142,9 +143,11 @@ class ExcursionRepository extends ServiceEntityRepository
                 if( $excursion->getDate()->add($excursion->getDuration()) < new \DateTime())
                     $excursion->setState(4);
             }
-            $this->getEntityManager()->flush($excursion);
+            if($excursion->getState() !== $initialState)
+                $this->getEntityManager()->flush($excursion);
             return $excursion->getState();
         }
+        return false;
     }
 
     /**
@@ -212,17 +215,18 @@ class ExcursionRepository extends ServiceEntityRepository
         $max = 0;
         $topUser = "";
         //id, date, limit_date, duration, e0_.name AS name_4, e0_.description AS description_5, e0_.visibility AS visibility_6, e0_.participant_limit AS participant_limit_7, e0_.state AS state_8, u1_.nickname AS nickname_9, count(e0_.organizer_id) AS sclr_10, e0_.site_id AS site_id_11, e0_.organizer_id AS organizer_id_12, e0_.place_id AS place_id_13
-        $count = $this->createQueryBuilder('e')
-            ->addSelect('u.nickname as nick')
-            ->addSelect('count(e.organizer) as counter')
-            ->join('e.organizer', 'u')
-            ->groupBy('e.id, nick')
+        $count = $this->getEntityManager()->createQueryBuilder()
+            ->select('u.nickname')
+            ->from('App:User', 'u')
+            ->addSelect('count(e) as counter')
+            ->groupBy('u.id')
+            ->leftJoin('u.ownedExcursions', 'e')
             ->getQuery()
             ->getResult();
         foreach ($count as $key => $value) {
             if ($value["counter"] > $max) {
                 $max = $value["counter"];
-                $topUser = $value["nick"];
+                $topUser = $value["nickname"];
             }
         }
         return $topUser . " (" . $max . ")";
@@ -255,6 +259,13 @@ class ExcursionRepository extends ServiceEntityRepository
             $month++;
         }
         return $res."}";
+    }
+    function getNbMessages(){
+        return $this->getEntityManager()->createQueryBuilder()
+            ->from('App:Message', 'm')
+            ->select('COUNT(m)')
+            ->getQuery()
+            ->getSingleScalarResult();
     }
     // /**
     //  * @return Excursion[] Returns an array of Excursion objects

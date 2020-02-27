@@ -55,7 +55,7 @@ class AdminController extends AbstractController
             );
         }
 
-        return $this->render('registration/register.html.twig', [
+        return $this->render('admin/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }
@@ -85,6 +85,7 @@ class AdminController extends AbstractController
                                 ->setLastName($line[1])
                                 ->setPhone($line[2])
                                 ->setEmail($line[3])
+                                ->setActive(true)
                                 ->setPassword($passwordEncoder->encodePassword($user, $line[4]))
                                 ->setSite($em->getRepository(Site::class)->findOneBy(['name' => $line[5]]))
                                 ->setNickname($line[6]);
