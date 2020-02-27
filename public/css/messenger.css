@@ -163,7 +163,7 @@ body,html{
     margin-bottom: auto;
     margin-right: 10px;
     border-radius: 25px;
-    background-color: #78e08f;
+    background-color: #5bdb47;
     padding: 10px;
     position: relative;
     min-width: 83px;
@@ -222,6 +222,10 @@ body,html{
 .action_menu ul li:hover{
     cursor: pointer;
     background-color: rgba(0,0,0,0.2);
+}
+.contact_item:hover {
+    cursor: pointer;
+    background-color: rgba(50,89,202,0.2);
 }
 @media(max-width: 576px){
     .contacts_card{

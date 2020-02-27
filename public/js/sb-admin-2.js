@@ -1,6 +1,8 @@
 (function($) {
   "use strict"; // Start of use strict
-
+  $(document).ready(function () {
+    refreshActivity()
+  });
   // Toggle the side navigation
   $("#sidebarToggle, #sidebarToggleTop").on('click', function(e) {
     $("body").toggleClass("sidebar-toggled");
@@ -65,18 +67,16 @@
         }
       });
   });
-
-  $('#messageSubmit').on('click', function (e) {
-    let content = $('#messageContent').val();
-    let contact = $('#messageContact').val();
+  setInterval(function () {
+    refreshActivity();
+  }, 60000);
+  function refreshActivity() {
     $.ajax({
-      url : window.location.origin+'/messenger/send',
+      url : window.location.origin+'/session/refresh',
       type : 'POST',
-      data: { contact: contact, content: content },
       success : function(data){
         console.log(data)
       }
     });
-  })
-
+  }
 })(jQuery);

@@ -15,17 +15,17 @@
                 <div class="card-body contacts_body">
                     <ui class="contacts">
                         {% for contact in contacts %}
-                            <li>
-                                <div class="d-flex bd-highlight">
-                                    <div class="img_cont">
-                                        <img src="{{ asset('uploads/'~(contact.avatarPath == null? 'default.png': contact.avatarPath)) }}" class="rounded-circle user_img">
-                                        <span class="online_icon"></span><!--<span class="online_icon offline"></span>-->
+                            <li class="contact_item" id="contact-{{ contact.id }}" name="{{ contact.firstName }}">
+                                    <div class="d-flex bd-highlight">
+                                        <div class="img_cont">
+                                            <img src="{{ asset('uploads/'~(contact.avatarPath == null? 'default.png': contact.avatarPath)) }}" class="rounded-circle user_img">
+                                            <span class="online_icon {{ (date("now").diff(date(contact.lastActivity)).i < 5 ? '' : 'offline') }}"></span>
+                                        </div>
+                                        <div class="user_info">
+                                            <span>{{ contact.nickname }}</span>
+                                            <p>{{ contact.firstName }} est {{ (date("now").diff(date(contact.lastActivity)).i < 5 ? 'en' : 'hors') }} ligne</p>
+                                        </div>
                                     </div>
-                                    <div class="user_info">
-                                        <span>{{ contact.nickname }}</span>
-                                        <p>{{ contact.firstName }} est en ligne</p>
-                                    </div>
-                                </div>
                             </li>
                         {% endfor %}
                     </ui>
@@ -35,10 +35,10 @@
         <div class="col-md-8 col-xl-6 chat">
             <div class="card">
                 <div class="card-header msg_head">
-                    <div class="d-flex bd-highlight">
+                    <div class="d-flex bd-highlight" id="active-contact">
                         <div class="img_cont">
                             <img src="{{ asset('uploads/'~(contacts.0.avatarPath == null? 'default.png': contacts.0.avatarPath)) }}" class="rounded-circle user_img">
-                            <span class="online_icon"></span><!--<span class="online_icon offline"></span>-->
+                            <span class="online_icon {{ (date("now").diff(date(contacts.0.lastActivity)).i < 5 ? '' : 'offline') }}"></span>
                         </div>
                         <div class="user_info">
                             <span>Discussion avec {{ contacts.0.firstName }}</span>
@@ -59,9 +59,9 @@
                         </ul>
                     </div>
                 </div>
-                <div class="card-body msg_card_body">
+                <div class="card-body msg_card_body" id="conversation">
                     {% for message in messages %}
-                    <div class="d-flex justify-content-{{ message.sender == app.user ?'end':'start' }} mb-4">
+                    <div id="message-{{ message.id }}" class="d-flex justify-content-{{ message.sender == app.user ?'end':'start' }} mb-4">
                         {% if message.receiver == app.user %}
                         <div class="img_cont_msg">
                             <img src="{{ asset('uploads/'~(message.sender.avatarPath == null? 'default.png': message.sender.avatarPath)) }}" class="rounded-circle user_img_msg">
@@ -69,7 +69,7 @@
                         {% endif %}
                         <div class="msg_cotainer{{ message.sender == app.user ?'_send':'' }}">
                             {{ message.content }}
-                            <span class="msg_time{{ message.sender == app.user ?'_send':'' }}">{{ message.date|format_datetime("short", "short", locale="fr") }}</span>
+                            <span data-text="{{ message.date|date('y-m-d H:i:s') }}" class="msg_time{{ message.sender == app.user ?'_send':'' }}">{{ message.date|format_datetime("short", "short", locale="fr") }}</span>
                         </div>
                         {% if message.sender == app.user %}
                             <div class="img_cont_msg">
@@ -79,7 +79,6 @@
                     </div>
                     {% endfor %}
                 </div>
-                <form action="" method="post">
                     <div class="card-footer">
                         <div class="input-group">
                             <div class="input-group-append">
@@ -92,7 +91,6 @@
                             </div>
                         </div>
                     </div>
-                </form>
             </div>
         </div>
     </div>
@@ -100,9 +98,13 @@
 {% endblock %}
 
 {% block title %}
-    Blanc - {{ parent() }}
+    Massagerie - {{ parent() }}
 {% endblock %}
 {% block stylesheets %}
     {{ parent() }}
     <link href="{{ asset("css/messenger.css") }}" rel="stylesheet">
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset("js/messenger.js") }}"></script>
 {% endblock %}

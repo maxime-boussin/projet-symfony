@@ -299,4 +299,19 @@ class UserController extends AbstractController
         $em->flush();
         return $this->redirectToRoute('app_list_private_group');
     }
+
+    /**
+     * @Route("/session/refresh", name="app_check_activity")
+     * @IsGranted("ROLE_USER")
+     * @param EntityManagerInterface $em
+     * @return Response
+     * @throws \Exception
+     */
+    public function checkActivity(EntityManagerInterface $em): Response
+    {
+        $user = $this->getUser();
+        $user->setLastActivity(new \DateTime());
+        $em->flush();
+        return new Response('Ok');
+    }
 }

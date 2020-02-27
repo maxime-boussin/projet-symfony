@@ -1,5 +1,5 @@
 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ app.user.nickname }}</span>
+    <span id="nicknameTopbar" class="mr-2 d-none d-lg-inline text-gray-600 small">{{ app.user.nickname }}</span>
     <img class="img-profile rounded-circle" src="{{ asset('uploads/'~(app.user.avatarPath == null? 'default.png': app.user.avatarPath)) }}">
 
 </a>

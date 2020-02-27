@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MessageRepository")
@@ -13,33 +14,39 @@ class Message
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"read"})
      */
     private $content;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="messages")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"read"})
      */
     private $sender;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="receivedMessages")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"read"})
      */
     private $receiver;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups({"read"})
      */
     private $date;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Groups({"read"})
      */
     private $seen;
 
