@@ -6,7 +6,6 @@ namespace App\Controller;
 use App\Entity\Cancellation;
 use App\Entity\City;
 use App\Entity\Excursion;
-use App\Entity\Notification;
 use App\Form\CancellationFormType;
 use App\Form\CityFormType;
 use App\Form\ExcursionListFormType;
@@ -20,7 +19,6 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use function Sodium\add;
 
 class CommonController extends AbstractController
 {
@@ -253,8 +251,8 @@ class CommonController extends AbstractController
         if (($excursion != null) && ($excursion->getOrganizer()->getId() == $this->getUser()->getId())){
             $excursion->setState(1);
             $em->flush();
-            $er = new ExcursionRepository($this->getDoctrine());
-            $er->updateState($id);
+            $excursionRep = new ExcursionRepository($this->getDoctrine());
+            $excursionRep->updateState($id);
             $this->addFlash(
                 'success',
                 'Sortie publiée.'
@@ -273,11 +271,13 @@ class CommonController extends AbstractController
         $month = $rep->getNbMonth();
         $top = $rep->getTopUser();
         $chart = $rep->getYearCut();
+        $messages = $rep->getNbMessages();
         return $this->render("main/home.html.twig", [
             "nbYear" => $year,
             "nbMonth" => $month,
             "topUser" => $top,
-            "chart" => $chart
+            "chart" => $chart,
+            "messages" => $messages
         ]);
     }
 
@@ -308,7 +308,7 @@ class CommonController extends AbstractController
             );
             return $this->redirectToRoute('app_excursions');
         }
-        return $this->render('city/create.html.twig', [
+        return $this->render('main/city.html.twig', [
             'createCityForm' => $form->createView()
         ]);
     }

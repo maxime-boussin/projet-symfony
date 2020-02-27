@@ -14,12 +14,14 @@ class AddGroupMemberFormType extends AbstractType
     {
         $builder
             ->add('email', TextType::class,[
+                'required' => false,
                 'attr' => [
                     'placeholder' => 'Mail de l\'utilisateur à ajouter',
                     'list' => 'usersEmails'
                 ]
             ])
             ->add('nickname', TextType::class,[
+                'required' => false,
                 'label' => 'Pseudo',
                 'attr' => [
                     'placeholder' => 'Pseudo de l\'utilisateur à ajouter',
