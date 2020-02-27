@@ -24,15 +24,15 @@ class MessageRepository extends ServiceEntityRepository
         return $this->getEntityManager()->createQueryBuilder()
             ->select('u')
             ->from('App:User', 'u')
-            ->innerJoin('u.messages', 'm')
-            ->innerJoin('u.receivedMessages', 'm2')
+            ->leftJoin('u.messages', 'm')
+            ->leftJoin('u.receivedMessages', 'm2')
             ->groupBy('u')
             ->addGroupBy('m.date')
             ->addGroupBy('m2.date')
             ->andWhere('u.id != :user')
             ->andWhere('m2.sender = :user OR m.receiver = :user')
-            ->orderBy('m.date', 'DESC')
-            ->addOrderBy('m2.date', 'DESC')
+            ->orderBy('m.date', 'ASC')
+            ->addOrderBy('m2.date', 'ASC')
             ->setParameter('user', $user->getId())
             ->getQuery()
             ->getResult();
@@ -49,13 +49,14 @@ class MessageRepository extends ServiceEntityRepository
         return ($lastMessage->getReceiver() === $user? $lastMessage->getSender() :$lastMessage->getReceiver());
     }
 
-    function getConversation(User $user1, User $user2) {
+    function getConversation(User $user1, User $user2, \DateTime $date=null) {
         return $this->createQueryBuilder('m')
             ->orderBy('m.date', 'ASC')
             ->where('(m.sender = :user1 AND m.receiver = :user2) OR (m.sender = :user2 AND m.receiver = :user1)')
+            ->andWhere('m.date > :date')
             ->setParameter('user1', $user1)
             ->setParameter('user2', $user2)
-            ->setMaxResults(50)
+            ->setParameter('date', ($date==null?new \DateTime('2000-01-01'):$date))
             ->getQuery()
             ->getResult();
     }

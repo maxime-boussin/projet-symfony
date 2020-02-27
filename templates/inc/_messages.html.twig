@@ -1,0 +1,28 @@
+    <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-envelope fa-fw"></i>
+        {% if app.user.receivedFreshMessages > 0 %}
+            <span class="badge badge-danger badge-counter">{{ app.user.receivedFreshMessages }}</span>
+        {% endif %}
+    </a>
+    <!-- Dropdown - Messages -->
+    <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
+        <h6 class="dropdown-header">
+            Messagerie
+        </h6>
+        {% for i in 3..0 %}
+            {% if app.user.receivedMessages|length > i %}
+                {% set message = app.user.receivedMessages[i] %}
+                    <a class="dropdown-item d-flex align-items-center" href="{{ path('app_messenger_new', { user: message.sender.id }) }}">
+                        <div class="dropdown-list-image mr-3">
+                            <img class="rounded-circle" src="{{ asset('uploads/'~(message.sender.avatarPath == null? 'default.png': message.sender.avatarPath)) }}" alt="">
+                            <div class="status-indicator {{ (date("now").diff(date(message.sender.lastActivity)).i < 5 ? 'bg-success' : 'bg-danger') }}"></div>
+                        </div>
+                        <div{%  if not message.seen %} class="font-weight-bold"{% endif %}>
+                            <div class="text-truncate">{{ message.content }}</div>
+                            <div class="small text-gray-500">{{ message.sender.firstName }} {{ message.sender.lastName }} · {{ (date("now").diff(date(message.date)).days==0?message.date|format_datetime('none', 'short', locale='fr'):message.date|format_datetime('short', 'none', locale='fr')) }}</div>
+                        </div>
+                    </a>
+            {% endif %}
+        {% endfor %}
+        <a class="dropdown-item text-center small text-gray-500" href="{{ path('app_messenger') }}">Voir plus</a>
+    </div>

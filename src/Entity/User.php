@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -24,11 +25,13 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Groups({"read"})
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Groups({"read"})
      */
     private $lastName;
 
@@ -39,6 +42,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Groups({"read"})
      */
     private $email;
 
@@ -66,6 +70,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"read"})
      */
     private $nickname;
 
@@ -76,6 +81,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"read"})
      */
     private $avatarPath;
 
@@ -107,6 +113,11 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity="App\Entity\PrivateGroup", mappedBy="groupMaster", orphanRemoval=true)
      */
     private $privateGroups;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $lastActivity;
 
     public function __construct()
     {
@@ -456,6 +467,16 @@ class User implements UserInterface
         return $this->receivedMessages;
     }
 
+    /**
+     * @return int
+     */
+    public function getReceivedFreshMessages(): int
+    {
+        return count($this->receivedMessages->filter(function(Message $m) {
+            return !$m->getSeen();
+        }));
+    }
+
     public function addReceivedMessage(Message $receivedMessage): self
     {
         if (!$this->receivedMessages->contains($receivedMessage)) {
@@ -487,6 +508,18 @@ class User implements UserInterface
                 $privateGroup->setGroupMaster(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLastActivity(): ?\DateTimeInterface
+    {
+        return $this->lastActivity;
+    }
+
+    public function setLastActivity(?\DateTimeInterface $lastActivity): self
+    {
+        $this->lastActivity = $lastActivity;
 
         return $this;
     }
