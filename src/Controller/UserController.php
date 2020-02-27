@@ -222,22 +222,37 @@ class UserController extends AbstractController
             if ($form->get('email')->getData() != null){
                 $user = $em->getRepository(User::class)->findOneBy(['email' => $form->get('email')->getData()]);
                 if ($user != null) {
-                    if (!$privateGroup->getGroupMember()->contains($user)) {
-                        $privateGroup->addGroupMember($user);
-                        $em->flush();
-                        //TODO: Afficher un message success
-                        return $this->redirectToRoute('app_list_member_private_group',['id' => $id]);
+                    if ($user != $this->getUser()){
+                        if (!$privateGroup->getGroupMember()->contains($user)) {
+                            $privateGroup->addGroupMember($user);
+                            $em->flush();
+                            //TODO: Afficher un message success
+                            return $this->redirectToRoute('app_list_member_private_group',['id' => $id]);
+                        }
+                    }
+                    else {
+                        $this->addFlash(
+                            'danger',
+                            'Vous ne pouvez pas vous ajouter à votre propre groupe.'
+                        );
                     }
                 }
             }
             if ($form->get('nickname')->getData() != null){
                 $user = $em->getRepository(User::class)->findOneBy(['nickname' => $form->get('nickname')->getData()]);
                 if ($user != null) {
-                    if (!$privateGroup->getGroupMember()->contains($user)) {
-                        $privateGroup->addGroupMember($user);
-                        $em->flush();
-                        //TODO: Afficher un message success
-                        return $this->redirectToRoute('app_list_member_private_group', ['id' => $id]);
+                    if ($user != $this->getUser()){
+                        if (!$privateGroup->getGroupMember()->contains($user)) {
+                            $privateGroup->addGroupMember($user);
+                            $em->flush();
+                            //TODO: Afficher un message success
+                            return $this->redirectToRoute('app_list_member_private_group', ['id' => $id]);
+                        }
+                    } else {
+                        $this->addFlash(
+                            'danger',
+                            'Vous ne pouvez pas vous ajouter à votre propre groupe.'
+                        );
                     }
                     //TODO: message d'erreur -> user déjà dans le groupe
                 }
@@ -245,6 +260,7 @@ class UserController extends AbstractController
             //TODO: message d'erreur -> user n'existe pas
         }
         $allUsers = $em->getRepository(User::class)->findAll();
+        unset($allUsers[array_search($this->getUser(),$allUsers)]);
         return $this->render('user/addMemberGroup.html.twig', [
             'addMemberGroupForm' => $form->createView(),
             'privateGroup' => $privateGroup,

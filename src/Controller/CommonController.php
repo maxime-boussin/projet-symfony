@@ -175,6 +175,7 @@ class CommonController extends AbstractController
 
     /**
      * @Route("/excursions/new", name="app_create_excursion")
+     * @IsGranted("ROLE_USER")
      *
      * @param Request $request
      * @return RedirectResponse|Response
@@ -205,8 +206,17 @@ class CommonController extends AbstractController
             $entityManager->persist($excursion);
             $entityManager->flush();
 
+            $this->addFlash(
+                'success',
+                'Sortie créée avec succès.'
+            );
+
             return $this->redirectToRoute('app_excursions');
         }
+        $this->addFlash(
+            'danger',
+            'La sortie n\'a pas pu être créée'
+        );
 
         return $this->render('excursions/create.html.twig', [
             'createExcursionForm' => $form->createView()
@@ -215,6 +225,7 @@ class CommonController extends AbstractController
 
     /**
      * @Route("/excursions/details/{id}", name="app_details_excursions")
+     * @IsGranted("ROLE_USER")
      */
     public function detailsExcursion(EntityManagerInterface $em, $id): Response
     {
@@ -241,6 +252,7 @@ class CommonController extends AbstractController
 
     /**
      * @Route("/excursions/publish/{id}", name="app_publish_excursions")
+     * @IsGranted("ROLE_USER")
      * @param $id
      * @return Response
      * @throws \Doctrine\ORM\ORMException
@@ -262,6 +274,10 @@ class CommonController extends AbstractController
 
             return $this->redirectToRoute('app_excursions');
         }
+        $this->addFlash(
+            'danger',
+            'Sortie non publiée'
+        );
     }
 
     /**
@@ -308,6 +324,12 @@ class CommonController extends AbstractController
             );
             return $this->redirectToRoute('app_excursions');
         }
+
+        $this->addFlash(
+            'danger',
+            'Création de la ville non aboutie'
+        );
+
         return $this->render('city/create.html.twig', [
             'createCityForm' => $form->createView()
         ]);
@@ -315,6 +337,7 @@ class CommonController extends AbstractController
 
     /**
      * @Route("/notifications/seen/{id}", name="app_notification_seen")
+     * @IsGranted("ROLE_USER")
      * @param Request $request
      * @param int $id
      * @param NotificationService $notif

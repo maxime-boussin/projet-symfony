@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e52a300b-a96f-4a14-8762-874d6867e984" name="Default Changelist" comment="Commit pour pull">
-      <change afterPath="$PROJECT_DIR$/templates/pagination.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/projet-symfony.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/projet-symfony.iml" afterDir="false" />
+    <list default="true" id="e52a300b-a96f-4a14-8762-874d6867e984" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AdminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/listUser.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/listUser.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/CommonController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CommonController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/excursions/details.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/excursions/details.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -268,7 +264,7 @@
       <workItem from="1582558457685" duration="1356000" />
       <workItem from="1582617453718" duration="24783000" />
       <workItem from="1582703738098" duration="2512000" />
-      <workItem from="1582790527415" duration="12011000" />
+      <workItem from="1582790527415" duration="14968000" />
     </task>
     <task id="LOCAL-00001" summary="commit pour pull">
       <created>1582030413445</created>
@@ -466,7 +462,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582707285052</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Fixture + pagination">
+      <created>1582807857680</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1582807857680</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -488,7 +491,8 @@
     <MESSAGE value="Ajout bouton &quot;créer une sortie&quot; sur la liste des sorties" />
     <MESSAGE value="Merge" />
     <MESSAGE value="Commit pour pull" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit pour pull" />
+    <MESSAGE value="Fixture + pagination" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixture + pagination" />
   </component>
   <component name="WindowStateProjectService">
     <state x="195" y="135" key="#CLI_Interpreters" timestamp="1582195804538">
@@ -530,10 +534,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="199" y="212" key="#testFaker.php/0.0.1920.1040@0.0.1920.1040" timestamp="1582709161643" />
-    <state x="552" y="114" key="CommitChangelistDialog2" timestamp="1582807751571">
+    <state x="552" y="114" key="CommitChangelistDialog2" timestamp="1582810938134">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1582807751571" />
+    <state x="552" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1582810938134" />
     <state x="184" y="86" width="1536" height="860" key="DiffContextDialog" timestamp="1582807794207">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -560,14 +564,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1029" height="280" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1582732996050" />
-    <state x="184" y="86" key="MergeDialog" timestamp="1582203441137">
+    <state x="184" y="86" key="MergeDialog" timestamp="1582807891386">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="184" y="86" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582203441137" />
-    <state x="672" y="236" key="MultipleFileMergeDialog" timestamp="1582533073112">
+    <state x="184" y="86" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582807891386" />
+    <state x="672" y="236" key="MultipleFileMergeDialog" timestamp="1582807892800">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="672" y="236" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582533073112" />
+    <state x="672" y="236" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582807892800" />
     <state x="734" y="334" key="NewPhpClassDialog" timestamp="1581979662213">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -596,10 +600,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="849" y="437" key="VCS.EditChangelistDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582205165054" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1582539478733">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1582807903035">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1582539478733" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1582807903035" />
     <state x="655" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1582790534972">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -620,16 +624,16 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="953" y="0" width="974" height="1047" key="dock-window-3/0.0.1920.1040@0.0.1920.1040" timestamp="1582531145244" />
-    <state x="657" y="257" width="606" height="536" key="find.popup" timestamp="1582715570867">
+    <state x="657" y="257" width="606" height="536" key="find.popup" timestamp="1582810834105">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="526" y="204" width="611" height="536" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1582644927594" />
     <state x="657" y="257" width="606" height="526" key="find.popup/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581965447878" />
-    <state x="657" y="257" width="606" height="536" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1582715570867" />
-    <state x="651" y="311" key="git4idea.merge.GitPullDialog" timestamp="1582707379280">
+    <state x="657" y="257" width="606" height="536" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1582810834105" />
+    <state x="651" y="311" key="git4idea.merge.GitPullDialog" timestamp="1582807862532">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="651" y="311" key="git4idea.merge.GitPullDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582707379280" />
+    <state x="651" y="311" key="git4idea.merge.GitPullDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582807862532" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

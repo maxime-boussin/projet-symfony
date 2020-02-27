@@ -84,7 +84,7 @@ class AppFixtures extends Fixture
             $allUsers[$i] = $user;
         }
 
-        for ($i = 0; $i < 100; $i++){
+        for ($i = 0; $i < 200; $i++){
             $excursion = new Excursion();
             $organizer = $allUsers[rand(0,299)];
             $excursion->setDate($faker->dateTimeBetween('-366 days', '+365 days'));
