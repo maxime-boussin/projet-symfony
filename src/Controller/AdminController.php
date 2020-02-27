@@ -43,7 +43,7 @@ class AdminController extends AbstractController
                 )
             );
             $user->setActive(true);
-            $site = $em->getRepository(Site::class)->findOneBy(['name' => $user->getSite()]);
+            $site = $em->getRepository(Site::class)->findOneBy(['name' => $user->getSite()->getName()]);
             $user->setSite($site === null ? $em->getRepository(Site::class)->find(1) : $site);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
@@ -120,7 +120,9 @@ class AdminController extends AbstractController
 
         $pagination = array(
             'page' => $page,
-            'nbPages' => ceil(count($users) / 5)
+            'nbPages' => ceil(count($users) / 5),
+            'routeName' => 'app_admin_users',
+            'routeParams' => array()
         );
         return $this->render('admin/listUser.html.twig', [
             'pagination' => $pagination,

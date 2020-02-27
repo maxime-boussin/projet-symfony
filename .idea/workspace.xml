@@ -1,37 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8e4dee99-8f10-460d-9599-2ecaba01d22e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/css/messenger.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/MessageController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/MessengerService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/NotificationService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/Exception/error.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/Exception/error403.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/Exception/error404.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/bundles/TwigBundle/Exception/error.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/bundles/TwigBundle/Exception/error404.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/inc/_notification.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/inc/_notification_type.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/main/messenger.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.test" beforeDir="false" afterPath="$PROJECT_DIR$/.env.test" afterDir="false" />
+    <list default="true" id="e52a300b-a96f-4a14-8762-874d6867e984" name="Default Changelist" comment="Commit pour pull">
+      <change afterPath="$PROJECT_DIR$/templates/pagination.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/projet-symfony.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/projet-symfony.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DescriptionProduit.ods" beforeDir="false" afterPath="$PROJECT_DIR$/DescriptionProduit.ods" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/sb-admin-2.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/sb-admin-2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AdminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/CommonController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CommonController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ExcursionRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ExcursionRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/importUser.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/importUser.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/error.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/inc/_sidebar.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inc/_sidebar.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/inc/_topbar.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inc/_topbar.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/layout.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/main/home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/main/home.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/~$DescriptionProduit.ods" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/listUser.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/listUser.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -209,6 +189,9 @@
       <path value="$PROJECT_DIR$/vendor/twig/intl-extra" />
       <path value="$PROJECT_DIR$/vendor/twig/cssinliner-extra" />
       <path value="$PROJECT_DIR$/vendor/tijsverkoyen/css-to-inline-styles" />
+      <path value="$PROJECT_DIR$/vendor/fzaninotto/faker" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-fixtures-bundle" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/data-fixtures" />
     </include_path>
   </component>
   <component name="ProjectId" id="1Xwk9R2VbVN7NiLwmGemZ2XbJgM" />
@@ -222,7 +205,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Documents/ENI/Module Symfony 3/bucket-list-clean" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Documents/ENI/Module Symfony 3/bucket-list-clean" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
@@ -238,6 +221,21 @@
       <recent name="C:\Users\mboussin\workspace\eni\projet-symfony\templates\Resources\views" />
       <recent name="C:\Users\Maxime\dev\projet-symfony\bin" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="testFaker.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/src/Command/testFaker.php">
+      <CommandLine>
+        <PhpTestInterpreterSettings>
+          <option name="interpreterName" value="PHP 7.4" />
+        </PhpTestInterpreterSettings>
+      </CommandLine>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="PHP Script.testFaker.php" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -256,7 +254,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="8e4dee99-8f10-460d-9599-2ecaba01d22e" name="Default Changelist" comment="" />
+      <changelist id="e52a300b-a96f-4a14-8762-874d6867e984" name="Default Changelist" comment="" />
       <created>1581964392231</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -270,6 +268,7 @@
       <workItem from="1582558457685" duration="1356000" />
       <workItem from="1582617453718" duration="24783000" />
       <workItem from="1582703738098" duration="2512000" />
+      <workItem from="1582790527415" duration="12011000" />
     </task>
     <task id="LOCAL-00001" summary="commit pour pull">
       <created>1582030413445</created>
@@ -477,7 +476,6 @@
     <MESSAGE value="Création d'une sortie" />
     <MESSAGE value="Détails d'une sortie" />
     <MESSAGE value="Publier une sortie depuis sa page détails" />
-    <MESSAGE value="Commit pour pull" />
     <MESSAGE value="Publication d'un sortie : down" />
     <MESSAGE value="Page details (non finie)" />
     <MESSAGE value="Commit pour pull + page details finie" />
@@ -489,7 +487,8 @@
     <MESSAGE value="Liste des participants dans la page détails + lien vers le profil d'un participant au clic sur son nom + date en francais dans la page détails" />
     <MESSAGE value="Ajout bouton &quot;créer une sortie&quot; sur la liste des sorties" />
     <MESSAGE value="Merge" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge" />
+    <MESSAGE value="Commit pour pull" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit pour pull" />
   </component>
   <component name="WindowStateProjectService">
     <state x="195" y="135" key="#CLI_Interpreters" timestamp="1582195804538">
@@ -522,41 +521,45 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="197" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581979229695" />
-    <state x="168" y="220" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1582543042049">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="210" y="278" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1582726202497">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="168" y="220" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1582543042049" />
-    <state x="210" y="278" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582189755376" />
-    <state x="552" y="114" key="CommitChangelistDialog2" timestamp="1582707324862">
+    <state x="210" y="278" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582726202497" />
+    <state x="199" y="212" key="#testFaker.php" timestamp="1582709161643">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1582707324862" />
-    <state x="184" y="86" width="1536" height="860" key="DiffContextDialog" timestamp="1582532767908">
+    <state x="199" y="212" key="#testFaker.php/0.0.1920.1040@0.0.1920.1040" timestamp="1582709161643" />
+    <state x="552" y="114" key="CommitChangelistDialog2" timestamp="1582807751571">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="184" y="86" width="1536" height="860" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582532767908" />
+    <state x="552" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1582807751571" />
+    <state x="184" y="86" width="1536" height="860" key="DiffContextDialog" timestamp="1582807794207">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="184" y="86" width="1536" height="860" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582807794207" />
     <state x="592" y="217" key="FileChooserDialogImpl" timestamp="1582706179719">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="592" y="217" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1582706179719" />
     <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581971799434" />
     <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1582022305806" />
-    <state width="1030" height="281" key="GridCell.Tab.0.bottom" timestamp="1582196498943">
+    <state width="1029" height="280" key="GridCell.Tab.0.bottom" timestamp="1582732996050">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1030" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1582196498943" />
-    <state width="1030" height="281" key="GridCell.Tab.0.center" timestamp="1582196498943">
+    <state width="1029" height="280" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1582732996050" />
+    <state width="1029" height="280" key="GridCell.Tab.0.center" timestamp="1582732996050">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1030" height="281" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1582196498943" />
-    <state width="1030" height="281" key="GridCell.Tab.0.left" timestamp="1582196498943">
+    <state width="1029" height="280" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1582732996050" />
+    <state width="1029" height="280" key="GridCell.Tab.0.left" timestamp="1582732996050">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1030" height="281" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1582196498943" />
-    <state width="1030" height="281" key="GridCell.Tab.0.right" timestamp="1582196498943">
+    <state width="1029" height="280" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1582732996050" />
+    <state width="1029" height="280" key="GridCell.Tab.0.right" timestamp="1582732996050">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1030" height="281" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1582196498943" />
+    <state width="1029" height="280" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1582732996050" />
     <state x="184" y="86" key="MergeDialog" timestamp="1582203441137">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -569,10 +572,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="734" y="334" key="NewPhpClassDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581979662213" />
-    <state x="776" y="231" key="RollbackChangesDialog" timestamp="1582707193716">
+    <state x="315" y="447" key="NewPhpFileDialog" timestamp="1582709102739">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="776" y="231" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582707193716" />
+    <state x="315" y="447" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582709102739" />
+    <state x="776" y="231" key="RollbackChangesDialog" timestamp="1582802923758">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="776" y="231" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582802923758" />
     <state x="396" y="138" key="SettingsEditor" timestamp="1582205279951">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -593,32 +600,32 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1582539478733" />
-    <state x="655" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1582531103412">
+    <state x="655" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1582790534972">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="655" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582531103412" />
+    <state x="655" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582790534972" />
     <state x="0" y="0" key="com.jetbrains.php.config.phpInfo.PhpInfo.PhpInfoDialog" timestamp="1582195626994">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="0" y="0" key="com.jetbrains.php.config.phpInfo.PhpInfo.PhpInfoDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582195626994" />
-    <state x="953" y="0" width="974" height="1047" key="dock-window-1" timestamp="1582273083912">
+    <state x="953" y="0" width="974" height="1047" key="dock-window-1" timestamp="1582807001258">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="953" y="0" width="974" height="1047" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1582273083912" />
-    <state x="953" y="0" width="974" height="1047" key="dock-window-2" timestamp="1582280389782">
+    <state x="953" y="0" width="974" height="1047" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1582807001258" />
+    <state x="953" y="0" width="974" height="1047" key="dock-window-2" timestamp="1582725038971">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="953" y="0" width="974" height="1047" key="dock-window-2/0.0.1920.1040@0.0.1920.1040" timestamp="1582280389782" />
+    <state x="953" y="0" width="974" height="1047" key="dock-window-2/0.0.1920.1040@0.0.1920.1040" timestamp="1582725038971" />
     <state x="953" y="0" width="974" height="1047" key="dock-window-3" timestamp="1582531145244">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="953" y="0" width="974" height="1047" key="dock-window-3/0.0.1920.1040@0.0.1920.1040" timestamp="1582531145244" />
-    <state x="526" y="204" width="611" height="536" key="find.popup" timestamp="1582644927594">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="657" y="257" width="606" height="536" key="find.popup" timestamp="1582715570867">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="526" y="204" width="611" height="536" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1582644927594" />
     <state x="657" y="257" width="606" height="526" key="find.popup/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581965447878" />
-    <state x="657" y="257" width="606" height="536" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1582539819702" />
+    <state x="657" y="257" width="606" height="536" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1582715570867" />
     <state x="651" y="311" key="git4idea.merge.GitPullDialog" timestamp="1582707379280">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

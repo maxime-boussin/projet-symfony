@@ -44,22 +44,9 @@
                 {% endfor %}
                 </tbody>
             </table>
-            <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
-                <ul class="pagination">
-                    <li class="paginate_button page-item previous {% if pagination.page == 1 %}disabled{% endif %}" id="dataTable_previous">
-                        <a href="{{ path('app_admin_users', { page: pagination.page-1 }) }}" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link"><i class="fas fa-chevron-circle-left"></i></a>
-                    </li>
-                    {% for i in 1..pagination.nbPages %}
-                    <li class="paginate_button page-item {% if pagination.page == i %}active{% endif %}">
-                        <a href="{{ path('app_admin_users', { page: i }) }}" aria-controls="dataTable" data-dt-idx="{{ i }}" tabindex="0" class="page-link">{{ i }}</a>
-                    </li>
-                    {% endfor %}
-                    <li class="paginate_button page-item next {% if pagination.page == pagination.nbPages %}disabled{% endif %}" id="dataTable_next">
-                        <a href="{{ path('app_admin_users', { page: pagination.page+1 }) }}" aria-controls="dataTable" data-dt-idx="{{ pagination.nbPages+1 }}" tabindex="0" class="page-link"><i class="fas fa-chevron-circle-right"></i></a>
-                    </li>
-                </ul>
-            </div>
         </div>
     </div>
 </div>
+    {% include "pagination.html.twig" %}
 {% endblock %}
+
