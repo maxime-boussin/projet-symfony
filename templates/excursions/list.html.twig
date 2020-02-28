@@ -87,7 +87,7 @@
                             <td class="text-center">{% if excursion.subscribed == 1 %}<i
                                         class="fas fa-check-circle text-success"></i>{% endif %}</td>
                             <td>
-                                <a href="{{ path('app_foreign_profile', { username: excursion.organizer_nickname }) }}">
+                                <a href="{{ path('user_foreign_profile', { username: excursion.organizer_nickname }) }}">
                                     {{ excursion.organizer_first_name }} {{ excursion.organizer_last_name }}
                                 </a>
                             </td>
@@ -95,26 +95,26 @@
                                 {% if excursion.state < 2 %}
                                     {% if excursion.state != 0 %}
                                         {% if excursion.subscribed == 0 and excursion.nb_participants < excursion.participant_limit %}
-                                            <a href="{{ path('app_subscribe', { id: excursion.id }) }}"
+                                            <a href="{{ path('excursion_subscribe', { id: excursion.id }) }}"
                                                data-toggle="tooltip" title="S'inscrire">
                                                 <i class="fas fa-user-plus"></i>
                                             </a>
                                         {% endif %}
                                         {% if excursion.subscribed == 1 %}
-                                            <a href="{{ path('app_unsubscribe', { id: excursion.id }) }}"
+                                            <a href="{{ path('excursion_unsubscribe', { id: excursion.id }) }}"
                                                data-toggle="tooltip" title="Se désinscrire">
                                                 <i class="fas fa-user-minus"></i>
                                             </a>
                                         {% endif %}
                                     {% endif %}
                                     {% if (excursion.organizer_id == app.user.id or is_granted('ROLE_ADMIN')) %}
-                                        <a href="{{ path('app_cancel_excursion', { id: excursion.id }) }}"
+                                        <a href="{{ path('excursion_cancel', { id: excursion.id }) }}"
                                            data-toggle="tooltip" title="Annuler">
                                             <i class="fas fa-times-circle"></i>
                                         </a>
                                     {% endif %}
                                 {% endif %}
-                                <a href="{{ path('app_details_excursions', { id:excursion.id }) }}"
+                                <a href="{{ path('excursion_details', { id:excursion.id }) }}"
                                    data-toggle="tooltip" title="Détails">
                                     <i class="fas fa-search-plus"></i>
                                 </a>
@@ -127,7 +127,7 @@
         </div>
     </div>
     <div class="justify-content-center">
-        <a href="{{ path ('app_create_excursion') }}" class="btn btn-success btn-icon-split m-1">
+        <a href="{{ path ('excursion_create') }}" class="btn btn-success btn-icon-split m-1">
                             <span class="icon text-white-50">
                                 <i class="fas fa-plus-circle"></i>
                             </span>

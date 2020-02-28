@@ -36,7 +36,7 @@ use Symfony\Component\Validator\Constraints\DateTime;
 class MessageController extends AbstractController
 {
     /**
-     * @Route("/messenger", name="app_messenger")
+     * @Route("/messenger", name="messenger")
      * @IsGranted("ROLE_USER")
      * @param MessengerService $service
      * @return Response
@@ -52,7 +52,7 @@ class MessageController extends AbstractController
     }
 
     /**
-     * @Route("/messenger/new/{user}", name="app_messenger_new")
+     * @Route("/messenger/new/{user}", name="messenger_new")
      * @IsGranted("ROLE_USER")
      * @param MessengerService $service
      * @param int $user
@@ -74,12 +74,12 @@ class MessageController extends AbstractController
                 'danger',
                 'Utilisateur inconnu.'
             );
-            $this->redirectToRoute('app_home');
+            $this->redirectToRoute('home');
         }
     }
 
     /**
-     * @Route("/messenger/send", name="app_messenge_send")
+     * @Route("/messenger/send", name="messenger_send")
      * @IsGranted("ROLE_USER")
      * @param MessengerService $service
      * @param Request $request
@@ -93,7 +93,7 @@ class MessageController extends AbstractController
     }
 
     /**
-     * @Route("/messenger/get", name="app_messenge_get")
+     * @Route("/messenger/get", name="messenge_get")
      * @IsGranted("ROLE_USER")
      * @param MessengerService $service
      * @param Request $request

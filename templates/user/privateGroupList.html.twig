@@ -19,13 +19,13 @@
                     {% for privateGroup in privateGroups %}
                         <tr>
                             <td>
-                                <a href="{{ path("app_list_member_private_group", {id: privateGroup.id}) }}">
+                                <a href="{{ path("privategroup_member_list", {id: privateGroup.id}) }}">
                                     {{ privateGroup.name }}
                                 </a>
                             </td>
                             <td style="width: 40px">
                                 <div class="col-auto text-center">
-                                    <a href="{{ path("app_delete_private_group", {groupId: privateGroup.id}) }}"
+                                    <a href="{{ path("privategroup_delete", {groupId: privateGroup.id}) }}"
                                        data-toggle="tooltip" title="Supprimer le groupe">
                                         <i class="fas fa-trash-alt"></i>
                                     </a>
@@ -39,7 +39,7 @@
         </div>
     </div>
     <div class="float-right">
-        <a href="{{ path("app_create_private_group") }}" class="btn btn-success btn-icon-split m-1">
+        <a href="{{ path("privategroup_create") }}" class="btn btn-success btn-icon-split m-1">
             <span class="icon text-white-50">
                 <i class="fas fa-plus-circle"></i>
             </span>

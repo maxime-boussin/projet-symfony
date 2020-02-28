@@ -23,7 +23,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CommonController extends AbstractController
 {
     /**
-     * @Route("/excursions", name="app_excursions")
+     * @Route("/excursions", name="excursions")
      * @IsGranted("ROLE_USER")
      * @param Request $request
      * @param EntityManagerInterface $em
@@ -67,7 +67,7 @@ class CommonController extends AbstractController
     }
 
     /**
-     * @Route("/subscribe/{id}", name="app_subscribe")
+     * @Route("/subscribe/{id}", name="excursion_subscribe")
      * @IsGranted("ROLE_USER")
      * @param EntityManagerInterface $em
      * @param $id
@@ -99,11 +99,11 @@ class CommonController extends AbstractController
                 );
             }
         }
-        return $this->redirectToRoute('app_excursions');
+        return $this->redirectToRoute('excursions');
     }
 
     /**
-     * @Route("/unsubscribe/{id}", name="app_unsubscribe")
+     * @Route("/unsubscribe/{id}", name="excursion_unsubscribe")
      * @IsGranted("ROLE_USER")
      * @param EntityManagerInterface $em
      * @param $id
@@ -130,11 +130,11 @@ class CommonController extends AbstractController
                 );
             }
         }
-        return $this->redirectToRoute('app_excursions');
+        return $this->redirectToRoute('excursions');
     }
 
     /**
-     * @Route("/cancel/{id}", name="app_cancel_excursion")
+     * @Route("/cancel/{id}", name="excursion_cancel")
      * @IsGranted("ROLE_USER")
      * @param Request $request
      * @param EntityManagerInterface $em
@@ -168,11 +168,11 @@ class CommonController extends AbstractController
                 }
             }
         }
-        return $this->redirectToRoute('app_excursions');
+        return $this->redirectToRoute('excursions');
     }
 
     /**
-     * @Route("/excursions/new", name="app_create_excursion")
+     * @Route("/excursions/new", name="excursion_create")
      *
      * @param Request $request
      * @return RedirectResponse|Response
@@ -203,7 +203,7 @@ class CommonController extends AbstractController
             $entityManager->persist($excursion);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_excursions');
+            return $this->redirectToRoute('excursions');
         }
 
         return $this->render('excursions/create.html.twig', [
@@ -212,7 +212,10 @@ class CommonController extends AbstractController
     }
 
     /**
-     * @Route("/excursions/details/{id}", name="app_details_excursions")
+     * @Route("/excursions/details/{id}", name="excursion_details")
+     * @param EntityManagerInterface $em
+     * @param $id
+     * @return Response
      */
     public function detailsExcursion(EntityManagerInterface $em, $id): Response
     {
@@ -234,11 +237,11 @@ class CommonController extends AbstractController
             ]);
         }
 
-        return $this->redirectToRoute('app_excursions');
+        return $this->redirectToRoute('excursions');
     }
 
     /**
-     * @Route("/excursions/publish/{id}", name="app_publish_excursions")
+     * @Route("/excursions/publish/{id}", name="excursion_publish")
      * @param $id
      * @return Response
      * @throws \Doctrine\ORM\ORMException
@@ -258,12 +261,12 @@ class CommonController extends AbstractController
                 'Sortie publiée.'
             );
 
-            return $this->redirectToRoute('app_excursions');
+            return $this->redirectToRoute('excursions');
         }
     }
 
     /**
-     * @Route("/", name="app_home")
+     * @Route("/", name="home")
      */
     public function home(EntityManagerInterface $em) {
         $rep = $em->getRepository(Excursion::class);
@@ -283,14 +286,14 @@ class CommonController extends AbstractController
 
 
     /**
-     * @Route("/aboutus", name="app_aboutus")
+     * @Route("/aboutus", name="aboutus")
      */
     public function aboutus() {
         return $this->render("main/aboutus.html.twig");
     }
 
     /**
-     * @Route("/city/create", name="app_create_city")
+     * @Route("/city/create", name="city_create")
      * @param Request $request
      * @return Response
      */
@@ -306,7 +309,7 @@ class CommonController extends AbstractController
                 'success',
                 'Ville créée avec succès.'
             );
-            return $this->redirectToRoute('app_excursions');
+            return $this->redirectToRoute('excursions');
         }
         return $this->render('main/city.html.twig', [
             'createCityForm' => $form->createView()
@@ -314,7 +317,7 @@ class CommonController extends AbstractController
     }
 
     /**
-     * @Route("/notifications/seen/{id}", name="app_notification_seen")
+     * @Route("/notifications/seen/{id}", name="notification_seen")
      * @param Request $request
      * @param int $id
      * @param NotificationService $notif

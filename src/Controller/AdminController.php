@@ -23,7 +23,7 @@ use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 class AdminController extends AbstractController
 {
     /**
-     * @Route("/admin/register", name="app_register")
+     * @Route("/admin/register", name="admin_register")
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder
      * @param EntityManagerInterface $em
@@ -61,7 +61,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/import", name="app_admin_import")
+     * @Route("/admin/import", name="admin_import")
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder
      * @return Response
@@ -108,7 +108,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/users/{page}", name="app_admin_users")
+     * @Route("/admin/users/{page}", name="admin_users")
      * @param Request $request
      * @param EntityManagerInterface $em
      * @param int $page
@@ -132,7 +132,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/users/disable/{id}", name="app_admin_user_disable")
+     * @Route("/admin/users/disable/{id}", name="admin_user_disable")
      * @param Request $request
      * @param EntityManagerInterface $em
      * @param int $id
@@ -155,11 +155,11 @@ class AdminController extends AbstractController
                 'Utilisatteur introuvable.'
             );
         }
-        return $this->redirectToRoute('app_admin_users', ['page' => 1]);
+        return $this->redirectToRoute('admin_users', ['page' => 1]);
     }
 
     /**
-     * @Route("/admin/users/delete/{id}", name="app_admin_user_delete")
+     * @Route("/admin/users/delete/{id}", name="admin_user_delete")
      * @param Request $request
      * @param EntityManagerInterface $em
      * @param int $id
@@ -182,6 +182,6 @@ class AdminController extends AbstractController
                 'Utilisateur inconnu.'
             );
         }
-        return $this->redirectToRoute('app_admin_users', ['page' => 1]);
+        return $this->redirectToRoute('admin_users', ['page' => 1]);
     }
 }

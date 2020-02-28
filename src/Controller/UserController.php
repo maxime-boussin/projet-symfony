@@ -23,7 +23,7 @@ use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/profile", name="app_profile")
+     * @Route("/profile", name="user_profile")
      * @IsGranted("ROLE_USER")
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder
@@ -64,7 +64,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/profile/{username}", name="app_foreign_profile")
+     * @Route("/profile/{username}", name="user_foreign_profile")
      * @IsGranted("ROLE_USER")
      * @param Request $request
      * @param EntityManagerInterface $em
@@ -84,12 +84,12 @@ class UserController extends AbstractController
                 'danger',
                 'Utilisateur introuvable.'
             );
-            return $this->redirectToRoute('app_excursions');
+            return $this->redirectToRoute('excursions');
         }
     }
 
     /**
-     * @Route("/recoverPassword", name="app_forgotten_password")
+     * @Route("/recoverPassword", name="user_forgotten_password")
      * @param Request $request
      * @param EntityManagerInterface $em
      * @param TokenGeneratorInterface $tokenGenerator
@@ -119,7 +119,7 @@ class UserController extends AbstractController
 
 
     /**
-     * @Route("/recoverPassword/{token}", name="app_reset_password")
+     * @Route("/recoverPassword/{token}", name="user_reset_password")
      * @param Request $request
      * @param EntityManagerInterface $em
      * @param UserPasswordEncoderInterface $passwordEncoder
@@ -146,7 +146,7 @@ class UserController extends AbstractController
                         'success',
                         'Mot de passe changé avec succès.'
                     );
-                    return $this->redirectToRoute('app_home');
+                    return $this->redirectToRoute('home');
                 }
                 else{
                     $this->addFlash(
@@ -168,7 +168,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/profile/group/create", name="app_create_private_group")
+     * @Route("/profile/group/create", name="privategroup_create")
      * @IsGranted("ROLE_USER")
      * @param Request $request
      * @return Response
@@ -184,7 +184,7 @@ class UserController extends AbstractController
             $entityManager->persist($privateGroup);
             $entityManager->flush();
             //TODO: Afficher un message success
-            return $this->redirectToRoute('app_list_private_group');
+            return $this->redirectToRoute('privategroup_list');
         }
         return $this->render('user/createPrivateGroup.html.twig', [
             'createPrivateGroupForm' => $form->createView()
@@ -192,7 +192,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/profile/group/list", name="app_list_private_group")
+     * @Route("/profile/group/list", name="privategroup_list")
      * @IsGranted("ROLE_USER")
      * @param EntityManagerInterface $em
      * @return Response
@@ -206,7 +206,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/profile/group/member/add/{id}", name="app_add_member_private_group")
+     * @Route("/profile/group/member/add/{id}", name="privategroup_add_member")
      * @IsGranted("ROLE_USER")
      * @param EntityManagerInterface $em
      * @param Request $request
@@ -226,7 +226,7 @@ class UserController extends AbstractController
                         $privateGroup->addGroupMember($user);
                         $em->flush();
                         //TODO: Afficher un message success
-                        return $this->redirectToRoute('app_list_member_private_group',['id' => $id]);
+                        return $this->redirectToRoute('privategroup_list',['id' => $id]);
                     }
                 }
             }
@@ -237,7 +237,7 @@ class UserController extends AbstractController
                         $privateGroup->addGroupMember($user);
                         $em->flush();
                         //TODO: Afficher un message success
-                        return $this->redirectToRoute('app_list_member_private_group', ['id' => $id]);
+                        return $this->redirectToRoute('privategroup_list', ['id' => $id]);
                     }
                     //TODO: message d'erreur -> user déjà dans le groupe
                 }
@@ -253,7 +253,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/profile/group/member/list/{id}", name="app_list_member_private_group")
+     * @Route("/profile/group/member/list/{id}", name="privategroup_member_list")
      * @IsGranted("ROLE_USER")
      * @param EntityManagerInterface $em
      * @param $id
@@ -270,7 +270,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/profile/group/member/delete/{groupId}/{userId}", name="app_delete_member_private_group")
+     * @Route("/profile/group/member/delete/{groupId}/{userId}", name="privategroup_remove_member")
      * @IsGranted("ROLE_USER")
      * @param EntityManagerInterface $em
      * @param $userId
@@ -282,11 +282,11 @@ class UserController extends AbstractController
         $member = $em->getRepository(User::class)->find($userId);
         $em->getRepository(PrivateGroup::class)->find($groupId)->removeGroupMember($member);
         $em->flush();
-        return $this->redirectToRoute('app_list_member_private_group', ['id' => $groupId]);
+        return $this->redirectToRoute('privategroup_member_list', ['id' => $groupId]);
     }
 
     /**
-     * @Route("/profile/group/delete/{groupId}", name="app_delete_private_group")
+     * @Route("/profile/group/delete/{groupId}", name="privategroup_delete")
      * @IsGranted("ROLE_USER")
      * @param EntityManagerInterface $em
      * @param $groupId
@@ -297,11 +297,11 @@ class UserController extends AbstractController
         $group = $em->getRepository(PrivateGroup::class)->find($groupId);
         $em->getRepository(User::class)->find($this->getUser()->getId())->removePrivateGroup($group);
         $em->flush();
-        return $this->redirectToRoute('app_list_private_group');
+        return $this->redirectToRoute('privategroup_list');
     }
 
     /**
-     * @Route("/session/refresh", name="app_check_activity")
+     * @Route("/session/refresh", name="session_refresh")
      * @IsGranted("ROLE_USER")
      * @param EntityManagerInterface $em
      * @return Response

@@ -1,6 +1,6 @@
 
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ path("app_excursions") }}">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ path("excursions") }}">
         <div class="sidebar-brand-icon">
           <i class="fas fa-comments"></i>
         </div>
@@ -8,7 +8,7 @@
       </a>
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
-        <a class="nav-link" href="{{ path("app_home") }}">
+        <a class="nav-link" href="{{ path("home") }}">
           <i class="fas fa-fw fa-home"></i>
           <span>Accueil</span></a>
       </li>
@@ -31,9 +31,9 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Pages:</h6>
-            <a class="collapse-item" href="{{ path("app_excursions") }}">Liste</a>
-            <a class="collapse-item" href="{{ path("app_excursions") }}">Mes sorties</a>
-            <a class="collapse-item" href="{{ path("app_create_excursion") }}">Ajouter</a>
+            <a class="collapse-item" href="{{ path("excursions") }}">Liste</a>
+            <a class="collapse-item" href="{{ path("excursions") }}">Mes sorties</a>
+            <a class="collapse-item" href="{{ path("excursion_create") }}">Ajouter</a>
           </div>
         </div>
       </li>
@@ -45,7 +45,7 @@
         <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Pages:</h6>
-            <a class="collapse-item" href="{{ path("app_create_city") }}">Ajouter</a>
+            <a class="collapse-item" href="{{ path("city_create") }}">Ajouter</a>
           </div>
         </div>
 
@@ -60,9 +60,9 @@
           <div id="collapseFour" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Utilisateurs:</h6>
-              <a class="collapse-item" href="{{ path('app_admin_users', { page: 1 }) }}">Liste</a>
-              <a class="collapse-item" href="{{ path("app_register") }}">Ajouter</a>
-              <a class="collapse-item" href="{{ path("app_admin_import") }}">Importer</a>
+              <a class="collapse-item" href="{{ path('admin_users', { page: 1 }) }}">Liste</a>
+              <a class="collapse-item" href="{{ path("admin_register") }}">Ajouter</a>
+              <a class="collapse-item" href="{{ path("admin_import") }}">Importer</a>
             </div>
           </div>
       </li>
@@ -70,7 +70,7 @@
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="{{ path("app_aboutus") }}">
+        <a class="nav-link" href="{{ path("aboutus") }}">
           <i class="fas fa-fw fa-address-card"></i>
           <span>A propos</span></a>
       </li>

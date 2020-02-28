@@ -9,7 +9,7 @@
         Notifications
     </h6>
     {% for notif in app.user.notifications %}
-    <a class="notif-item dropdown-item d-flex align-items-center" data-text="{{ notif.id }}" href="{{ notif.concerned is null ? '#' : path('app_details_excursions', { id:notif.concerned.id }) }}">
+    <a class="notif-item dropdown-item d-flex align-items-center" data-text="{{ notif.id }}" href="{{ notif.concerned is null ? '#' : path('excursions', { id:notif.concerned.id }) }}">
         <div class="mr-3">
             {% include 'inc/_notification_type.html.twig' with {'type': notif.type} %}
         </div>
