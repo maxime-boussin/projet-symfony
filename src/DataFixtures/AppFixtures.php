@@ -69,7 +69,7 @@ class AppFixtures extends Fixture
 
         $allUsers = [];
 
-        for ($i = 0; $i < 300; $i++) {
+        for ($i = 0; $i < 50; $i++) {
             $user = new User();
             $user->setFirstName($faker->firstName);
             $user->setLastName($faker->lastName);
