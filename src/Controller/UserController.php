@@ -56,6 +56,10 @@ class UserController extends AbstractController
             }
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
+            $this->addFlash(
+                'success',
+                'Profil modifié avec succès.'
+            );
         }
         // Faire la vue etc...
         return $this->render('user/profile.html.twig', [

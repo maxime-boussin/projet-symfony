@@ -195,7 +195,7 @@ class CommonController extends AbstractController
                 'Sortie créée avec succès.'
             );
 
-            return $this->redirectToRoute('app_excursions');
+            return $this->redirectToRoute('excursions');
         }
         return $this->render('excursions/create.html.twig', [
             'createExcursionForm' => $form->createView()
@@ -304,10 +304,6 @@ class CommonController extends AbstractController
             );
             return $this->redirectToRoute('excursions');
         }
-        $this->addFlash(
-            'danger',
-            'Création de la ville non aboutie'
-        );
 
         return $this->render('main/city.html.twig', [
             'createCityForm' => $form->createView()

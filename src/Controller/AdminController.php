@@ -126,7 +126,7 @@ class AdminController extends AbstractController
         $pagination = array(
             'page' => $page,
             'nbPages' => ceil(count($users) / 5),
-            'routeName' => 'app_admin_users',
+            'routeName' => 'admin_users',
             'routeParams' => array()
         );
         return $this->render('admin/listUser.html.twig', [
