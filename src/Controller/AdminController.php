@@ -93,6 +93,10 @@ class AdminController extends AbstractController
                         }
                     }
                     $em->flush();
+                    $this->addFlash(
+                        'success',
+                        'Importation réalisée avec succès.'
+                    );
                 }
                 else{
                     $this->addFlash(

@@ -11,8 +11,10 @@ use App\Form\CityFormType;
 use App\Form\ExcursionListFormType;
 use App\Form\ExcursionPostType;
 use App\Repository\ExcursionRepository;
+use App\Service\CommonService;
 use App\Service\NotificationService;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -28,7 +30,7 @@ class CommonController extends AbstractController
      * @param Request $request
      * @param EntityManagerInterface $em
      * @return Response
-     * @throws \Exception
+     * @throws Exception
      */
     public function listExcursions(Request $request, EntityManagerInterface $em): Response
     {
@@ -69,35 +71,25 @@ class CommonController extends AbstractController
     /**
      * @Route("/subscribe/{id}", name="excursion_subscribe")
      * @IsGranted("ROLE_USER")
-     * @param EntityManagerInterface $em
      * @param $id
+     * @param CommonService $commonService
      * @param NotificationService $notif
      * @return Response
-     * @throws \Exception
+     * @throws Exception
      */
-    public function subscribeExcursions(EntityManagerInterface $em, $id, NotificationService $notif): Response
+    public function subscribeExcursions($id, CommonService $commonService, NotificationService $notif): Response
     {
-        $excursion = $em->getRepository(Excursion::class)->updateAndFind($id);
-        if($excursion != null){
-            if($excursion->getState() != 0 &&
-                count($excursion->getParticipants()) < $excursion->getParticipantLimit() &&
-                !$excursion->getParticipants()->contains($this->getUser()) &&
-                $excursion->getLimitDate() > new \DateTime()
-            ){
-                $excursion->addParticipant($this->getUser());
-                $em->flush();
-                $notif->init($excursion->getOrganizer(), sprintf('%s s\'est inscrit à votre sortie.', $this->getUser()->getNickname()), 'subscribe', $excursion);
-                $this->addFlash(
-                    'success',
-                    sprintf('Souscription à %s effectuée.', $excursion->getName())
-                );
-            }
-            else{
-                $this->addFlash(
-                    'danger',
-                    'Souscription impossible.'
-                );
-            }
+        try {
+            $message = $commonService->subscribeExcursion($id, $notif, $this->getUser());
+            $this->addFlash(
+                'success',
+                sprintf($message)
+            );
+        } catch (Exception $exception) {
+            $this->addFlash(
+                'danger',
+                'Souscription impossible.'
+            );
         }
         return $this->redirectToRoute('excursions');
     }
@@ -105,30 +97,25 @@ class CommonController extends AbstractController
     /**
      * @Route("/unsubscribe/{id}", name="excursion_unsubscribe")
      * @IsGranted("ROLE_USER")
-     * @param EntityManagerInterface $em
      * @param $id
      * @param NotificationService $notif
+     * @param CommonService $commonService
      * @return Response
-     * @throws \Exception
+     * @throws Exception
      */
-    public function unsubscribeExcursions(EntityManagerInterface $em, $id, NotificationService $notif): Response
+    public function unsubscribeExcursions($id, NotificationService $notif, CommonService $commonService): Response
     {
-        $excursion = $em->getRepository(Excursion::class)->updateAndFind($id);
-        if($excursion != null){
-            if($excursion->getState() != 0 &&
-                $excursion->getParticipants()->contains($this->getUser()) &&
-                $excursion->getLimitDate() > new \DateTime()
-            ){
-                $excursion->removeParticipant($this->getUser());
-                $em->flush();
-                $notif->init($excursion->getOrganizer(), sprintf('%s s\'est désinscrit de votre sortie.', $this->getUser()->getNickname()), 'unsubscribe', $excursion);
-            }
-            else{
-                $this->addFlash(
-                    'danger',
-                    'Désinscription impossible.'
-                );
-            }
+        try {
+            $message = $commonService->unsubscribeExcursion($id, $notif, $this->getUser());
+            $this->addFlash(
+                'success',
+                sprintf($message)
+            );
+        } catch (Exception $exception) {
+            $this->addFlash(
+                'danger',
+                'Désinscription impossible.'
+            );
         }
         return $this->redirectToRoute('excursions');
     }
@@ -176,7 +163,7 @@ class CommonController extends AbstractController
      *
      * @param Request $request
      * @return RedirectResponse|Response
-     * @throws \Exception
+     * @throws Exception
      */
     public function createExcursion(Request $request){
         $excursion = new Excursion();
@@ -203,9 +190,13 @@ class CommonController extends AbstractController
             $entityManager->persist($excursion);
             $entityManager->flush();
 
-            return $this->redirectToRoute('excursions');
-        }
+            $this->addFlash(
+                'success',
+                'Sortie créée avec succès.'
+            );
 
+            return $this->redirectToRoute('app_excursions');
+        }
         return $this->render('excursions/create.html.twig', [
             'createExcursionForm' => $form->createView()
         ]);
@@ -216,6 +207,7 @@ class CommonController extends AbstractController
      * @param EntityManagerInterface $em
      * @param $id
      * @return Response
+     * @IsGranted("ROLE_USER")
      */
     public function detailsExcursion(EntityManagerInterface $em, $id): Response
     {
@@ -242,31 +234,32 @@ class CommonController extends AbstractController
 
     /**
      * @Route("/excursions/publish/{id}", name="excursion_publish")
+     * @IsGranted("ROLE_USER")
      * @param $id
+     * @param CommonService $commonService
      * @return Response
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function publishExcursion($id)
+    public function publishExcursion($id, CommonService $commonService)
     {
-        $em = $this->getDoctrine()->getManager();
-        $excursion = $em->getRepository(Excursion::class)->find($id);
-        if (($excursion != null) && ($excursion->getOrganizer()->getId() == $this->getUser()->getId())){
-            $excursion->setState(1);
-            $em->flush();
-            $excursionRep = new ExcursionRepository($this->getDoctrine());
-            $excursionRep->updateState($id);
+        try {
+            $message = $commonService->publishExcursion($id, $this->getUser());
             $this->addFlash(
                 'success',
-                'Sortie publiée.'
+                $message
             );
-
             return $this->redirectToRoute('excursions');
+        } catch (Exception $exception){
+            $this->addFlash(
+                'danger',
+                'Sortie non publiée'
+            );
         }
     }
 
     /**
      * @Route("/", name="home")
+     * @param EntityManagerInterface $em
+     * @return Response
      */
     public function home(EntityManagerInterface $em) {
         $rep = $em->getRepository(Excursion::class);
@@ -311,6 +304,11 @@ class CommonController extends AbstractController
             );
             return $this->redirectToRoute('excursions');
         }
+        $this->addFlash(
+            'danger',
+            'Création de la ville non aboutie'
+        );
+
         return $this->render('main/city.html.twig', [
             'createCityForm' => $form->createView()
         ]);
@@ -318,6 +316,7 @@ class CommonController extends AbstractController
 
     /**
      * @Route("/notifications/seen/{id}", name="notification_seen")
+     * @IsGranted("ROLE_USER")
      * @param Request $request
      * @param int $id
      * @param NotificationService $notif
