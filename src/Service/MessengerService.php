@@ -37,7 +37,7 @@ class MessengerService
     public function getLastConversation(User $user)
     {
         $lastUser = $this->em->getRepository(Message::class)->getLastUser($user);
-        return $this->getConversation($user->getId(), $lastUser->getId());
+        return ($lastUser?$this->getConversation($user->getId(), $lastUser->getId()):[]);
     }
 
     public function getConversation(int $userId, int $contactId, \DateTime $date=null)

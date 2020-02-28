@@ -46,6 +46,8 @@ class MessageRepository extends ServiceEntityRepository
             ->setParameter('user', $user)
             ->getQuery()
             ->getOneOrNullResult();
+        if($lastMessage == null)
+            return false;
         return ($lastMessage->getReceiver() === $user? $lastMessage->getSender() :$lastMessage->getReceiver());
     }
 

@@ -14,12 +14,12 @@
                         {% for member in members %}
                             <tr>
                                 <td>
-                                    <a href="{{ path('app_foreign_profile', {username: member.nickname}) }}">
+                                    <a href="{{ path('user_foreign_profile', {username: member.nickname}) }}">
                                         {{ member.firstName }} {{ member.lastName }}
                                     </a>
                                 </td>
                                 <td style="width: 40px">
-                                    <a href="{{ path('app_delete_member_private_group', {groupId: privateGroup.id, userId: member.id}) }}" data-toggle="tooltip" title="Supprimer le membre">
+                                    <a href="{{ path('privategroup_remove_member', {groupId: privateGroup.id, userId: member.id}) }}" data-toggle="tooltip" title="Supprimer le membre">
                                         <i class="fas fa-trash-alt"></i>
                                     </a>
                                 </td>
@@ -31,7 +31,7 @@
         </div>
     </div>
     <div class="float-right">
-        <a href="{{ path("app_add_member_private_group", {id: privateGroup.id}) }}" class="btn btn-success btn-icon-split m-1">
+        <a href="{{ path("privategroup_add_member", {id: privateGroup.id}) }}" class="btn btn-success btn-icon-split m-1">
             <span class="icon text-white-50">
                 <i class="fas fa-plus-circle"></i>
             </span>

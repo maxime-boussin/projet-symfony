@@ -91,6 +91,7 @@ class ExcursionRepository extends ServiceEntityRepository
             AND (date BETWEEN :from AND :to)
             AND visibility = 1
             AND excursion.name LIKE :content
+            AND visibility = 1
             AND (1=0';
         if($owned){
             $sql.=' OR excursion.organizer_id = :user';
@@ -174,7 +175,7 @@ class ExcursionRepository extends ServiceEntityRepository
         $excursions = $qb->getQuery()->getResult();
         $nb = 0;
         foreach($excursions as $excursion){
-            $this->getEntityManager()->remove($excursion);
+            $excursion->setVisibility(0);
             $nb++;
         }
         $this->getEntityManager()->flush();

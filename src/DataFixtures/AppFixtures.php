@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\City;
 use App\Entity\Excursion;
+use App\Entity\Message;
 use App\Entity\Place;
 use App\Entity\Site;
 use App\Entity\User;
@@ -86,7 +87,7 @@ class AppFixtures extends Fixture
 
         for ($i = 0; $i < 200; $i++){
             $excursion = new Excursion();
-            $organizer = $allUsers[rand(0,299)];
+            $organizer = $allUsers[rand(0,49)];
             $excursion->setDate($faker->dateTimeBetween('-366 days', '+365 days'));
             $excursion->setLimitDate($faker->dateTimeBetween('-365 days', $excursion->getDate()));
             try {
@@ -99,7 +100,7 @@ class AppFixtures extends Fixture
             $excursion->setVisibility(1);
             $excursion->setParticipantLimit(rand(1,15));
             for ($j = 0; $j < rand(0,$excursion->getParticipantLimit()); $j++){
-                $userParticipant = $allUsers[rand(0,299)];
+                $userParticipant = $allUsers[rand(0,49)];
                 if ($userParticipant != $organizer){
                     $excursion->addParticipant($userParticipant);
                 }
@@ -119,7 +120,6 @@ class AppFixtures extends Fixture
             $manager->persist($place);
             $manager->persist($excursion);
         }
-
         $manager->flush();
     }
 

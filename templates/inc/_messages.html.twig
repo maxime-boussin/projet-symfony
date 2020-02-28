@@ -12,7 +12,7 @@
         {% for i in 3..0 %}
             {% if app.user.receivedMessages|length > i %}
                 {% set message = app.user.receivedMessages[i] %}
-                    <a class="dropdown-item d-flex align-items-center" href="{{ path('app_messenger_new', { user: message.sender.id }) }}">
+                    <a class="dropdown-item d-flex align-items-center" href="{{ path('messenger_new', { user: message.sender.id }) }}">
                         <div class="dropdown-list-image mr-3">
                             <img class="rounded-circle" src="{{ asset('uploads/'~(message.sender.avatarPath == null? 'default.png': message.sender.avatarPath)) }}" alt="">
                             <div class="status-indicator {{ (date("now").diff(date(message.sender.lastActivity)).i < 5 ? 'bg-success' : 'bg-danger') }}"></div>
@@ -24,5 +24,5 @@
                     </a>
             {% endif %}
         {% endfor %}
-        <a class="dropdown-item text-center small text-gray-500" href="{{ path('app_messenger') }}">Voir plus</a>
+        <a class="dropdown-item text-center small text-gray-500" href="{{ path('messenger') }}">Voir plus</a>
     </div>
